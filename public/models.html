@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GenAI Monitor — Model Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F5F0; --surface:#FFFFFF; --border:#E2DED6; --border2:#CAC5BB;
+  --text:#1A1814; --muted:#7A7568; --dim:#B0AA9F; --ink:#0D0C0A;
+  --accent:#1A3A2A; --accent-light:#E8F2EC;
+  --pos:#1A6A3A; --neg:#8A2A2A;
+  --mono:'JetBrains Mono',monospace; --display:'Syne',sans-serif; --serif:'Lora',serif;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--display)}
+.shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+
+/* sidebar */
+.sidebar{background:var(--ink);color:#E8E4DC;padding:2rem 1.5rem;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:0}
+.brand{margin-bottom:2.5rem}
+.brand-name{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#E8E4DC;margin-bottom:4px}
+.brand-role{font-family:var(--mono);font-size:10px;color:#5A5650;line-height:1.5}
+.nav-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:#3A3630;text-transform:uppercase;margin:1.5rem 0 .5rem}
+.nav-item{font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:4px;cursor:pointer;color:#7A7068;transition:all .15s;margin-bottom:1px;display:flex;align-items:center;justify-content:space-between;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,.05);color:#C8C4BC}
+.nav-item.active{background:rgba(255,255,255,.08);color:#E8E4DC}
+.nav-count{font-size:9px;background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;color:#5A5650}
+.nav-item.active .nav-count{background:rgba(255,255,255,.15);color:#A0A09A}
+.sidebar-footer{margin-top:auto;padding-top:1.5rem;border-top:1px solid #1E1C18}
+.run-btn{width:100%;font-family:var(--mono);font-size:11px;padding:9px;border-radius:5px;border:1px solid #2E3A2A;background:rgba(110,180,140,.08);color:#6EB48C;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.run-btn:hover{background:rgba(110,180,140,.15);border-color:#3E5A3A}
+.run-btn:disabled{opacity:.4;cursor:not-allowed}
+.last-run{font-family:var(--mono);font-size:9px;color:#3A3630;margin-top:8px;text-align:center;line-height:1.5}
+
+/* main */
+.main{padding:2.5rem 2.5rem 4rem;min-width:0}
+.datebar{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.datebar-date{font-size:22px;font-weight:600;color:var(--ink)}
+.datebar-meta{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* toolbar */
+.toolbar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;display:flex;flex-wrap:wrap;gap:.65rem;align-items:center}
+.search-wrap{flex:1;min-width:220px;position:relative}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--dim)}
+.search{width:100%;font-family:var(--mono);font-size:12px;padding:8px 32px 8px 30px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);outline:none}
+.search:focus{border-color:var(--accent)}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .12s;letter-spacing:.03em}
+.chip:hover{border-color:var(--border2);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* table */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:auto;margin-bottom:2rem}
+table{width:100%;border-collapse:collapse;font-size:12px;font-family:var(--mono);min-width:1400px}
+th{background:var(--bg);border-bottom:1px solid var(--border);padding:10px 12px;text-align:left;font-weight:500;color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;position:sticky;top:0;cursor:pointer;white-space:nowrap;user-select:none}
+th:hover{color:var(--text)}
+th .sort-ind{opacity:.4;margin-left:4px}
+th.sorted .sort-ind{opacity:1;color:var(--accent)}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAF8F3}
+tr.expanded td{background:var(--accent-light)}
+.co-badge{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:3px;display:inline-block;white-space:nowrap}
+.model-name{font-family:var(--display);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.model-id{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tier{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;display:inline-block;background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.tier.ga{background:#E8F5EC;color:#1A4A2A;border-color:#C8E5D2}
+.tier.preview{background:#FBF3E8;color:#5C3A0A;border-color:#E8D8B8}
+.tier.deprecated{background:#F5E8E8;color:#5C0A0A;border-color:#E8C8C8}
+.mod-icon{display:inline-block;font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:3px;background:var(--bg);color:var(--muted);border:1px solid var(--border);margin-right:3px;letter-spacing:.04em;text-transform:uppercase}
+.cap-yes{color:var(--pos);font-weight:600}
+.cap-no{color:var(--dim)}
+.detail-row td{background:#FAF8F3;padding:1rem 1.4rem;border-bottom:1px solid var(--border)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;font-family:var(--display)}
+.detail-block h4{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.detail-block ul{list-style:none;padding-left:0}
+.detail-block li{font-size:13px;line-height:1.6;padding:3px 0;color:var(--text)}
+.detail-block li.pro::before{content:"+ ";color:var(--pos);font-weight:600;font-family:var(--mono)}
+.detail-block li.con::before{content:"− ";color:var(--neg);font-weight:600;font-family:var(--mono)}
+.best-for{font-family:var(--serif);font-style:italic;font-size:13.5px;color:#3A3530;line-height:1.6}
+.bench-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;padding:3px 0;border-bottom:1px dashed var(--border)}
+.bench-key{color:var(--muted)}
+.bench-val{color:var(--ink);font-weight:600}
+.source-link{font-family:var(--mono);font-size:10px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid #B8D4C4;border-radius:3px;background:var(--accent-light);margin-top:10px}
+.source-link:hover{background:#D4E8DC}
+
+/* empty + loading */
+.empty{padding:3rem;text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(247,245,240,.85);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.loading-overlay.show{display:flex}
+.loader{width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.loader-msg{font-family:var(--mono);font-size:12px;color:var(--muted);max-width:360px;text-align:center;line-height:1.5}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;font-family:var(--mono);font-size:12px;padding:10px 16px;border-radius:6px;background:var(--ink);color:#E8E4DC;opacity:0;transition:opacity .3s;pointer-events:none;z-index:200;max-width:320px;line-height:1.5}
+.toast.show{opacity:1}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-name">GenAI Monitor</div>
+      <div class="brand-role">Senior Technical Manager<br/>Model Comparison Catalog</div>
+    </div>
+
+    <div class="nav-label">Views</div>
+    <a class="nav-item" href="/">Daily updates</a>
+    <a class="nav-item active" href="/models.html">Model comparison <span class="nav-count" id="totalCount">—</span></a>
+
+    <div class="nav-label">Provider</div>
+    <div id="nav-providers"></div>
+
+    <div class="sidebar-footer">
+      <button class="run-btn" id="runBtn" onclick="triggerRefresh()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,6 4,3 7,6"/><line x1="4" y1="3" x2="4" y2="9"/><polyline points="7,4 10,7 7,10"/><line x1="10" y1="7" x2="10" y2="4"/></svg>
+        Refresh catalog
+      </button>
+      <div class="last-run" id="lastRunLabel">—</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="datebar">
+      <div class="datebar-date">Model comparison</div>
+      <div class="datebar-meta" id="metaLabel">— models</div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
+        <input type="text" class="search" id="searchBox" placeholder="Filter — model name, id, best-for, pros/cons…" oninput="render()"/>
+      </div>
+      <div class="chips" id="modalityChips"></div>
+    </div>
+
+    <div class="table-wrap" id="tableWrap">
+      <table id="modelTable">
+        <thead>
+          <tr id="headerRow"></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </main>
+
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loader"></div>
+  <div class="loader-msg" id="loaderMsg">Refreshing model catalog… (this can take 1–2 minutes)</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PROVIDERS_PALETTE = {
+  Microsoft: "background:#E8F0FB;color:#1A3A6A",
+  OpenAI:    "background:#F0EDE8;color:#2A2520",
+  Anthropic: "background:#FBF0E8;color:#5C2A0A",
+  DeepSeek:  "background:#EEE8FB;color:#2A0A5C",
+  Google:    "background:#FBE8E8;color:#5C0A0A",
+  Mistral:   "background:#F0E8FB;color:#3A0A5C",
+  Meta:      "background:#E8EEF8;color:#0A1A4A",
+  xAI:       "background:#ECECEC;color:#111111",
+  Amazon:    "background:#FFF1D6;color:#5A3A00",
+  Alibaba:   "background:#FFE8E0;color:#6A1A0A",
+  Cohere:    "background:#FBE8F2;color:#5C0A3A",
+  NVIDIA:    "background:#E8F7E0;color:#1A4A0A",
+  Perplexity:"background:#E0F2F5;color:#0A3A4A",
+  Moonshot:  "background:#EEEAFB;color:#2A1A5C",
+};
+
+const COLUMNS = [
+  { key: "provider",            label: "Provider",     sortable: true },
+  { key: "model_name",          label: "Model",        sortable: true },
+  { key: "status",              label: "Status",       sortable: true },
+  { key: "release_date",        label: "Released",     sortable: true, num: true },
+  { key: "context_window",      label: "Context",      sortable: true, num: true },
+  { key: "max_output_tokens",   label: "Max out",      sortable: true, num: true },
+  { key: "input_price_per_1m",  label: "Input $/1M",   sortable: true, num: true },
+  { key: "cached_input_price_per_1m", label: "Cached $/1M", sortable: true, num: true },
+  { key: "output_price_per_1m", label: "Output $/1M",  sortable: true, num: true },
+  { key: "modalities",          label: "Modalities",   sortable: false },
+  { key: "capabilities",        label: "Capabilities", sortable: false },
+  { key: "best_for",            label: "Best for",     sortable: false },
+];
+
+let allModels = [];
+let providers = [];
+let activeProvider = "All";
+let activeModality = "All";
+let sortKey = "provider";
+let sortDir = 1;
+let expanded = new Set();
+
+function fmtNum(n) {
+  if (n == null || n === "") return "—";
+  if (typeof n !== "number") return n;
+  if (n >= 1000000) return (n/1000000).toFixed(n%1000000===0?0:1) + "M";
+  if (n >= 1000)    return (n/1000).toFixed(n%1000===0?0:1) + "K";
+  return n.toString();
+}
+
+function fmtPrice(n) {
+  if (n == null || n === "") return "—";
+  if (typeof n !== "number") return n;
+  return "$" + n.toFixed(n < 1 ? 3 : 2);
+}
+
+function modBadge(m) { return `<span class="mod-icon">${m}</span>`; }
+
+function buildSidebar() {
+  const root = document.getElementById("nav-providers");
+  const counts = {};
+  allModels.forEach(m => { counts[m.provider] = (counts[m.provider] || 0) + 1; });
+  const list = ["All", ...providers];
+  root.innerHTML = list.map(p => {
+    const c = p === "All" ? allModels.length : (counts[p] || 0);
+    return `<a class="nav-item ${p===activeProvider?'active':''}" onclick="setProvider('${p}')">${p} <span class="nav-count">${c}</span></a>`;
+  }).join("");
+}
+
+function buildModalityChips() {
+  const root = document.getElementById("modalityChips");
+  const opts = ["All","text","vision","audio","video","tool_use","reasoning","open_weights"];
+  root.innerHTML = opts.map(o =>
+    `<button class="chip ${o===activeModality?'on':''}" onclick="setModality('${o}')">${o.replace('_',' ')}</button>`
+  ).join("");
+}
+
+function setProvider(p) { activeProvider = p; buildSidebar(); render(); }
+function setModality(m) { activeModality = m; buildModalityChips(); render(); }
+
+function setSort(key) {
+  if (sortKey === key) sortDir = -sortDir;
+  else { sortKey = key; sortDir = 1; }
+  render();
+}
+
+function renderHeader() {
+  const row = document.getElementById("headerRow");
+  row.innerHTML = COLUMNS.map(c => {
+    const cls = sortKey === c.key ? "sorted" : "";
+    const ind = sortKey === c.key ? (sortDir === 1 ? "↑" : "↓") : "↕";
+    const onclick = c.sortable ? `onclick="setSort('${c.key}')"` : 'style="cursor:default"';
+    return `<th class="${cls}" ${onclick}>${c.label}<span class="sort-ind">${c.sortable?ind:''}</span></th>`;
+  }).join("");
+}
+
+function applyFilters() {
+  const q = (document.getElementById("searchBox").value || "").toLowerCase().trim();
+  return allModels.filter(m => {
+    if (activeProvider !== "All" && m.provider !== activeProvider) return false;
+    if (activeModality !== "All") {
+      if (["text","vision","audio","video"].includes(activeModality)) {
+        if (!(Array.isArray(m.modalities) && m.modalities.includes(activeModality))) return false;
+      } else {
+        if (!m[activeModality]) return false;
+      }
+    }
+    if (!q) return true;
+    const hay = [
+      m.model_name, m.model_id, m.provider, m.best_for,
+      (m.pros||[]).join(" "), (m.cons||[]).join(" "),
+      Object.keys(m.benchmarks||{}).join(" "),
+    ].filter(Boolean).join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+}
+
+function applySort(rows) {
+  return rows.slice().sort((a, b) => {
+    const va = a[sortKey], vb = b[sortKey];
+    if (va == null && vb == null) return 0;
+    if (va == null) return 1;
+    if (vb == null) return -1;
+    if (typeof va === "number" && typeof vb === "number") return (va - vb) * sortDir;
+    return String(va).localeCompare(String(vb)) * sortDir;
+  });
+}
+
+function renderRow(m, key) {
+  const co = PROVIDERS_PALETTE[m.provider] || "background:var(--bg);color:var(--muted)";
+  const mods = Array.isArray(m.modalities) ? m.modalities.map(modBadge).join("") : "—";
+  const caps = [
+    m.tool_use ? '<span class="cap-yes">tools</span>' : '',
+    m.structured_output ? '<span class="cap-yes">struct</span>' : '',
+    m.reasoning ? '<span class="cap-yes">reasoning</span>' : '',
+    m.mcp_support ? '<span class="cap-yes">mcp</span>' : '',
+    m.open_weights ? '<span class="cap-yes">open</span>' : '',
+  ].filter(Boolean).join(" · ") || '<span class="cap-no">—</span>';
+
+  return `
+    <tr class="${expanded.has(key)?'expanded':''}" onclick="toggle('${key}')">
+      <td><span class="co-badge" style="${co}">${m.provider||'—'}</span></td>
+      <td>
+        <div class="model-name">${m.model_name||'—'}</div>
+        <div class="model-id">${m.model_id||''}</div>
+      </td>
+      <td><span class="tier ${m.status||''}">${m.status||'—'}</span></td>
+      <td class="num">${m.release_date||'—'}</td>
+      <td class="num">${fmtNum(m.context_window)}</td>
+      <td class="num">${fmtNum(m.max_output_tokens)}</td>
+      <td class="num">${fmtPrice(m.input_price_per_1m)}</td>
+      <td class="num">${fmtPrice(m.cached_input_price_per_1m)}</td>
+      <td class="num">${fmtPrice(m.output_price_per_1m)}</td>
+      <td>${mods}</td>
+      <td>${caps}</td>
+      <td style="max-width:260px;white-space:normal">${m.best_for||'—'}</td>
+    </tr>
+  `;
+}
+
+function renderDetail(m, key) {
+  const pros = (m.pros||[]).map(p => `<li class="pro">${p}</li>`).join("");
+  const cons = (m.cons||[]).map(c => `<li class="con">${c}</li>`).join("");
+  const benchEntries = Object.entries(m.benchmarks || {});
+  const benches = benchEntries.length
+    ? benchEntries.map(([k,v]) => `<div class="bench-row"><span class="bench-key">${k}</span><span class="bench-val">${v}</span></div>`).join("")
+    : '<div class="bench-row"><span class="bench-key">no benchmarks reported</span></div>';
+  const source = m.source_url
+    ? `<a class="source-link" href="${m.source_url}" target="_blank" rel="noopener">Official source ↗</a>`
+    : '';
+
+  return `
+    <tr class="detail-row"><td colspan="${COLUMNS.length}">
+      ${m.best_for ? `<div class="best-for">${m.best_for}</div>` : ''}
+      <div class="detail-grid" style="margin-top:1rem">
+        <div class="detail-block">
+          <h4>Pros</h4>
+          <ul>${pros || '<li style="color:var(--dim)">—</li>'}</ul>
+        </div>
+        <div class="detail-block">
+          <h4>Cons</h4>
+          <ul>${cons || '<li style="color:var(--dim)">—</li>'}</ul>
+        </div>
+        <div class="detail-block">
+          <h4>Benchmarks</h4>
+          ${benches}
+        </div>
+        <div class="detail-block">
+          <h4>Meta</h4>
+          <div class="bench-row"><span class="bench-key">last updated</span><span class="bench-val">${m.last_updated||'—'}</span></div>
+          <div class="bench-row"><span class="bench-key">first seen</span><span class="bench-val">${m.first_seen||'—'}</span></div>
+          ${source}
+        </div>
+      </div>
+    </td></tr>
+  `;
+}
+
+function render() {
+  renderHeader();
+  const filtered = applySort(applyFilters());
+  const tbody = document.getElementById("tbody");
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="${COLUMNS.length}" class="empty">No models match the current filters. ${allModels.length === 0 ? 'Click "Refresh catalog" to populate.' : ''}</td></tr>`;
+  } else {
+    tbody.innerHTML = filtered.map(m => {
+      const key = `${m.provider}::${m.model_id||m.model_name}`;
+      return renderRow(m, key) + (expanded.has(key) ? renderDetail(m, key) : "");
+    }).join("");
+  }
+
+  document.getElementById("metaLabel").textContent =
+    `${filtered.length} of ${allModels.length} models` +
+    (activeProvider !== "All" ? ` · ${activeProvider}` : "") +
+    (activeModality !== "All" ? ` · ${activeModality}` : "");
+  document.getElementById("totalCount").textContent = allModels.length;
+}
+
+function toggle(key) {
+  if (expanded.has(key)) expanded.delete(key);
+  else expanded.add(key);
+  render();
+}
+
+async function load() {
+  try {
+    const res = await fetch("/api/models");
+    const data = await res.json();
+    allModels = data.items || [];
+    providers = data.providers || [];
+    const latest = allModels.reduce((acc, m) => {
+      if (!m.last_updated) return acc;
+      return !acc || m.last_updated > acc ? m.last_updated : acc;
+    }, null);
+    document.getElementById("lastRunLabel").textContent = latest ? `Catalog as of ${latest}` : "Catalog empty";
+    buildSidebar();
+    buildModalityChips();
+    render();
+  } catch (err) {
+    showToast("Failed to load catalog: " + err.message);
+  }
+}
+
+async function triggerRefresh() {
+  const btn = document.getElementById("runBtn");
+  btn.disabled = true;
+  document.getElementById("loadingOverlay").classList.add("show");
+  try {
+    const res = await fetch("/api/run-models", { method: "POST" });
+    const data = await res.json();
+    if (data.success) {
+      showToast(`Refreshed — ${data.inserted} new, ${data.updated} updated`);
+      await load();
+    } else {
+      showToast("Refresh failed: " + (data.error || "unknown"));
+    }
+  } catch (err) {
+    showToast("Refresh failed: " + err.message);
+  } finally {
+    btn.disabled = false;
+    document.getElementById("loadingOverlay").classList.remove("show");
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3500);
+}
+
+load();
+</script>
+</body>
+</html>

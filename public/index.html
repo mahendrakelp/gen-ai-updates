@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GenAI Monitor — Daily Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F5F0;
+  --surface:#FFFFFF;
+  --border:#E2DED6;
+  --border2:#CAC5BB;
+  --text:#1A1814;
+  --muted:#7A7568;
+  --dim:#B0AA9F;
+  --ink:#0D0C0A;
+  --accent:#1A3A2A;
+  --accent-light:#E8F2EC;
+  --tag-blue:#EBF2FB;
+  --tag-blue-t:#1A3A6A;
+  --tag-green:#E8F2EC;
+  --tag-green-t:#1A3A2A;
+  --tag-amber:#FBF3E8;
+  --tag-amber-t:#5C3A0A;
+  --tag-rose:#FBE8EE;
+  --tag-rose-t:#5C0A1E;
+  --tag-purple:#EEE8FB;
+  --tag-purple-t:#2A0A5C;
+  --tag-gray:#F0EDE8;
+  --tag-gray-t:#3A3530;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Syne',sans-serif;
+  --serif:'Lora',serif;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--display)}
+
+/* ── layout ── */
+.shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+
+/* ── sidebar ── */
+.sidebar{background:var(--ink);color:#E8E4DC;padding:2rem 1.5rem;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:0}
+.brand{margin-bottom:2.5rem}
+.brand-name{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#E8E4DC;margin-bottom:4px}
+.brand-role{font-family:var(--mono);font-size:10px;color:#5A5650;line-height:1.5}
+.nav-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:#3A3630;text-transform:uppercase;margin:1.5rem 0 .5rem}
+.nav-item{font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:4px;cursor:pointer;color:#7A7068;transition:all .15s;margin-bottom:1px;display:flex;align-items:center;justify-content:space-between}
+.nav-item:hover{background:rgba(255,255,255,.05);color:#C8C4BC}
+.nav-item.active{background:rgba(255,255,255,.08);color:#E8E4DC}
+.nav-count{font-size:9px;background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;color:#5A5650}
+.nav-item.active .nav-count{background:rgba(255,255,255,.15);color:#A0A09A}
+.sidebar-footer{margin-top:auto;padding-top:1.5rem;border-top:1px solid #1E1C18}
+.run-btn{width:100%;font-family:var(--mono);font-size:11px;padding:9px;border-radius:5px;border:1px solid #2E3A2A;background:rgba(110,180,140,.08);color:#6EB48C;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.run-btn:hover{background:rgba(110,180,140,.15);border-color:#3E5A3A}
+.run-btn:disabled{opacity:.4;cursor:not-allowed}
+.last-run{font-family:var(--mono);font-size:9px;color:#3A3630;margin-top:8px;text-align:center;line-height:1.5}
+
+/* ── main ── */
+.main{padding:2.5rem 2.5rem 4rem;min-width:0}
+
+/* date bar */
+.datebar{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:.5rem}
+.datebar-date{font-size:22px;font-weight:600;color:var(--ink)}
+.datebar-meta{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* stats row */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:2rem}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem}
+.stat-num{font-size:22px;font-weight:600;color:var(--ink);line-height:1}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:.04em}
+
+/* filters */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.chip{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:3px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .12s;letter-spacing:.03em}
+.chip:hover{border-color:var(--border2);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* toolbar */
+.toolbar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:.65rem}
+.toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.search-wrap{flex:1;min-width:220px;position:relative}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--dim)}
+.search{width:100%;font-family:var(--mono);font-size:12px;padding:8px 32px 8px 30px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.search:focus{border-color:var(--accent)}
+.search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:14px;color:var(--dim);cursor:pointer;padding:2px 6px;border:none;background:none;display:none}
+.search-clear.show{display:block}
+.search-clear:hover{color:var(--text)}
+.date-input{font-family:var(--mono);font-size:11px;padding:7px 9px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.date-input:focus{border-color:var(--accent)}
+.date-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em}
+.preset-row{display:flex;gap:5px;flex-wrap:wrap}
+.filter-summary{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto}
+.clear-filters{font-family:var(--mono);font-size:10px;padding:4px 9px;border-radius:3px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .12s}
+.clear-filters:hover{border-color:var(--border2);color:var(--text)}
+
+/* section */
+.section-head{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:1.75rem 0 .75rem;display:flex;align-items:center;gap:8px}
+.section-head::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* article card */
+.article{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.4rem;margin-bottom:8px;transition:border-color .15s}
+.article:hover{border-color:var(--border2)}
+.article.hidden{display:none}
+.article-head{display:flex;align-items:flex-start;gap:8px;margin-bottom:.75rem;flex-wrap:wrap}
+.co-badge{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:3px;flex-shrink:0;margin-top:1px}
+.cat-tag{font-family:var(--mono);font-size:9px;padding:3px 7px;border-radius:3px;flex-shrink:0;margin-top:1px}
+.article-date{font-family:var(--mono);font-size:9px;color:var(--dim);margin-left:auto;margin-top:2px;white-space:nowrap}
+.article-title{font-size:15px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:.5rem}
+.article-summary{font-family:var(--serif);font-size:13.5px;color:#3A3530;line-height:1.7;font-style:italic;margin-bottom:.85rem}
+.article-impacts{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.85rem}
+.impact-pill{font-family:var(--mono);font-size:10px;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:2px 8px;border-radius:3px}
+.article-link{font-family:var(--mono);font-size:10px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid #B8D4C4;border-radius:3px;background:var(--accent-light);transition:all .15s}
+.article-link:hover{background:#D4E8DC;border-color:#8AB8A0}
+.article-link svg{width:10px;height:10px;flex-shrink:0}
+
+/* empty + loading */
+.empty{padding:3rem;text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(247,245,240,.85);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.loading-overlay.show{display:flex}
+.loader{width:32px;height:32px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.loader-msg{font-family:var(--mono);font-size:12px;color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* toast */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;font-family:var(--mono);font-size:12px;padding:10px 16px;border-radius:6px;background:var(--ink);color:#E8E4DC;opacity:0;transition:opacity .3s;pointer-events:none;z-index:200;max-width:320px;line-height:1.5}
+.toast.show{opacity:1}
+
+/* no-update banner */
+.no-update{background:var(--accent-light);border:1px solid #B8D4C4;border-radius:8px;padding:1.25rem;font-family:var(--mono);font-size:12px;color:var(--accent);line-height:1.6;display:none}
+.no-update.show{display:block}
+
+@media(max-width:700px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-name">GenAI Monitor</div>
+      <div class="brand-role">Senior Technical Manager<br/>Daily Intelligence Brief</div>
+    </div>
+
+    <div class="nav-label">Views</div>
+    <a class="nav-item active" href="/" style="text-decoration:none">Daily updates</a>
+    <a class="nav-item" href="/models.html" style="text-decoration:none">Model comparison</a>
+
+    <div class="nav-label">Platform</div>
+    <div id="nav-companies"></div>
+
+    <div class="nav-label">Category</div>
+    <div id="nav-cats"></div>
+
+    <div class="sidebar-footer">
+      <button class="run-btn" id="runBtn" onclick="triggerRun()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,6 4,3 7,6"/><line x1="4" y1="3" x2="4" y2="9"/><polyline points="7,4 10,7 7,10"/><line x1="10" y1="7" x2="10" y2="4"/></svg>
+        Fetch new updates
+      </button>
+      <div class="last-run" id="lastRunLabel">Last run: —</div>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="main">
+    <div class="datebar">
+      <div class="datebar-date" id="dateLabel"></div>
+      <div class="datebar-meta" id="metaLabel">0 new articles today</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="s-today">—</div><div class="stat-label">today</div></div>
+      <div class="stat"><div class="stat-num" id="s-week">—</div><div class="stat-label">this week</div></div>
+      <div class="stat"><div class="stat-num" id="s-total">—</div><div class="stat-label">all time</div></div>
+      <div class="stat"><div class="stat-num" id="s-companies">—</div><div class="stat-label">platforms</div></div>
+    </div>
+
+    <!-- Toolbar: search + date range + presets -->
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <div class="search-wrap">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
+          <input type="text" class="search" id="searchBox" placeholder="Quick filter — title, summary, company, impact…" oninput="onSearchInput()"/>
+          <button class="search-clear" id="searchClear" onclick="clearSearch()">×</button>
+        </div>
+        <span class="date-label">From</span>
+        <input type="date" class="date-input" id="dateFrom" onchange="onDateChange()"/>
+        <span class="date-label">To</span>
+        <input type="date" class="date-input" id="dateTo" onchange="onDateChange()"/>
+        <button class="clear-filters" onclick="clearAllFilters()">Reset</button>
+      </div>
+      <div class="toolbar-row preset-row" id="presetRow"></div>
+    </div>
+
+    <div class="no-update" id="noUpdate">
+      ✓ No new updates today — all articles in the feed are already in your store.<br/>
+      The agent will run again at <strong>05:00 IST</strong> tomorrow.
+    </div>
+
+    <div id="feed"></div>
+  </main>
+
+</div>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loader"></div>
+  <div class="loader-msg" id="loaderMsg">Fetching latest updates…</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const COMPANIES = ["All","Microsoft","OpenAI","Anthropic","Google","Meta","Mistral","DeepSeek","xAI","Amazon","Alibaba","Cohere","NVIDIA","Perplexity","Moonshot","LangChain","LangSmith","LangFuse"];
+const CATS = ["All","Model","Agent","Skill","Tool","Infra","Memory","Routing","Observability"];
+// Quick presets — filter by date_fetched (when it appeared in the feed),
+// so "Today" matches the today-stat count and includes back-dated articles
+// pulled in today's run.
+const PRESETS = [
+  ["today","Today"],
+  ["yesterday","Yesterday"],
+  ["3","Last 3 days"],
+  ["7","Last 7 days"],
+  ["30","Last 30 days"],
+  ["90","Last 90 days"],
+  ["all","All time"],
+];
+
+const CO_COLORS = {
+  Microsoft: "background:#E8F0FB;color:#1A3A6A",
+  OpenAI:    "background:#F0EDE8;color:#2A2520",
+  Anthropic: "background:#FBF0E8;color:#5C2A0A",
+  LangChain: "background:#E8F2EC;color:#1A3A2A",
+  LangSmith: "background:#EAF5ED;color:#154525",
+  LangFuse:  "background:#FBF3E8;color:#5C3A0A",
+  DeepSeek:  "background:#EEE8FB;color:#2A0A5C",
+  Google:    "background:#FBE8E8;color:#5C0A0A",
+  Mistral:   "background:#F0E8FB;color:#3A0A5C",
+  Meta:      "background:#E8EEF8;color:#0A1A4A",
+  xAI:       "background:#ECECEC;color:#111111",
+  Amazon:    "background:#FFF1D6;color:#5A3A00",
+  Alibaba:   "background:#FFE8E0;color:#6A1A0A",
+  Cohere:    "background:#FBE8F2;color:#5C0A3A",
+  NVIDIA:    "background:#E8F7E0;color:#1A4A0A",
+  Perplexity:"background:#E0F2F5;color:#0A3A4A",
+  Moonshot:  "background:#EEEAFB;color:#2A1A5C",
+};
+const CAT_COLORS = {
+  Model:        "background:#EBF2FB;color:#1A3A6A",
+  Agent:        "background:#E8F2EC;color:#1A3A2A",
+  Skill:        "background:#FBEFE8;color:#5C2A0A",
+  Tool:         "background:#FBF3E8;color:#5C3A0A",
+  Infra:        "background:#FBE8EE;color:#5C0A1E",
+  Memory:       "background:#EEE8FB;color:#2A0A5C",
+  Routing:      "background:#E8F5F0;color:#0A3A2A",
+  Observability:"background:#F5F0E8;color:#3A2A0A",
+};
+
+let activeCompany = "All";
+let activeCat = "All";
+let activePreset = "30";   // default to last 30 days
+let dateFrom = "";          // YYYY-MM-DD, empty = no lower bound
+let dateTo = "";            // YYYY-MM-DD, empty = no upper bound
+let searchQuery = "";
+let allData = [];           // all rows fetched from server (filtered client-side)
+
+// ── Sidebar nav builders ───────────────────────────────────────────────────
+function buildNav(){
+  buildNavGroup("nav-companies", COMPANIES, () => activeCompany, (v)=>{ activeCompany=v; buildNav(); applyFilters(); });
+  buildNavGroup("nav-cats", CATS, ()=>activeCat, (v)=>{ activeCat=v; buildNav(); applyFilters(); });
+}
+function buildNavGroup(id, items, getActive, setActive){
+  const el = document.getElementById(id);
+  el.innerHTML = "";
+  items.forEach(c => {
+    const d = document.createElement("div");
+    d.className = "nav-item" + (getActive()===c?" active":"");
+    d.innerHTML = `<span>${c}</span>`;
+    d.onclick = () => setActive(c);
+    el.appendChild(d);
+  });
+}
+
+// ── Toolbar presets ────────────────────────────────────────────────────────
+function buildPresets(){
+  const el = document.getElementById("presetRow");
+  el.innerHTML = "";
+  PRESETS.forEach(([val, label]) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (activePreset===val ? " on" : "");
+    b.textContent = label;
+    b.onclick = () => applyPreset(val);
+    el.appendChild(b);
+  });
+}
+
+function applyPreset(val){
+  activePreset = val;
+  const today = new Date();
+  const iso = (d) => d.toISOString().split("T")[0];
+
+  if (val === "today") {
+    dateFrom = iso(today); dateTo = iso(today);
+  } else if (val === "yesterday") {
+    const y = new Date(today); y.setDate(y.getDate()-1);
+    dateFrom = iso(y); dateTo = iso(y);
+  } else if (val === "all") {
+    dateFrom = ""; dateTo = "";
+  } else {
+    const n = parseInt(val,10);
+    const from = new Date(today); from.setDate(from.getDate()-(n-1));
+    dateFrom = iso(from); dateTo = iso(today);
+  }
+  document.getElementById("dateFrom").value = dateFrom;
+  document.getElementById("dateTo").value = dateTo;
+  buildPresets();
+  renderFiltered();
+}
+
+function onDateChange(){
+  dateFrom = document.getElementById("dateFrom").value;
+  dateTo = document.getElementById("dateTo").value;
+  activePreset = "";   // custom range → no preset highlighted
+  buildPresets();
+  renderFiltered();
+}
+
+function onSearchInput(){
+  searchQuery = document.getElementById("searchBox").value.trim().toLowerCase();
+  document.getElementById("searchClear").className = "search-clear" + (searchQuery ? " show" : "");
+  renderFiltered();
+}
+
+function clearSearch(){
+  document.getElementById("searchBox").value = "";
+  searchQuery = "";
+  document.getElementById("searchClear").className = "search-clear";
+  renderFiltered();
+}
+
+function clearAllFilters(){
+  activeCompany = "All";
+  activeCat = "All";
+  document.getElementById("searchBox").value = "";
+  searchQuery = "";
+  document.getElementById("searchClear").className = "search-clear";
+  buildNav();
+  applyPreset("30");
+}
+
+// ── Feed load ──────────────────────────────────────────────────────────────
+async function loadStats(){
+  try {
+    const r = await fetch("/api/stats");
+    const d = await r.json();
+    document.getElementById("s-today").textContent = d.today_count ?? "—";
+    document.getElementById("s-week").textContent = d.last_7_days ?? "—";
+    document.getElementById("s-total").textContent = d.total_articles ?? "—";
+    document.getElementById("s-companies").textContent = Object.keys(d.by_company||{}).length || "—";
+    if(d.last_run){
+      const t = new Date(d.last_run.ran_at);
+      document.getElementById("lastRunLabel").textContent =
+        "Last run: " + t.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",hour12:true,month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}) + " IST";
+    }
+  } catch(e){ console.warn("stats error",e); }
+}
+
+async function loadFeed(){
+  const feed = document.getElementById("feed");
+  feed.innerHTML = '<div class="empty">Loading…</div>';
+
+  // Fetch all rows once; filtering happens client-side. Store is small.
+  try {
+    const r = await fetch("/api/news");
+    const d = await r.json();
+    allData = d.items || [];
+    renderFiltered();
+  } catch(e){
+    feed.innerHTML = '<div class="empty">Could not load articles. Is the server running?</div>';
+  }
+}
+
+// Apply all active filters to allData and render the result.
+function renderFiltered(){
+  let rows = allData.slice();
+
+  if (activeCompany !== "All") {
+    rows = rows.filter(r => r.company === activeCompany);
+  }
+  if (activeCat !== "All") {
+    rows = rows.filter(r => (r.categories||[]).includes(activeCat));
+  }
+  if (dateFrom) {
+    rows = rows.filter(r => r.date_fetched && r.date_fetched >= dateFrom);
+  }
+  if (dateTo) {
+    rows = rows.filter(r => r.date_fetched && r.date_fetched <= dateTo);
+  }
+  if (searchQuery) {
+    rows = rows.filter(r => {
+      const hay = [
+        r.title, r.summary, r.company,
+        (r.categories||[]).join(" "),
+        (r.impact||[]).join(" "),
+      ].join(" ").toLowerCase();
+      return hay.includes(searchQuery);
+    });
+  }
+
+  // Sort newest first by fetch date (when it appeared in the feed)
+  rows.sort((a, b) => (b.date_fetched || "").localeCompare(a.date_fetched || ""));
+
+  renderFeed(rows);
+}
+
+function renderFeed(items){
+  const feed = document.getElementById("feed");
+  const noUpdate = document.getElementById("noUpdate");
+
+  if(!items.length){
+    feed.innerHTML = '<div class="empty">No articles match your filters.</div>';
+    noUpdate.className = "no-update";
+    return;
+  }
+
+  noUpdate.className = "no-update";
+  feed.innerHTML = "";
+
+  // Group by date_fetched so "Today" section contains everything pulled today,
+  // regardless of when the article was actually published.
+  const byDate = {};
+  items.forEach(item => {
+    const k = item.date_fetched || item.date_published || "unknown";
+    if(!byDate[k]) byDate[k] = [];
+    byDate[k].push(item);
+  });
+
+  const today = new Date().toISOString().split("T")[0];
+  const yest = new Date(); yest.setDate(yest.getDate()-1);
+  const yesterday = yest.toISOString().split("T")[0];
+
+  Object.keys(byDate).sort((a,b) => b.localeCompare(a)).forEach(date => {
+    let label = fmt(date);
+    if (date === today) label = "Today · " + label;
+    else if (date === yesterday) label = "Yesterday · " + label;
+    const sh = document.createElement("div");
+    sh.className = "section-head";
+    sh.textContent = label;
+    feed.appendChild(sh);
+    byDate[date].forEach(item => feed.appendChild(buildCard(item)));
+  });
+
+  document.getElementById("metaLabel").textContent =
+    items.filter(i=>i.date_fetched===today).length + " new today · " + items.length + " shown";
+}
+
+function buildCard(item){
+  const el = document.createElement("div");
+  el.className = "article";
+  el.dataset.company = item.company;
+  el.dataset.cats = (item.categories||[]).join(",");
+
+  const coStyle = CO_COLORS[item.company] || "background:#F0EDE8;color:#3A3530";
+  const catTags = (item.categories||[]).map(c => {
+    const cs = CAT_COLORS[c] || "background:#F0EDE8;color:#3A3530";
+    return `<span class="cat-tag" style="${cs}">${c}</span>`;
+  }).join("");
+  const impacts = (item.impact||[]).map(i => `<span class="impact-pill">${i}</span>`).join("");
+  const dateStr = item.date_published ? fmt(item.date_published) : fmt(item.date_fetched);
+
+  el.innerHTML = `
+    <div class="article-head">
+      <span class="co-badge" style="${coStyle}">${item.company}</span>
+      ${catTags}
+      <span class="article-date">${dateStr}</span>
+    </div>
+    <div class="article-title">${esc(item.title)}</div>
+    <div class="article-summary">${esc(item.summary)}</div>
+    ${impacts ? `<div class="article-impacts">${impacts}</div>` : ""}
+    <a class="article-link" href="${esc(item.url)}" target="_blank" rel="noopener">
+      Read full article
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M1 9L9 1M4 1h5v5"/>
+      </svg>
+    </a>
+  `;
+  return el;
+}
+
+function applyFilters(){
+  renderFiltered();
+}
+
+// ── Trigger manual run ─────────────────────────────────────────────────────
+async function triggerRun(){
+  const btn = document.getElementById("runBtn");
+  btn.disabled = true;
+  document.getElementById("loadingOverlay").className = "loading-overlay show";
+
+  const msgs = [
+    "Searching news sources…",
+    "Filtering agent-relevant updates…",
+    "Deduplicating against your store…",
+    "Writing summaries…"
+  ];
+  let mi = 0;
+  const iv = setInterval(()=>{
+    document.getElementById("loaderMsg").textContent = msgs[mi++ % msgs.length];
+  }, 2500);
+
+  try {
+    const r = await fetch("/api/run", { method: "POST" });
+    const d = await r.json();
+    clearInterval(iv);
+    document.getElementById("loadingOverlay").className = "loading-overlay";
+    btn.disabled = false;
+
+    if(d.success){
+      showToast(`✓ Done — ${d.new_items} new article${d.new_items!==1?"s":""} added, ${d.skipped} duplicates skipped`);
+      await loadStats();
+      await loadFeed();
+    } else {
+      showToast("⚠ " + (d.error || "Unknown error. Check terminal."), true);
+    }
+  } catch(e){
+    clearInterval(iv);
+    document.getElementById("loadingOverlay").className = "loading-overlay";
+    btn.disabled = false;
+    showToast("⚠ Cannot reach server at localhost:3000 — is node server.js running?", true);
+  }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function fmt(dateStr){
+  if(!dateStr) return "";
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});
+}
+function esc(s){ const d=document.createElement("div"); d.textContent=s||""; return d.innerHTML; }
+function showToast(msg, isErr=false){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.background = isErr ? "#5C1A0A" : "#0A1A0D";
+  t.className = "toast show";
+  setTimeout(()=>t.className="toast", 4000);
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+document.getElementById("dateLabel").textContent =
+  new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+
+buildNav();
+applyPreset(activePreset);  // sets default date range + builds preset chips
+loadStats();
+loadFeed();
+
+// Refresh stats every 5 min in background
+setInterval(loadStats, 300000);
+</script>
+</body>
+</html>

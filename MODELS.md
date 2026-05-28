@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-05-27 by genai-model-catalog routine._
+_Last refreshed: 2026-05-28 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -18,16 +18,17 @@ _Last refreshed: 2026-05-27 by genai-model-catalog routine._
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Nova 2 Lite (`amazon.nova-2-lite-v1:0`) | ga | 2025-12-02 | 1M | $0.30 | $2.50 | Transformer-based multimodal foundation model with extend... | Cost-effective reasoning for everyday agentic workloads | prev: `amazon.nova-lite-v1:0` |
 | Nova Premier (`amazon.nova-premier-v1:0`) | ga | 2025-04-30 | 1M | $2.50 | $12.50 | Transformer-based multimodal foundation model | Most capable Nova 1 multimodal model and distillation teacher | prev: `amazon.nova-pro-v1:0` |
-| Nova Lite (`amazon.nova-lite-v1:0`) | ga | 2024-12-05 | 300K | $0.06 | $0.24 | Transformer-based multimodal foundation model | Very low-cost multimodal at high speed | → superseded by: `amazon.nova-2-lite-v1:0` |
+| Nova Lite (`amazon.nova-lite-v1:0`) | ga | 2024-12-05 | 300K | $0.06 | $0.24 | Transformer-based multimodal foundation model | Very low-cost multimodal at high speed | superseded by: `amazon.nova-2-lite-v1:0` |
 | Nova Micro (`amazon.nova-micro-v1:0`) | ga | 2024-12-05 | 128K | $0.04 | $0.14 | Transformer-based text-only foundation model | Fastest, cheapest text-only Nova for simple tasks | — |
-| Nova Pro (`amazon.nova-pro-v1:0`) | ga | 2024-12-05 | 300K | $0.80 | $3.20 | Transformer-based multimodal foundation model | Balanced multimodal accuracy, speed, and cost | → superseded by: `amazon.nova-2-pro-preview-20251202-v1:0` |
+| Nova Pro (`amazon.nova-pro-v1:0`) | ga | 2024-12-05 | 300K | $0.80 | $3.20 | Transformer-based multimodal foundation model | Balanced multimodal accuracy, speed, and cost | superseded by: `amazon.nova-2-pro-preview-20251202-v1:0` |
 | Nova 2 Pro (`amazon.nova-2-pro-preview-20251202-v1:0`) | preview | 2025-12-02 | 1M | $2.19 | $17.50 | Transformer-based multimodal foundation model with extend... | Most intelligent Nova for complex multistep agents | prev: `amazon.nova-pro-v1:0` |
 
 ## Anthropic
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Claude Opus 4.7 (`claude-opus-4-7`) | ga | 2026-04-16 | 1M | $5.00 | $25.00 | — | Complex reasoning and agentic coding | prev: `claude-opus-4-6` |
+| Claude Opus 4.8 (`claude-opus-4-8`) | ga | 2026-05-28 | 1M | $5.00 | $25.00 | — | Frontier agentic coding and long-horizon work | prev: `claude-opus-4-7` |
+| Claude Opus 4.7 (`claude-opus-4-7`) | ga | 2026-04-16 | 1M | $5.00 | $25.00 | — | Complex reasoning and agentic coding | prev: `claude-opus-4-6` → superseded by: `claude-opus-4-8` |
 | Claude Sonnet 4.6 (`claude-sonnet-4-6`) | ga | 2026-02-17 | 1M | $3.00 | $15.00 | — | Balanced speed, intelligence, and cost | prev: `claude-sonnet-4-5` |
 | Claude Haiku 4.5 (`claude-haiku-4-5`) | ga | 2025-10-15 | 200K | $1.00 | $5.00 | — | High-concurrency, low-latency, cost-sensitive tasks | prev: `claude-haiku-3-5` |
 | Claude Opus 4.6 (`claude-opus-4-6`) | ga | — | 1M | $5.00 | $25.00 | — | Prior-generation flagship reasoning and coding | prev: `claude-opus-4-5` → superseded by: `claude-opus-4-7` |
@@ -41,25 +42,26 @@ _Last refreshed: 2026-05-27 by genai-model-catalog routine._
 | Command A Vision (`command-a-vision-07-2025`) | ga | 2025-07-31 | 128K | $2.50 | $10.00 | 112B-parameter multimodal model: SigLIP2 vision encoder f... | Enterprise document, chart and OCR understanding | prev: `command-a-03-2025` |
 | Command A (`command-a-03-2025`) | ga | 2025-03-13 | 256K | $2.50 | $10.00 | Dense 111B-parameter Transformer with sliding-window atte... | Enterprise tool use, RAG and multilingual agents | prev: `command-r-plus-08-2024` → superseded by: `command-a-plus-05-2026` |
 | Command R7B (`command-r7b-12-2024`) | ga | 2024-12-13 | 128K | $0.04 | $0.15 | Dense 7B-parameter Transformer | Low-cost, fast RAG and tool use at edge scale | — |
-| Command R+ (`command-r-plus-08-2024`) | ga | 2024-08-30 | 128K | $2.50 | $10.00 | — | Complex RAG and multi-step tool use workflows | → superseded by: `command-a-03-2025` |
+| Command R+ (`command-r-plus-08-2024`) | ga | 2024-08-30 | 128K | $2.50 | $10.00 | — | Complex RAG and multi-step tool use workflows | superseded by: `command-a-03-2025` |
 
 ## DeepSeek
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek-V4-Flash (`deepseek-v4-flash`) | preview | 2026-04-24 | 1.05M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active | Cost-efficient production code, RAG, tool calling | prev: `deepseek-chat` |
-| DeepSeek-V4-Pro (`deepseek-v4-pro`) | preview | 2026-04-24 | 1.05M | $0.43 | $0.87 | Sparse MoE - 1.6T total / 49B active | Flagship reasoning, agentic coding, long-context | prev: `deepseek-reasoner` |
-| DeepSeek Chat (V3.2 legacy alias) (`deepseek-chat`) | deprecated | 2025-12-01 | 1.05M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active (routed to V4-Flash) | Legacy compatibility, non-thinking general chat | → superseded by: `deepseek-v4-flash` |
-| DeepSeek Reasoner (V3.2 legacy alias) (`deepseek-reasoner`) | deprecated | 2025-12-01 | 1.05M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active (routed to V4-Flash) | Legacy compatibility, thinking-mode reasoning | → superseded by: `deepseek-v4-pro` |
+| DeepSeek-V4-Flash (`deepseek-v4-flash`) | preview | 2026-04-24 | 1M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active | Cost-efficient production code, RAG, tool calling | prev: `deepseek-chat` |
+| DeepSeek-V4-Pro (`deepseek-v4-pro`) | preview | 2026-04-24 | 1M | $0.43 | $0.87 | Sparse MoE - 1.6T total / 49B active | Flagship reasoning, agentic coding, long-context | prev: `deepseek-reasoner` |
+| DeepSeek Chat (V3.2 legacy alias) (`deepseek-chat`) | deprecated | 2025-12-01 | 1M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active (routed to V4-Flash) | Legacy compatibility, non-thinking general chat | superseded by: `deepseek-v4-flash` |
+| DeepSeek Reasoner (V3.2 legacy alias) (`deepseek-reasoner`) | deprecated | 2025-12-01 | 1M | $0.14 | $0.28 | Sparse MoE - 284B total / 13B active (routed to V4-Flash) | Legacy compatibility, thinking-mode reasoning | superseded by: `deepseek-v4-pro` |
 
 ## Google
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Gemini 2.5 Flash-Lite (`gemini-2.5-flash-lite`) | ga | 2025-07-22 | 1.05M | $0.10 | $0.40 | — | Ultra-cheap classification, translation, high-volume tasks | prev: `gemini-2.0-flash-lite` |
-| Gemini 2.5 Flash (`gemini-2.5-flash`) | ga | 2025-06-17 | 1.05M | $0.30 | $2.50 | — | High-throughput, low-latency multimodal workloads | prev: `gemini-2.0-flash` |
-| Gemini 2.5 Pro (`gemini-2.5-pro`) | ga | 2025-06-17 | 1.05M | $1.25 | $10.00 | — | General-purpose reasoning, coding, multimodal analysis | prev: `gemini-1.5-pro` → superseded by: `gemini-3.1-pro-preview` |
-| Gemini 3.1 Pro (`gemini-3.1-pro-preview`) | preview | 2026-02-19 | 1.05M | $2.00 | $12.00 | — | Frontier reasoning, agentic and multimodal tasks | prev: `gemini-3-pro-preview` |
+| Gemini 3.5 Flash (`gemini-3.5-flash`) | ga | 2026-05-19 | 1M | $1.50 | $9.00 | — | Agentic coding and long-horizon tool use | prev: `gemini-3.1-pro-preview` |
+| Gemini 2.5 Flash-Lite (`gemini-2.5-flash-lite`) | ga | 2025-07-22 | 1M | $0.10 | $0.40 | — | Ultra-cheap classification, translation, high-volume tasks | prev: `gemini-2.0-flash-lite` |
+| Gemini 2.5 Flash (`gemini-2.5-flash`) | ga | 2025-06-17 | 1M | $0.30 | $2.50 | — | High-throughput, low-latency multimodal workloads | prev: `gemini-2.0-flash` |
+| Gemini 2.5 Pro (`gemini-2.5-pro`) | ga | 2025-06-17 | 1M | $1.25 | $10.00 | — | General-purpose reasoning, coding, multimodal analysis | prev: `gemini-1.5-pro` → superseded by: `gemini-3.1-pro-preview` |
+| Gemini 3.1 Pro (`gemini-3.1-pro-preview`) | preview | 2026-02-19 | 1M | $2.00 | $12.00 | — | Frontier reasoning, agentic and multimodal tasks | prev: `gemini-3-pro-preview` |
 
 ## Meta
 
@@ -104,7 +106,7 @@ _Last refreshed: 2026-05-27 by genai-model-catalog routine._
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Nemotron 3 Nano Omni 30B A3B Reasoning (`nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`) | ga | 2026-04-28 | — | — | — | Hybrid Mamba-Transformer MoE with vision/audio encoders (... | Multimodal agent reasoning on a single GPU | prev: `nvidia/nvidia-nemotron-nano-9b-v2` |
 | Nemotron 3 Super 120B A12B (`nvidia/nemotron-3-super-120b-a12b`) | ga | 2026-03-11 | 1M | — | — | Hybrid Mamba-Attention MoE (LatentMoE) | Agentic reasoning, coding, long-context analysis | prev: `nvidia/llama-3.3-nemotron-super-49b-v1` |
-| NVIDIA Nemotron Nano 9B v2 (`nvidia/nvidia-nemotron-nano-9b-v2`) | ga | 2025-09-05 | 131.1K | — | — | Hybrid Mamba-Transformer | Efficient on-device reasoning and chat | → superseded by: `nvidia/nemotron-3-nano-30b-a3b` |
+| NVIDIA Nemotron Nano 9B v2 (`nvidia/nvidia-nemotron-nano-9b-v2`) | ga | 2025-09-05 | 131.1K | — | — | Hybrid Mamba-Transformer | Efficient on-device reasoning and chat | superseded by: `nvidia/nemotron-3-nano-30b-a3b` |
 | Llama 3.1 Nemotron Ultra 253B v1 (`nvidia/llama-3.1-nemotron-ultra-253b-v1`) | ga | 2025-04-07 | 131.1K | — | — | Dense decoder-only transformer (NAS-compressed from Llama... | Large-scale reasoning, RAG, and tool-calling | — |
 | Llama 3.3 Nemotron Super 49B v1 (`nvidia/llama-3.3-nemotron-super-49b-v1`) | ga | 2025-03-18 | 131.1K | — | — | Dense decoder-only transformer (NAS-derived from Llama 3.... | Single-GPU reasoning and chat workloads | — |
 
@@ -113,6 +115,7 @@ _Last refreshed: 2026-05-27 by genai-model-catalog routine._
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | GPT-5.5 (`gpt-5.5`) | ga | 2026-04-24 | 1M | $5.00 | $30.00 | — | Frontier agentic coding and complex reasoning | prev: `gpt-5.4` |
+| GPT-5.5 Pro (`gpt-5.5-pro`) | ga | 2026-04-24 | 1M | $30.00 | $180.00 | — | Highest-accuracy complex reasoning tasks | prev: `gpt-5.5` |
 | GPT-5.4 mini (`gpt-5.4-mini`) | ga | 2026-03-17 | 272K | $0.75 | $4.50 | — | Cost-efficient reasoning at production scale | prev: `gpt-5-mini` |
 | GPT-5.4 nano (`gpt-5.4-nano`) | ga | 2026-03-17 | 272K | $0.20 | $1.25 | — | Ultra-cheap high-volume classification and routing | prev: `gpt-5-nano` |
 | GPT-5.4 (`gpt-5.4`) | ga | 2026-03-05 | 272K | $2.50 | $15.00 | — | Enterprise agentic workflows and computer use | prev: `gpt-5.2` → superseded by: `gpt-5.5` |

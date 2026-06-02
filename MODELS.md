@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-06-01 by genai-model-catalog routine._
+_Last refreshed: 2026-06-02 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -114,7 +114,7 @@ _Last refreshed: 2026-06-01 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Nemotron 3 Ultra (`nvidia/nemotron-3-ultra-500b-a50b`) | ga | 2026-06-01 | 1M | — | — | Hybrid Mamba2-Transformer Latent MoE; ~500B total / ~50B active | Flagship reasoning for complex agentic workflows | prev: nvidia/llama-3.1-nemotron-ultra-253b-v1 |
+| Nemotron 3 Ultra (`nvidia/nemotron-3-ultra-500b-a50b`) | ga | 2026-06-01 | 1M | — | — | Hybrid Mamba2-Transformer Latent MoE; 550B total / 55B active | Flagship reasoning for complex agentic workflows | prev: nvidia/llama-3.1-nemotron-ultra-253b-v1 |
 | Nemotron 3 Nano Omni 30B A3B Reasoning (`nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`) | ga | 2026-04-28 | 256K | $0.07 | $0.30 | Hybrid Mamba2-Transformer MoE (128 experts, 6 active + shared); 30B total / 3B active | Efficient multimodal agent reasoning on a single GPU | prev: nvidia/nvidia-nemotron-nano-9b-v2 |
 | Nemotron 3 Super 120B A12B (`nvidia/nemotron-3-super-120b-a12b`) | ga | 2026-03-11 | 1M | $0.30 | $0.75 | Hybrid Mamba2-Transformer Latent MoE with Multi-Token Prediction; 120B total / 12B active | Multi-agent software, cybersecurity, long-context reasoning | prev: nvidia/llama-3.3-nemotron-super-49b-v1 |
 | Nemotron Nano 9B v2 (`nvidia/nvidia-nemotron-nano-9b-v2`) | ga | 2025-09-05 | 128K | $0.04 | $0.16 | Hybrid Mamba-Transformer dense model | Edge and on-device reasoning and code generation | → superseded by: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning |

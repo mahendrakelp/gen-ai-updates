@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-06-04 by genai-model-catalog routine._
+_Last refreshed: 2026-06-05 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -134,8 +134,8 @@ _Last refreshed: 2026-06-04 by genai-model-catalog routine._
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | GPT-5.5 Instant (`gpt-5.5-instant`) | ga | 2026-05-05 | 1M | $5.00 | $30.00 | — | Default ChatGPT chat; fast everyday responses | prev: gpt-5.3-instant |
-| GPT-5.5 Pro (`gpt-5.5-pro`) | ga | 2026-04-24 | 1.1M | $30.00 | $180.00 | — | Highest-stakes deep reasoning and research | prev: gpt-5.4-pro |
-| GPT-5.5 (`gpt-5.5`) | ga | 2026-04-23 | 1.1M | $5.00 | $30.00 | — | Frontier reasoning, agentic coding, complex workflows | prev: gpt-5.4 |
+| GPT-5.5 Pro (`gpt-5.5-pro`) | ga | 2026-04-24 | 1M | $30.00 | $180.00 | — | Highest-stakes deep reasoning and research | prev: gpt-5.4-pro |
+| GPT-5.5 (`gpt-5.5`) | ga | 2026-04-23 | 1M | $5.00 | $30.00 | — | Frontier reasoning, agentic coding, complex workflows | prev: gpt-5.4 |
 | GPT-5.4 mini (`gpt-5.4-mini`) | ga | 2026-03-17 | 400K | $0.75 | $4.50 | — | Cost-efficient high-volume reasoning workloads | prev: gpt-5-mini |
 | GPT-5.4 nano (`gpt-5.4-nano`) | ga | 2026-03-17 | 400K | $0.20 | $1.25 | — | Ultra-low-cost classification and extraction | prev: gpt-5-nano |
 | GPT-5.4 (`gpt-5.4`) | ga | 2026-03-05 | 1M | $2.50 | $15.00 | — | Balanced flagship coding and reasoning | prev: gpt-5.2 → superseded by: gpt-5.5 |

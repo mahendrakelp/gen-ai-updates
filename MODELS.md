@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-06-09 by genai-model-catalog routine._
+_Last refreshed: 2026-06-11 by genai-model-catalog routine._
 
 ## Alibaba
 

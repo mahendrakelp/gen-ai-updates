@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-06-12 by genai-model-catalog routine._
+_Last refreshed: 2026-06-13 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -42,6 +42,7 @@ _Last refreshed: 2026-06-12 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| North Mini Code 1.0 (`north-mini-code-1.0`) | ga | 2026-06-09 | 262.1K | — | — | Sparse Mixture-of-Experts — 30B total / 3B active | Open-weights agentic coding on a single H100 | — |
 | Command A+ (`command-a-plus-05-2026`) | ga | 2026-05-20 | 128K | $2.50 | $10.00 | Decoder-only Sparse Mixture-of-Experts Transformer (128 experts, 8 active per token, 25B active / 218B total params) | Flagship open-weight multimodal agentic enterprise workflows | prev: command-a-reasoning-08-2025 |
 | Command A Reasoning (`command-a-reasoning-08-2025`) | ga | 2025-08-21 | 256K | $2.50 | $10.00 | Dense decoder-only transformer, 111B parameters with reasoning toggle | Multi-step enterprise reasoning and deep research | prev: command-a-03-2025 → superseded by: command-a-plus-05-2026 |
 | Command A Vision (`command-a-vision-07-2025`) | ga | 2025-07-31 | 128K | $2.50 | $10.00 | 112B-parameter multimodal transformer based on Command A | Enterprise document, chart, and OCR analysis | prev: command-a-03-2025 → superseded by: command-a-plus-05-2026 |
@@ -119,7 +120,7 @@ _Last refreshed: 2026-06-12 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Kimi K2.7 Code (`kimi-k2.7-code`) | ga | 2026-06-10 | 262.1K | $0.95 | $4.00 | Sparse MoE — 1T total / 32B active (same as K2.5/K2.6) | Coding-focused agentic workflows with long-horizon task completion | prev: kimi-k2.6 |
+| Kimi K2.7 Code (`kimi-k2.7-code`) | ga | 2026-06-12 | 262.1K | $0.95 | $4.00 | Sparse MoE — 1T total / 32B active (same as K2.5/K2.6) | Coding-focused agentic workflows with long-horizon task completion | prev: kimi-k2.6 |
 | Kimi K2.6 (`kimi-k2.6`) | ga | 2026-04-20 | 262.1K | $0.95 | $4.00 | Sparse MoE — 1T total / 32B active | Open-weight agentic coding and tool use | prev: kimi-k2.5 → superseded by: kimi-k2.7-code |
 | Kimi K2.5 (`kimi-k2.5`) | ga | 2026-01-27 | 262.1K | $0.60 | $3.00 | Sparse MoE — 1T total / 32B active | Cost-efficient open-weight multimodal agent | prev: kimi-k2-thinking → superseded by: kimi-k2.6 |
 | Kimi K2 Thinking (`kimi-k2-thinking`) | deprecated | 2025-11-06 | 256K | $0.60 | $2.50 | Sparse MoE — 1T total / 32B active | Legacy text-only reasoning workloads | prev: kimi-k2-0905-preview → superseded by: kimi-k2.5 |

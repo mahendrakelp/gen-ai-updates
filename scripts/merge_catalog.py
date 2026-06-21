@@ -15,20 +15,27 @@ TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 # Updates keyed by lowercase "provider::model_id"
 # Each value is a dict of fields to overwrite. Only confirmed deltas.
 UPDATES = {
-    "moonshot::kimi-k2.7-code": {
-        "pros": [
-            "Strongest Kimi coding model to date, built on K2.6",
-            "~30% reduction in thinking-token usage vs K2.6 for better cost efficiency",
-            "HighSpeed Mode (rolled out 2026-06-15) delivers ~180-260 tok/s throughput",
-            "Improved instruction following in long contexts and higher coding task success rates",
-        ],
+    # Anthropic Fable 5 and Mythos 5 were suspended worldwide on
+    # 2026-06-12/13 following a US government export-control directive.
+    # Anthropic has stated it is working to restore access; Opus/Sonnet/Haiku
+    # are unaffected. Source: anthropic.com/news/fable-mythos-access
+    "anthropic::claude-fable-5": {
         "cons": [
-            "Always-on thinking mode is less flexible for fast/non-reasoning calls",
-            "Coding-specialized; weaker general-purpose chat than K2.6",
-            "HighSpeed Mode capacity-constrained, limited to Kimi Code Beta / Business",
-            "Massive 1T-param weights costly to self-host; works best with Kimi Code CLI",
+            "Access suspended worldwide since 2026-06-12 under US export-control directive (restoration pending)",
+            "Highest price in lineup ($10/$50)",
+            "No extended-thinking budget controls",
+            "New tokenizer can use ~35% more tokens for same text",
         ],
-        "source_url": "https://platform.kimi.ai/docs/guide/kimi-k2-7-code-quickstart",
+        "source_url": "https://www.anthropic.com/news/fable-mythos-access",
+    },
+    "anthropic::claude-mythos-5": {
+        "cons": [
+            "Access suspended worldwide since 2026-06-13 under US export-control directive (restoration pending)",
+            "Limited availability via Project Glasswing only",
+            "No self-serve access; invitation required",
+            "Same premium pricing as Fable 5",
+        ],
+        "source_url": "https://www.anthropic.com/news/fable-mythos-access",
     },
 }
 

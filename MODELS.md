@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-06-21 by genai-model-catalog routine._
+_Last refreshed: 2026-06-22 by genai-model-catalog routine._
 
 _Total models tracked: 105 across 14 providers._
 
@@ -118,8 +118,8 @@ _Total models tracked: 105 across 14 providers._
 | Mistral Medium 3.5 (`mistral-medium-2604`) | ga | 2026-04-29 | 262.144K | $1.50 | $7.50 | Dense 128B parameter multimodal transformer with retrained vision encoder | Unified agentic, coding, and multi-step reasoning workloads | prev: `mistral-medium-2508` |
 | Mistral Small 4 (`mistral-small-2603`) | ga | 2026-03-16 | 262.144K | $0.15 | $0.60 | Mixture-of-Experts, 119B total / 6.5B active parameters (128 experts, 4 active) | Low-cost hybrid reasoning, vision, and coding workloads | prev: `mistral-small-2506` |
 | Mistral Large 3 (`mistral-large-2512`) | ga | 2025-12-02 | 262.144K | $0.50 | $1.50 | Granular Mixture-of-Experts, 675B total / 41B active params, plus 2.5B vision encoder | Frontier open-weight multimodal and agentic tasks | prev: `mistral-large-2411` |
-| Magistral Medium 1.2 (`magistral-medium-2509`) | ga | 2025-09-18 | 131.072K | $2.00 | $5.00 | Reasoning model trained via reinforcement learning on Mistral Medium 3 | Math and code reasoning with image input support | prev: `magistral-medium-2507` → superseded by: `mistral-medium-2604` |
 | Codestral 25.08 (`codestral-2508`) | ga | 2025-08-01 | 256K | $0.30 | $0.90 | Code-specialized dense transformer | Low-latency code completion, fill-in-the-middle, and tests | prev: `codestral-2501` |
+| Magistral Medium 1.2 (`magistral-medium-2509`) | deprecated | 2025-09-18 | 131.072K | $2.00 | $5.00 | Reasoning model trained via reinforcement learning on Mistral Medium 3 | Math and code reasoning with image input support | prev: `magistral-medium-2507` → superseded by: `mistral-medium-2604` |
 
 ## Moonshot
 

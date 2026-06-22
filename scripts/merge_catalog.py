@@ -37,6 +37,14 @@ UPDATES = {
         ],
         "source_url": "https://www.anthropic.com/news/fable-mythos-access",
     },
+    # Magistral Medium 1.2 was marked deprecated on the official Mistral
+    # docs model card (deprecation date 2026-05-22), with Mistral Medium 3.5
+    # (mistral-medium-2604) as the recommended replacement. Detected on
+    # 2026-06-22 refresh. Source: docs.mistral.ai/models/magistral-medium-1-2-25-09
+    "mistral::magistral-medium-2509": {
+        "status": "deprecated",
+        "source_url": "https://docs.mistral.ai/models/magistral-medium-1-2-25-09",
+    },
 }
 
 # Insertions (key -> full model object). None this run.

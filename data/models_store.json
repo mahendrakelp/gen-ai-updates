@@ -1861,7 +1861,7 @@
   },
   {
     "provider": "Google",
-    "model_name": "Gemini 3.1 Flash Lite",
+    "model_name": "Gemini 3.1 Flash Lite (Preview)",
     "model_id": "gemini-3.1-flash-lite-preview",
     "release_date": "2026-03-03",
     "status": "deprecated",
@@ -1881,15 +1881,16 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Highest-volume, cost-sensitive multimodal tasks",
+    "best_for": "Legacy preview endpoint - migrate to gemini-3.1-flash-lite GA",
     "pros": [
-      "Most cost-effective Gemini",
+      "Same $0.25 in / $1.50 out pricing as GA",
       "86.9% GPQA Diamond at low cost",
       "1M context window"
     ],
     "cons": [
-      "Still in preview",
-      "Below full Flash on quality"
+      "Preview endpoint scheduled for shutdown July 9, 2026",
+      "Superseded by gemini-3.1-flash-lite GA endpoint",
+      "No new traffic recommended"
     ],
     "benchmarks": {
       "mmlu_pro": 75.4,
@@ -1897,12 +1898,12 @@
       "aime": 78,
       "gpqa": 86.9
     },
-    "source_url": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+    "source_url": "https://ai.google.dev/gemini-api/docs/deprecations",
     "architecture": "Distilled sparse mixture-of-experts",
     "previous_version": "gemini-2.5-flash-lite",
     "superseded_by": "gemini-3.1-flash-lite",
     "first_seen": "2026-05-29",
-    "last_updated": "2026-06-25"
+    "last_updated": "2026-07-04"
   },
   {
     "provider": "Google",
@@ -2122,9 +2123,9 @@
       "Frontier multimodal understanding"
     ],
     "cons": [
-      "Limited enterprise allowlist preview only",
-      "No official pricing published yet",
-      "GA slipped from June to July 2026"
+      "Limited enterprise allowlist preview only as of July 4, 2026",
+      "No official public pricing published yet",
+      "GA slipped from June to July 2026; no specific launch date confirmed"
     ],
     "benchmarks": {},
     "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
@@ -2132,7 +2133,7 @@
     "previous_version": "gemini-3.1-pro",
     "superseded_by": null,
     "first_seen": "2026-06-09",
-    "last_updated": "2026-07-01"
+    "last_updated": "2026-07-04"
   },
   {
     "provider": "Google",
@@ -2654,7 +2655,7 @@
     "max_output_tokens": null,
     "input_price_per_1m": 1.75,
     "cached_input_price_per_1m": null,
-    "output_price_per_1m": 33.0,
+    "output_price_per_1m": 19.5,
     "modalities": [
       "text",
       "vision"
@@ -2667,7 +2668,7 @@
     "best_for": "Faster, cheaper image generation and editing for high-volume workloads",
     "pros": [
       "Directly in Foundry Model Catalog",
-      "Roughly 3x cheaper input and 30% cheaper output than MAI-Image-2.5",
+      "$1.75 per 1M text/image input tokens and $19.50 per 1M image output tokens (~59% cheaper output than MAI-Image-2.5)",
       "Retains natural-language editing on existing images"
     ],
     "cons": [
@@ -2680,7 +2681,7 @@
     "previous_version": "mai-image-2.5",
     "superseded_by": null,
     "first_seen": "2026-06-04",
-    "last_updated": "2026-07-01"
+    "last_updated": "2026-07-04"
   },
   {
     "provider": "Microsoft",
@@ -3293,6 +3294,54 @@
     "superseded_by": null,
     "first_seen": "2026-06-25",
     "last_updated": "2026-07-03"
+  },
+  {
+    "provider": "Mistral",
+    "model_name": "Leanstral 1.5",
+    "model_id": "leanstral-1-5",
+    "release_date": "2026-06-30",
+    "status": "preview",
+    "context_window": 262144,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Lean 4 formal proof engineering, automated theorem proving, and autoformalization",
+    "pros": [
+      "Sparse MoE (~6.5B active / 119B total, 128 experts / 4 active per token) - efficient inference",
+      "Apache 2.0 open weights - fully self-hostable",
+      "256K context window for long proof files with dependencies",
+      "State-of-the-art on formal-proof benchmarks: saturates miniF2F, solves 587/672 PutnamBench, 87% on FATE-H, 34% on FATE-X",
+      "Free API access via Mistral Labs endpoint during preview",
+      "Beats Claude Opus 4.6 on FLTEval at ~1/7 the cost"
+    ],
+    "cons": [
+      "Specialist model for Lean 4 proof engineering - not a general-purpose LLM",
+      "Preview endpoint scheduled for retirement on September 30, 2026",
+      "Text-only; no vision or audio",
+      "Narrow evaluation surface (theorem proving benchmarks) - limited signal outside formal-methods workloads"
+    ],
+    "benchmarks": {
+      "putnambench_solved": "587/672",
+      "fate_h": 87,
+      "fate_x": 34,
+      "flteval_pass1": 28.9,
+      "flteval_pass8": 43.2
+    },
+    "source_url": "https://mistral.ai/news/leanstral-1-5/",
+    "architecture": "Sparse Mixture-of-Experts (~6.5B active / 119B total, 128 experts / 4 active per token)",
+    "previous_version": "leanstral",
+    "superseded_by": null,
+    "first_seen": "2026-07-04",
+    "last_updated": "2026-07-04"
   },
   {
     "provider": "Mistral",

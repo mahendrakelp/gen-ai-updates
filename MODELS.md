@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-07-08 by genai-model-catalog routine._
+_Last refreshed: 2026-07-09 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -62,6 +62,8 @@ _Last refreshed: 2026-07-08 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| DeepSeek-V4-Flash (`deepseek-v4-flash`) | ga | 2026-04-24 | 1M | $0.14 | $0.28 | MoE 285B total / 13B active | Cost-efficient high-throughput chat and agents | prev: `deepseek-chat` |
+| DeepSeek-V4-Pro (`deepseek-v4-pro`) | ga | 2026-04-24 | 1M | $0.43 | $0.87 | MoE 1.6T total / 49B active with Multi-head Latent Attention and Compressed Sparse Attention | Flagship agentic reasoning and long-context coding | prev: `deepseek-reasoner` |
 | DeepSeek Reasoner (legacy alias) (`deepseek-reasoner`) | deprecated | 2025-01-20 | 1M | $0.14 | $0.28 | Alias routed to deepseek-v4-flash thinking mode | Backward-compatible chain-of-thought reasoning endpoint | prev: `deepseek-r1` → superseded by: `deepseek-v4-flash` |
 | DeepSeek Chat (legacy alias) (`deepseek-chat`) | deprecated | 2024-12-26 | 1M | $0.14 | $0.28 | Alias routed to deepseek-v4-flash non-thinking mode | Backward-compatible general chat endpoint | prev: `deepseek-v3.2` → superseded by: `deepseek-v4-flash` |
 
@@ -129,7 +131,7 @@ _Last refreshed: 2026-07-08 by genai-model-catalog routine._
 | Devstral 2 (`devstral-2512`) | ga | 2025-12-09 | 262.1K | $0.40 | $2.00 | Dense transformer, 123B parameters | Agentic coding and SWE-bench-style repo tasks | prev: `devstral-medium-2507` |
 | Devstral Small 2 (`devstral-small-2-2512`) | ga | 2025-12-09 | 262.1K | $0.10 | $0.30 | Dense 24B transformer | Local, on-device coding agents and tight feedback loops where a 24B model fits on consumer GPUs. | prev: `devstral-small-2507` |
 | Mistral Large 3 (`mistral-large-2512`) | ga | 2025-12-01 | 262.1K | $0.50 | $1.50 | Sparse Mixture-of-Experts, 675B total / 41B active parameters, native vision encoder | Flagship multimodal reasoning and agentic tasks | prev: `mistral-large-2411` |
-| Magistral Medium 1.2 (`magistral-medium-2509`) | ga | 2025-09-01 | 41.0K | $2.00 | $5.00 | Dense transformer reasoning model, closed weights | Transparent multilingual chain-of-thought reasoning | prev: `magistral-medium-2507` → superseded by: `mistral-medium-2604` |
+| Magistral Medium 1.2 (`magistral-medium-2509`) | ga | 2025-09-01 | 41K | $2.00 | $5.00 | Dense transformer reasoning model, closed weights | Transparent multilingual chain-of-thought reasoning | prev: `magistral-medium-2507` → superseded by: `mistral-medium-2604` |
 | Codestral 2508 (`codestral-2508`) | ga | 2025-08-01 | 262.1K | $0.30 | $0.90 | Dense transformer optimized for code (parameter count not disclosed) | Low-latency code completion and FIM across 80+ languages | prev: `codestral-2501` |
 | Leanstral 1.5 (`leanstral-1-5`) | preview | 2026-06-30 | 262.1K | $0.00 | $0.00 | Sparse Mixture-of-Experts (~6.5B active / 119B total, 128 experts / 4 active per token) | Lean 4 formal proof engineering, automated theorem proving, and autoformalization | prev: `leanstral` |
 | Devstral 2 (`devstral-2-2512`) | deprecated | 2025-12-09 | 262.1K | $0.40 | $2.00 | Dense 123B transformer | Agentic coding - multi-file edits and long agents | prev: `devstral-medium-2507` → superseded by: `mistral-medium-2604` |
@@ -164,6 +166,9 @@ _Last refreshed: 2026-07-08 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| GPT-5.6 Luna (`gpt-5.6-luna`) | ga | 2026-07-09 | 1.1M | $1.00 | $6.00 | — | Fast, low-cost tier for high-volume workloads | prev: `gpt-5.4-mini` |
+| GPT-5.6 Sol (`gpt-5.6-sol`) | ga | 2026-07-09 | 1.5M | $5.00 | $30.00 | — | Frontier reasoning, coding and agentic workflows | prev: `gpt-5.5-pro` |
+| GPT-5.6 Terra (`gpt-5.6-terra`) | ga | 2026-07-09 | 1.1M | $2.50 | $15.00 | — | Balanced everyday model at half GPT-5.5 cost | prev: `gpt-5.5` |
 | GPT-5.5 Instant (`gpt-5.5-instant`) | ga | 2026-05-05 | 1M | $5.00 | $30.00 | — | Fast default chat for ChatGPT-style workloads | prev: `gpt-5.3-instant` |
 | GPT-5.5 (`gpt-5.5`) | ga | 2026-04-23 | 1M | $5.00 | $30.00 | — | flagship complex reasoning and agentic coding | prev: `gpt-5.4` → superseded by: `gpt-5.6-sol` |
 | GPT-5.5 Pro (`gpt-5.5-pro`) | ga | 2026-04-23 | 1M | $30.00 | $180.00 | — | highest-intelligence answers on the hardest problems | prev: `gpt-5.4-pro` → superseded by: `gpt-5.6-sol` |
@@ -172,9 +177,6 @@ _Last refreshed: 2026-07-08 by genai-model-catalog routine._
 | GPT-5.4 (`gpt-5.4`) | ga | 2026-03-05 | 272K | $2.50 | $15.00 | — | reasoning with native computer-use and tool-heavy agents | prev: `gpt-5.2` → superseded by: `gpt-5.5` |
 | GPT-5 (`gpt-5`) | ga | 2025-08-07 | 400K | $1.25 | $10.00 | — | General-purpose reasoning and multimodal tasks | prev: `gpt-4o` → superseded by: `gpt-5.4` |
 | gpt-oss-120b (`gpt-oss-120b`) | ga | 2025-08-05 | 131.1K | $0.03 | $0.15 | Mixture-of-Experts, 117B total parameters, 5.1B active per forward pass, native MXFP4 quantization | Self-hostable open-weights reasoning at low cost | — |
-| GPT-5.6 Luna (`gpt-5.6-luna`) | preview | 2026-06-26 | — | $1.00 | $6.00 | — | Fast, low-cost tier for high-volume workloads | prev: `gpt-5.4-mini` |
-| GPT-5.6 Sol (`gpt-5.6-sol`) | preview | 2026-06-26 | 1.5M | $5.00 | $30.00 | — | Frontier reasoning, coding and agentic workflows | prev: `gpt-5.5-pro` |
-| GPT-5.6 Terra (`gpt-5.6-terra`) | preview | 2026-06-26 | — | $2.50 | $15.00 | — | Balanced everyday model at half GPT-5.5 cost | prev: `gpt-5.5` |
 
 ## Perplexity
 

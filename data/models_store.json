@@ -1707,7 +1707,7 @@
   },
   {
     "provider": "DeepSeek",
-    "model_name": "DeepSeek Chat (legacy alias)",
+    "model_name": "DeepSeek Chat",
     "model_id": "deepseek-chat",
     "release_date": "2024-12-26",
     "status": "deprecated",
@@ -1724,18 +1724,15 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "legacy general chat alias; maps to V4 Flash non-thinking mode",
-    "pros": [
-      "Long-standing production stability",
-      "OpenAI-compatible drop-in"
-    ],
+    "best_for": "Legacy alias; migrate to deepseek-v4-flash",
+    "pros": [],
     "cons": [
-      "Fully retired July 24, 2026 15:59 UTC",
-      "Alias only, superseded by deepseek-v4-flash non-thinking mode"
+      "Fully retired 2026-07-24 15:59 UTC per official DeepSeek changelog",
+      "Endpoint returns errors after retirement date; must migrate model name"
     ],
     "benchmarks": {},
-    "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
-    "architecture": "MoE",
+    "source_url": "https://api-docs.deepseek.com/updates/",
+    "architecture": "MoE (DeepSeek V3 family)",
     "previous_version": "deepseek-v3.2",
     "superseded_by": "deepseek-v4-flash",
     "first_seen": "2026-05-27",
@@ -1743,12 +1740,12 @@
   },
   {
     "provider": "DeepSeek",
-    "model_name": "DeepSeek Reasoner (legacy alias)",
+    "model_name": "DeepSeek Reasoner",
     "model_id": "deepseek-reasoner",
     "release_date": "2025-01-20",
     "status": "deprecated",
     "context_window": 131072,
-    "max_output_tokens": 65536,
+    "max_output_tokens": 8192,
     "input_price_per_1m": 0.14,
     "cached_input_price_per_1m": 0.0028,
     "output_price_per_1m": 0.28,
@@ -1760,19 +1757,18 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "legacy chain-of-thought reasoning alias; maps to V4 Flash thinking mode",
-    "pros": [
-      "Established reasoning workflow"
-    ],
+    "best_for": "Legacy alias; migrate to deepseek-v4-pro or deepseek-v4-flash with thinking:enabled",
+    "pros": [],
     "cons": [
-      "Fully retired July 24, 2026 15:59 UTC",
-      "Alias only, superseded by deepseek-v4-flash thinking mode"
+      "Fully retired 2026-07-24 15:59 UTC per official DeepSeek changelog",
+      "Endpoint returns errors after retirement date; must migrate model name",
+      "Reasoning mode is now a request-time flag on V4, not a separate model"
     ],
     "benchmarks": {},
-    "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
-    "architecture": "MoE",
+    "source_url": "https://api-docs.deepseek.com/updates/",
+    "architecture": "MoE (DeepSeek R1 family)",
     "previous_version": "deepseek-r1",
-    "superseded_by": "deepseek-v4-flash",
+    "superseded_by": "deepseek-v4-pro",
     "first_seen": "2026-05-27",
     "last_updated": "2026-07-17"
   },
@@ -1780,10 +1776,10 @@
     "provider": "DeepSeek",
     "model_name": "DeepSeek V4 Flash",
     "model_id": "deepseek-v4-flash",
-    "release_date": "2026-04-24",
-    "status": "preview",
+    "release_date": "2026-07-15",
+    "status": "ga",
     "context_window": 1048576,
-    "max_output_tokens": 384000,
+    "max_output_tokens": 8192,
     "input_price_per_1m": 0.14,
     "cached_input_price_per_1m": 0.0028,
     "output_price_per_1m": 0.28,
@@ -1792,28 +1788,25 @@
     ],
     "tool_use": true,
     "structured_output": true,
-    "mcp_support": true,
+    "mcp_support": false,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "low-cost high-throughput reasoning and coding; drop-in successor to deepseek-chat/reasoner",
+    "best_for": "High-throughput, low-cost production serving; agents; code; math; supports dual Thinking/Non-Thinking modes",
     "pros": [
-      "Very cheap per token",
-      "1M token context with 384K max output",
-      "98% savings on cache hits",
-      "Thinking and non-thinking modes in one model"
+      "Graduated from Preview to GA in mid-July 2026 with feature optimization and performance improvements",
+      "1M-token context window standard across the V4 lineup",
+      "Very low cache-hit input price ($0.0028/1M) enables aggressive caching economics",
+      "Open weights under MIT (284B total / 13B active MoE)",
+      "Single model exposes both non-thinking and thinking (reasoning) modes via request flag"
     ],
     "cons": [
-      "Trails V4 Pro on hard benchmarks",
-      "Still officially in preview"
+      "New peak-hour surcharge: 2x pricing during Beijing 09:00-12:00 and 14:00-18:00 daily",
+      "8K default max output limits very long single-shot generations",
+      "Text-only; no native vision/audio modality"
     ],
-    "benchmarks": {
-      "mmlu_pro": 83,
-      "swe_bench_verified": 79,
-      "livecodebench": 91.6,
-      "terminal_bench_2": 49.1
-    },
-    "source_url": "https://api-docs.deepseek.com/news/news260424/",
-    "architecture": "MoE, 284B total / 13B active",
+    "benchmarks": {},
+    "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "architecture": "Mixture-of-Experts (284B total parameters, 13B active)",
     "previous_version": "deepseek-chat",
     "superseded_by": null,
     "first_seen": "2026-05-27",
@@ -1823,10 +1816,10 @@
     "provider": "DeepSeek",
     "model_name": "DeepSeek V4 Pro",
     "model_id": "deepseek-v4-pro",
-    "release_date": "2026-04-24",
-    "status": "preview",
+    "release_date": "2026-07-15",
+    "status": "ga",
     "context_window": 1048576,
-    "max_output_tokens": 384000,
+    "max_output_tokens": 8192,
     "input_price_per_1m": 0.435,
     "cached_input_price_per_1m": 0.003625,
     "output_price_per_1m": 0.87,
@@ -1835,32 +1828,25 @@
     ],
     "tool_use": true,
     "structured_output": true,
-    "mcp_support": true,
+    "mcp_support": false,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "frontier open-weight reasoning and agentic coding",
+    "best_for": "Quality-sensitive reasoning, complex agent task execution, advanced math and code generation",
     "pros": [
-      "1M context with efficient sparse attention",
-      "Open weights under MIT",
-      "Aggressive cache-hit pricing",
-      "Up to 128 parallel function calls"
+      "Graduated from Preview to GA in mid-July 2026 as DeepSeek's flagship",
+      "1.6T total / 49B active MoE architecture positioned to rival top closed-source flagship models",
+      "1M-token context window standard",
+      "Dual Thinking / Non-Thinking modes in one endpoint",
+      "Open weights under MIT license"
     ],
     "cons": [
-      "Still officially in preview",
-      "1.6T params make self-hosting costly"
+      "New peak-hour surcharge: 2x pricing during Beijing 09:00-12:00 and 14:00-18:00 daily",
+      "~3x the output price of V4 Flash",
+      "Text-only modality"
     ],
-    "benchmarks": {
-      "mmlu_pro": 87.5,
-      "gpqa_diamond": 90.1,
-      "swe_bench_verified": 80.6,
-      "livecodebench": 93.5,
-      "terminal_bench_2": 67.9,
-      "hle": 37.7,
-      "hmmt_2026_feb": 95.2,
-      "imo_answer_bench": 89.8
-    },
-    "source_url": "https://api-docs.deepseek.com/news/news260424/",
-    "architecture": "MoE, 1.6T total / 49B active, 384 routed experts + 1 shared, CSA/HCA hybrid attention",
+    "benchmarks": {},
+    "source_url": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "architecture": "Mixture-of-Experts (1.6T total parameters, 49B active)",
     "previous_version": "deepseek-reasoner",
     "superseded_by": null,
     "first_seen": "2026-05-27",
@@ -3683,7 +3669,7 @@
     ],
     "benchmarks": {
       "aime_2024": 81.3,
-      "aime_2025": 78.0,
+      "aime_2025": 78,
       "gpqa_diamond": 69.3,
       "omni_math": 81.9,
       "human_eval_plus": 92.3,
@@ -4428,8 +4414,8 @@
     "benchmarks": {
       "swe_bench_verified": 60.4,
       "swe_bench_pro": 58.6,
-      "hle_with_tools": 54.0,
-      "kimi_code_bench_v2": 62.0
+      "hle_with_tools": 54,
+      "kimi_code_bench_v2": 62
     },
     "source_url": "https://platform.kimi.ai/docs/guide/kimi-k2-7-code-quickstart",
     "architecture": "MoE, 1T total / 32B active, 384 experts (8+1 shared), 61 layers, MLA + MoonViT",
@@ -4446,9 +4432,9 @@
     "status": "ga",
     "context_window": 1048576,
     "max_output_tokens": null,
-    "input_price_per_1m": 3.0,
+    "input_price_per_1m": 3,
     "cached_input_price_per_1m": 0.3,
-    "output_price_per_1m": 15.0,
+    "output_price_per_1m": 15,
     "modalities": [
       "text",
       "vision"
@@ -4475,7 +4461,7 @@
       "gpqa_diamond": 93.5,
       "terminal_bench_2_1": 88.3,
       "browsecomp": 91.2,
-      "hle_with_tools": 56.0
+      "hle_with_tools": 56
     },
     "source_url": "https://www.kimi.com/blog/kimi-k3",
     "architecture": "Sparse MoE, ~2.8T total parameters, 16 of 896 experts active per token, Kimi Delta Attention (KDA) + Attention Residuals (AttnRes), native vision",
@@ -4594,6 +4580,130 @@
     "superseded_by": "nvidia/nemotron-3-super-120b-a12b",
     "first_seen": "2026-07-05",
     "last_updated": "2026-07-05"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron 3 Embed 1B (BF16)",
+    "model_id": "nvidia/nemotron-3-embed-1b-bf16",
+    "release_date": "2026-07-17",
+    "status": "ga",
+    "context_window": 32768,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": false,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": false,
+    "open_weights": true,
+    "best_for": "Efficient production-scale dense retrieval where a smaller footprint than the 8B is needed",
+    "pros": [
+      "Small footprint at 1B params with 32K context",
+      "Produced via ModelOpt NAS pruning and COS+MSE distillation from the 8B teacher",
+      "OpenMDW-1.1 open license"
+    ],
+    "cons": [
+      "Lower retrieval accuracy than the 8B checkpoint",
+      "Embedding-only (no generation)"
+    ],
+    "benchmarks": {
+      "compression_pipeline": "ModelOpt mcore_minitron NAS pruning + iterative distillation from 8B embedding teacher"
+    },
+    "source_url": "https://forums.developer.nvidia.com/t/nvidia-nemotron-3-embed-is-out-and-the-8b-model-is-1-on-rteb/377089",
+    "architecture": "Transformer encoder with bidirectional attention masking, average pooling",
+    "previous_version": null,
+    "superseded_by": null,
+    "first_seen": "2026-07-17",
+    "last_updated": "2026-07-17"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron 3 Embed 1B (NVFP4)",
+    "model_id": "nvidia/nemotron-3-embed-1b-nvfp4",
+    "release_date": "2026-07-17",
+    "status": "ga",
+    "context_window": 32768,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": false,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": false,
+    "open_weights": true,
+    "best_for": "Blackwell-optimized 4-bit deployment for high-throughput embedding on GB200 / RTX PRO 6000",
+    "pros": [
+      "Retains 99%+ of BF16 accuracy (99.5% retention; 0.38 RTEB point cost vs BF16 parent)",
+      "Up to 2x Blackwell throughput vs BF16",
+      "Optimized Rust-based NIM microservice matches or beats vLLM checkpoint on GB200 and RTX PRO 6000",
+      "OpenMDW-1.1 open license"
+    ],
+    "cons": [
+      "Requires Blackwell/NVFP4-capable hardware to realize speedup",
+      "Embedding-only (no generation)"
+    ],
+    "benchmarks": {
+      "embedding_dim": 2048,
+      "accuracy_retention_vs_bf16": "99.5%",
+      "throughput_gain_blackwell": "up to 2x vs BF16"
+    },
+    "source_url": "https://forums.developer.nvidia.com/t/nvidia-nemotron-3-embed-is-out-and-the-8b-model-is-1-on-rteb/377089",
+    "architecture": "Transformer encoder with bidirectional attention masking, NVFP4 (4-bit) quantized from Nemotron-3-Embed-1B-BF16",
+    "previous_version": "nvidia/nemotron-3-embed-1b-bf16",
+    "superseded_by": null,
+    "first_seen": "2026-07-17",
+    "last_updated": "2026-07-17"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron 3 Embed 8B",
+    "model_id": "nvidia/nemotron-3-embed-8b-bf16",
+    "release_date": "2026-07-17",
+    "status": "ga",
+    "context_window": 32768,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": false,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": false,
+    "open_weights": true,
+    "best_for": "Accuracy-first multilingual dense retrieval for production RAG, agentic retrieval, code retrieval, and agent memory",
+    "pros": [
+      "#1 overall on RTEB at 78.46 avg NDCG@10",
+      "Multilingual support across 34 languages",
+      "32K token max sequence length",
+      "Bidirectional transformer encoder built by adapting a Ministral-3-8B-Instruct-2512 backbone",
+      "OpenMDW-1.1 open license"
+    ],
+    "cons": [
+      "Embedding-only (no generation)",
+      "8B params requires more compute than the 1B variants for high-volume ingestion"
+    ],
+    "benchmarks": {
+      "RTEB_avg_NDCG_at_10": 78.46,
+      "MMTEB_Retrieval": 75.5,
+      "embedding_dim": 4096
+    },
+    "source_url": "https://forums.developer.nvidia.com/t/nvidia-nemotron-3-embed-is-out-and-the-8b-model-is-1-on-rteb/377089",
+    "architecture": "Transformer encoder with bidirectional attention masking (adapted from Ministral-3-8B-Instruct-2512 causal decoder), average pooling over token representations",
+    "previous_version": null,
+    "superseded_by": null,
+    "first_seen": "2026-07-17",
+    "last_updated": "2026-07-17"
   },
   {
     "provider": "NVIDIA",
@@ -5497,6 +5607,82 @@
     "superseded_by": null,
     "first_seen": "2026-06-09",
     "last_updated": "2026-07-01"
+  },
+  {
+    "provider": "OpenAI",
+    "model_name": "GPT-Realtime-2.1",
+    "model_id": "gpt-realtime-2.1",
+    "release_date": "2026-07-06",
+    "status": "ga",
+    "context_window": 128000,
+    "max_output_tokens": 32000,
+    "input_price_per_1m": 4,
+    "cached_input_price_per_1m": 0.4,
+    "output_price_per_1m": 24,
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Realtime voice agents with reasoning and tool use",
+    "pros": [
+      "Configurable reasoning effort for speech-to-speech",
+      "Improved alphanumeric recognition and interruption handling",
+      "At least 25% lower p95 latency via better caching"
+    ],
+    "cons": [
+      "Audio tokens billed separately at higher rates than text",
+      "Realtime-only endpoint, not general chat completions"
+    ],
+    "benchmarks": {},
+    "source_url": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1",
+    "architecture": "Speech-to-speech realtime reasoning model",
+    "previous_version": "gpt-realtime",
+    "superseded_by": null,
+    "first_seen": "2026-07-17",
+    "last_updated": "2026-07-17"
+  },
+  {
+    "provider": "OpenAI",
+    "model_name": "GPT-Realtime-2.1 mini",
+    "model_id": "gpt-realtime-2.1-mini",
+    "release_date": "2026-07-06",
+    "status": "ga",
+    "context_window": 128000,
+    "max_output_tokens": 32000,
+    "input_price_per_1m": 0.6,
+    "cached_input_price_per_1m": 0.06,
+    "output_price_per_1m": 2.4,
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Low-cost realtime voice agents at scale",
+    "pros": [
+      "Distilled reasoning at roughly one-sixth the flagship price",
+      "Same 128K context and tool use as gpt-realtime-2.1",
+      "Faster response times for high-volume voice traffic"
+    ],
+    "cons": [
+      "Lower headroom on complex reasoning than gpt-realtime-2.1",
+      "Realtime-only endpoint, not general chat completions"
+    ],
+    "benchmarks": {},
+    "source_url": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini",
+    "architecture": "Distilled speech-to-speech realtime reasoning model",
+    "previous_version": "gpt-realtime-mini",
+    "superseded_by": null,
+    "first_seen": "2026-07-17",
+    "last_updated": "2026-07-17"
   },
   {
     "provider": "OpenAI",

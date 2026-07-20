@@ -557,6 +557,46 @@
     "last_updated": "2026-07-19"
   },
   {
+    "provider": "Alibaba",
+    "model_name": "Qwen3.8-Max-Preview",
+    "model_id": "qwen3.8-max-preview",
+    "release_date": "2026-07-19",
+    "status": "preview",
+    "context_window": 983616,
+    "max_output_tokens": 131072,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text",
+      "vision",
+      "video"
+    ],
+    "tool_use": true,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Frontier multimodal reasoning and long-context agentic workflows during preview",
+    "pros": [
+      "2.4T-parameter sparse MoE, Alibaba's first >1T multimodal model",
+      "~984K context window with 128K max output",
+      "Thinking always enabled with low/high/xhigh reasoning settings (xhigh default)"
+    ],
+    "cons": [
+      "Preview only; no per-token API pricing published (Token Plan subscription only at 10% of standard)",
+      "No official benchmarks or model card released at launch",
+      "Closed weights during preview; open-weight release promised but undated"
+    ],
+    "benchmarks": {},
+    "source_url": "https://qwen.ai/blog?id=qwen3.8",
+    "architecture": "Sparse Mixture-of-Experts (2.4T total parameters, multimodal)",
+    "previous_version": "qwen3.7-max",
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
+  },
+  {
     "provider": "Amazon",
     "model_name": "Amazon Nova Lite",
     "model_id": "amazon.nova-lite-v1:0",
@@ -1623,7 +1663,7 @@
     "model_name": "Command R+ (08-2024)",
     "model_id": "command-r-plus-08-2024",
     "release_date": "2024-08-01",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
     "max_output_tokens": 4000,
     "input_price_per_1m": 2.5,
@@ -1637,14 +1677,15 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "RAG and tool-use for enterprise workflows",
+    "best_for": "RAG and tool-use for enterprise workflows (legacy)",
     "pros": [
       "Mature, well-supported RAG citations",
       "128K context",
       "Open weights"
     ],
     "cons": [
-      "Older generation, superseded by Command A",
+      "Deprecated on major cloud platforms (Oracle OCI, Microsoft Foundry) in 2026",
+      "Superseded by Command A / Command A+",
       "Original command-r-plus was retired 2025-09-15"
     ],
     "benchmarks": {},
@@ -1653,7 +1694,7 @@
     "previous_version": "command-r-plus",
     "superseded_by": "command-a-03-2025",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-07-15"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Cohere",
@@ -1699,7 +1740,7 @@
     "provider": "Cohere",
     "model_name": "North Mini Code",
     "model_id": "north-mini-code-1.0",
-    "release_date": "2026-06-17",
+    "release_date": "2026-06-09",
     "status": "ga",
     "context_window": 256000,
     "max_output_tokens": 64000,
@@ -1727,13 +1768,15 @@
       "Coding-specialized; less general than Command A+",
       "No public per-token pricing"
     ],
-    "benchmarks": {},
-    "source_url": "https://docs.cohere.com/docs/north-mini-code-1.0",
+    "benchmarks": {
+      "aa_coding_index": 33.4
+    },
+    "source_url": "https://docs.cohere.com/changelog/north-mini-code-1-0",
     "architecture": "Sparse Mixture-of-Experts, 30B total parameters / 3B active per token",
     "previous_version": null,
     "superseded_by": null,
     "first_seen": "2026-06-13",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "DeepSeek",
@@ -3004,27 +3047,33 @@
     ],
     "tool_use": true,
     "structured_output": true,
-    "mcp_support": false,
+    "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
     "best_for": "Agentic multimodal reasoning with tool orchestration",
     "pros": [
-      "1M token context with compaction",
-      "Multi-agent orchestration and computer use",
-      "Roughly a quarter of GPT-5 and Claude Opus pricing"
+      "Native Model Context Protocol support with zero-shot generalization to new MCP servers",
+      "1M-token context with active compaction and multi-agent orchestration",
+      "Roughly a quarter of Claude Opus and GPT-5.5 pricing"
     ],
     "cons": [
       "Closed weights, unlike prior Llama releases",
       "US-only public preview at launch",
-      "Thinking-mode reasoning tokens billed at output rate"
+      "Reasoning is always on and bills as output tokens",
+      "Trails Claude Opus 4.8 on SWE-Bench Pro coding"
     ],
-    "benchmarks": {},
-    "source_url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+    "benchmarks": {
+      "mcp_atlas": 88.1,
+      "jobbench": 54.7,
+      "swe_bench_pro": 61.5,
+      "finance_agent_v2": 57.2
+    },
+    "source_url": "https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/",
     "architecture": "Natively multimodal reasoning model, agentic tool-use optimized",
     "previous_version": "muse-spark",
     "superseded_by": null,
     "first_seen": "2026-07-10",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Microsoft",
@@ -3290,20 +3339,26 @@
       "256K token context fits ~600 page documents",
       "Trained from scratch on commercially licensed data with no third-party distillation",
       "Mid-sized sparse MoE (~35B active / ~1T total) balances quality and cost",
+      "97.0% on AIME 2025 and 94.5% on AIME 2026",
+      "Narrowly beat Claude Sonnet 4.6 in Surge blind side-by-side evaluation (1,276 tasks)",
       "Chat Completions API compatible"
     ],
     "cons": [
       "Private preview limited to select partners",
       "Pricing not yet published",
-      "No published max output tokens"
+      "Benchmarks are self-reported and not fully independently verified",
+      "Trails Claude Opus 4.6 in the same Surge evaluation"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "aime_2025": 97.0,
+      "aime_2026": 94.5
+    },
     "source_url": "https://microsoft.ai/news/introducing-mai-thinking-1/",
     "architecture": "Sparse Mixture-of-Experts (~35B active / ~1T total)",
     "previous_version": "mai-1-preview",
     "superseded_by": null,
     "first_seen": "2026-06-03",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Microsoft",
@@ -3450,15 +3505,16 @@
     "open_weights": false,
     "best_for": "High-fidelity, expressive multilingual text-to-speech with zero-shot voice cloning",
     "pros": [
-      "Supports 17 languages/locales with consistent quality",
+      "Supports 15 languages across 18 locales with consistent quality",
       "Zero-shot voice cloning from 5-60 seconds of audio",
       "Preferred over MAI-Voice-1 in 72.1% of ~2,500 listening tests",
-      "Integrated into VSCode and Dynamics 365 Contact Center"
+      "Integrated into VSCode and Dynamics 365 Contact Center",
+      "MAI-Voice-2 Flash variant coming soon"
     ],
     "cons": [
       "Preview status",
       "Pricing is per character not per token (~$22/1M characters)",
-      "No streaming/low-latency guarantees published"
+      "Voice cloning requires gated access via Custom Neural Voice Limited Access Review"
     ],
     "benchmarks": {
       "listener_preference_vs_voice_1": 72.1
@@ -3468,7 +3524,7 @@
     "previous_version": "mai-voice-1",
     "superseded_by": null,
     "first_seen": "2026-06-03",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Microsoft",
@@ -4042,6 +4098,49 @@
     "superseded_by": "mistral-medium-2604",
     "first_seen": "2026-05-27",
     "last_updated": "2026-07-19"
+  },
+  {
+    "provider": "Mistral",
+    "model_name": "Ministral 3 14B",
+    "model_id": "ministral-14b-2512",
+    "release_date": "2025-12-02",
+    "status": "ga",
+    "context_window": 262144,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0.2,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.2,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "On-prem multimodal edge deployment with reasoning at 14B scale",
+    "pros": [
+      "Apache 2.0 open weights - self-hostable in ~24GB VRAM at FP8",
+      "256K context window with native vision (up to 10 images per prompt)",
+      "Reasoning variant reaches ~85% on AIME 2025",
+      "Symmetric $0.20/$0.20 pricing - cheap for output-heavy workloads",
+      "Ships in base, instruct and reasoning variants"
+    ],
+    "cons": [
+      "14B ceiling below Mistral Small 4 and Medium 3.5 on hardest tasks",
+      "Reasoning traces increase output token consumption",
+      "Text-only output; no audio generation"
+    ],
+    "benchmarks": {
+      "aime_2025": 85
+    },
+    "source_url": "https://docs.mistral.ai/models/model-cards/ministral-3-14b-25-12",
+    "architecture": "13.5B dense transformer LM + 0.4B vision encoder (14B total, all active)",
+    "previous_version": null,
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Mistral",
@@ -5212,6 +5311,169 @@
   },
   {
     "provider": "NVIDIA",
+    "model_name": "Nemotron-Cascade 2 30B-A3B",
+    "model_id": "nvidia/nemotron-cascade-2-30b-a3b",
+    "release_date": "2026-03-20",
+    "status": "ga",
+    "context_window": 262144,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "High-intelligence-density open reasoning at 3B active parameters for math, code, and agentic workflows with single-GPU deployment",
+    "pros": [
+      "Second open-weight LLM after DeepSeek-V3.2-Speciale to reach Gold Medal-level performance at IMO 2025, IOI 2025, and ICPC World Finals",
+      "Only 3B active parameters keeps inference cost low while outperforming the much larger Nemotron 3 Super 120B-A12B on key math/code/alignment benchmarks",
+      "Post-trained from Nemotron-3-Nano-30B-A3B-Base using the Cascade RL framework with on-policy distillation from stage-specific teachers",
+      "Dual thinking / non-thinking modes controlled by an explicit <think> block",
+      "Open weights"
+    ],
+    "cons": [
+      "Text-only",
+      "Post-trained specifically for reasoning; less suited to broad chat than Nemotron 3 Nano baseline",
+      "MoE serving stack required for best throughput"
+    ],
+    "benchmarks": {},
+    "source_url": "https://research.nvidia.com/labs/nemotron/nemotron-cascade-2/",
+    "architecture": "Hybrid Mamba-Transformer Mixture-of-Experts, 30B total / 3B active, 52 layers, 128 routable + 1 shared expert, 6 experts activated per token, post-trained from Nemotron-3-Nano-30B-A3B-Base via Cascade RL",
+    "previous_version": "nvidia/nemotron-3-nano-30b-a3b",
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron-Labs-3-Elastic 30B-A3B",
+    "model_id": "nvidia/nemotron-labs-3-elastic-30b-a3b",
+    "release_date": "2026-05-07",
+    "status": "ga",
+    "context_window": 131072,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Elastic 3-in-1 reasoning checkpoint sliced to 30B/23B/12B for cost-adaptive deployment",
+    "pros": [
+      "One checkpoint contains nested 30B, 23B, and 12B reasoning models with zero-shot slicing",
+      "Elastic-30B variant matches or exceeds parent Nemotron-3-Nano-30B-A3B on most benchmarks",
+      "Derived from Nemotron-3-Nano-30B-A3B via the Elastic post-training framework in a single training run",
+      "Two-stage 8K-then-49K context curriculum improves long-context reasoning",
+      "Ships in BF16, FP8, and NVFP4 variants",
+      "Open weights"
+    ],
+    "cons": [
+      "Text-only",
+      "Smaller nested variants trade accuracy for compute",
+      "128K context is smaller than the 1M-token Super/Ultra tiers"
+    ],
+    "benchmarks": {},
+    "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Elastic-30B-A3B-BF16",
+    "architecture": "Hybrid Mamba2-Transformer MoE with elastic post-training; 52-layer parent (23 Mamba-2 + MoE layers, 6 attention layers, 128 experts + 1 shared, 6 activated per token); nested 30B / 23B / 12B submodels sharing the same layer structure, 32 attention heads and 64 Mamba heads",
+    "previous_version": "nvidia/nemotron-3-nano-30b-a3b",
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron-Labs-Audex 2B",
+    "model_id": "nvidia/nemotron-labs-audex-2b",
+    "release_date": "2026-07-07",
+    "status": "preview",
+    "context_window": null,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "audio",
+      "text"
+    ],
+    "tool_use": false,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Compact 2B audio-text LLM for on-device speech understanding and TTS",
+    "pros": [
+      "Dense 2B model covers audio understanding, ASR, speech translation, TTS, audio generation, and speech-to-speech",
+      "Extends text vocabulary with discrete audio tokens plus a dedicated audio encoder",
+      "Preserves reasoning, alignment, knowledge, long-context, and agentic capabilities of its text-only backbone with marginal or no regression",
+      "Supports both thinking and instruct (non-thinking) modes",
+      "Trained with the same multi-stage SFT recipe as Audex-30B-A3B (SFT-only, without cascaded RL)"
+    ],
+    "cons": [
+      "Released under the NVIDIA Oneway Noncommercial License; not for unrestricted commercial use",
+      "SFT-only (no cascaded RL) so audio quality trails the 30B-A3B variant",
+      "Research/Labs release; not on paid NIM API"
+    ],
+    "benchmarks": {},
+    "source_url": "https://huggingface.co/nvidia/Nemotron-Labs-Audex-2B",
+    "architecture": "Dense 2B decoder LLM with extended vocabulary for discrete audio tokens and an audio encoder for speech and general audio inputs",
+    "previous_version": null,
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
+  },
+  {
+    "provider": "NVIDIA",
+    "model_name": "Nemotron-Labs-Audex 30B-A3B",
+    "model_id": "nvidia/nemotron-labs-audex-30b-a3b",
+    "release_date": "2026-07-07",
+    "status": "preview",
+    "context_window": null,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "audio",
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": false,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Unified audio-text MoE for ASR, TTS, translation, and speech-to-speech",
+    "pros": [
+      "Handles audio understanding, speech recognition, speech translation, text-to-speech, audio generation, and speech-to-speech in a single model",
+      "Preserves reasoning, alignment, knowledge, long-context, and agentic capabilities of the text-only Nemotron-Cascade-2 backbone (no text tax)",
+      "Uniform token space for text and quantized audio tokens enables seamless multimodal generation",
+      "Post-trained with multi-stage SFT plus cascaded RL",
+      "Open weights"
+    ],
+    "cons": [
+      "Released under the NVIDIA Oneway Noncommercial License; not for unrestricted commercial use",
+      "Research/Labs release; not on paid NIM API",
+      "Requires MoE-capable inference stack"
+    ],
+    "benchmarks": {},
+    "source_url": "https://huggingface.co/nvidia/Nemotron-Labs-Audex-30B-A3B",
+    "architecture": "Single MoE Transformer decoder with 30B total / 3B active parameters; hybrid Mamba-Transformer backbone (Nemotron-Cascade-2-30B-A3B, 52 layers, 128 routable + shared experts, 6 activated per token) extended with audio encoder and vocabulary for discrete audio output tokens",
+    "previous_version": "nvidia/nemotron-cascade-2-30b-a3b",
+    "superseded_by": null,
+    "first_seen": "2026-07-20",
+    "last_updated": "2026-07-20"
+  },
+  {
+    "provider": "NVIDIA",
     "model_name": "Nemotron-Labs-TwoTower 30B-A3B",
     "model_id": "nvidia/nemotron-labs-twotower-30b-a3b",
     "release_date": "2026-07-01",
@@ -5784,7 +6046,7 @@
     "model_name": "o4-mini",
     "model_id": "o4-mini",
     "release_date": "2025-04-16",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 200000,
     "max_output_tokens": 100000,
     "input_price_per_1m": 1.1,
@@ -5806,16 +6068,17 @@
       "Replaces o3-mini at same or lower price"
     ],
     "cons": [
-      "Lower ceiling than o3 / o3-pro",
-      "Reasoning tokens inflate real output cost"
+      "API shutdown scheduled October 23, 2026",
+      "Superseded by gpt-5.4-mini per OpenAI deprecation page",
+      "Lower ceiling than o3 / o3-pro"
     ],
     "benchmarks": {},
-    "source_url": "https://developers.openai.com/api/docs/models",
+    "source_url": "https://developers.openai.com/api/docs/deprecations",
     "architecture": null,
     "previous_version": "o3-mini",
-    "superseded_by": null,
+    "superseded_by": "gpt-5.4-mini",
     "first_seen": "2026-07-15",
-    "last_updated": "2026-07-15"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Perplexity",
@@ -5976,7 +6239,7 @@
     "model_name": "Sonar Reasoning",
     "model_id": "sonar-reasoning",
     "release_date": "2025-01-21",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
     "max_output_tokens": 8192,
     "input_price_per_1m": 1,
@@ -5997,17 +6260,17 @@
       "OpenAI-compatible endpoint"
     ],
     "cons": [
+      "Deprecated and removed from the API on 2025-12-15",
       "Higher $5 output price reflects reasoning-token verbosity",
-      "Smaller 128K context",
-      "Slower than base Sonar due to reasoning steps"
+      "Smaller 128K context"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
+    "source_url": "https://docs.perplexity.ai/changelog/changelog",
     "architecture": "Reasoning-tuned Sonar model with chain-of-thought over web search results",
     "previous_version": null,
     "superseded_by": "sonar-reasoning-pro",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "Perplexity",
@@ -6089,8 +6352,8 @@
     "provider": "xAI",
     "model_name": "Grok 4 Fast Non-Reasoning",
     "model_id": "grok-4-fast-non-reasoning",
-    "release_date": null,
-    "status": "ga",
+    "release_date": "2025-09-20",
+    "status": "deprecated",
     "context_window": 2000000,
     "max_output_tokens": null,
     "input_price_per_1m": 0.2,
@@ -6114,24 +6377,25 @@
       "Domain knowledge in finance, healthcare, law, science"
     ],
     "cons": [
+      "Retired on 2026-05-15; slug still resolves but requests redirect to grok-4.3 with 'none' reasoning effort and are billed at grok-4.3 pricing ($1.25/$2.50 per 1M)",
       "No chain-of-thought reasoning",
       "Not suited for hardest multi-step problems",
       "No open weights"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.x.ai/developers/models/grok-4-fast-non-reasoning",
+    "source_url": "https://docs.x.ai/developers/migration/may-15-retirement",
     "architecture": null,
     "previous_version": null,
     "superseded_by": "grok-4.3",
     "first_seen": "2026-07-14",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "xAI",
     "model_name": "Grok 4 Fast Reasoning",
     "model_id": "grok-4-fast-reasoning",
-    "release_date": null,
-    "status": "ga",
+    "release_date": "2025-09-20",
+    "status": "deprecated",
     "context_window": 2000000,
     "max_output_tokens": null,
     "input_price_per_1m": 0.2,
@@ -6155,17 +6419,18 @@
       "Strong web and X search integration"
     ],
     "cons": [
+      "Retired on 2026-05-15; slug still resolves but requests redirect to grok-4.3 with 'low' reasoning effort and are billed at grok-4.3 pricing ($1.25/$2.50 per 1M)",
       "Not a frontier model on hardest reasoning tasks",
       "No published open weights",
       "Older generation than Grok 4.3/4.5"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.x.ai/developers/models/grok-4-fast-reasoning",
+    "source_url": "https://docs.x.ai/developers/migration/may-15-retirement",
     "architecture": null,
     "previous_version": "grok-4-0709",
     "superseded_by": "grok-4.3",
     "first_seen": "2026-07-14",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "xAI",
@@ -6534,8 +6799,8 @@
     "provider": "xAI",
     "model_name": "Grok Code Fast 1",
     "model_id": "grok-code-fast-1",
-    "release_date": null,
-    "status": "ga",
+    "release_date": "2025-08-26",
+    "status": "deprecated",
     "context_window": 256000,
     "max_output_tokens": null,
     "input_price_per_1m": 0.2,
@@ -6559,17 +6824,18 @@
       "Vision input supported"
     ],
     "cons": [
+      "Retired on 2026-05-15; slug still resolves but requests are routed to grok-build-0.1",
       "Smaller 256K context vs Grok 4 Fast's 2M",
       "Not a general-purpose frontier model",
       "Superseded on hardest coding tasks by Grok 4.5"
     ],
     "benchmarks": {},
-    "source_url": "https://x.ai/news/grok-code-fast-1",
+    "source_url": "https://docs.x.ai/developers/migration/may-15-retirement",
     "architecture": null,
     "previous_version": null,
     "superseded_by": "grok-build-0.1",
     "first_seen": "2026-07-15",
-    "last_updated": "2026-07-19"
+    "last_updated": "2026-07-20"
   },
   {
     "provider": "xAI",

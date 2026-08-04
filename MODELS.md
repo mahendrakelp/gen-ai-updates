@@ -1,11 +1,12 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-08-02 by genai-model-catalog routine._
+_Last refreshed: 2026-08-04 by genai-model-catalog routine._
 
 ## Alibaba
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.8-Max (`qwen3.8-max`) | ga | 2026-08-03 | 1M | $2.00 | $6.00 | Sparse MoE — 2.4T total / 95B active parameters, multimodal | Frontier reasoning, coding and long-horizon agentic work | prev: `qwen3.8-max-preview` |
 | Qwen3.7 Flash (`qwen3.7-flash`) | ga | 2026-07-27 | 1M | $0.03 | $0.13 | Multimodal vision-language model | High-volume multimodal subagents at pennies | prev: `qwen3.6-flash` |
 | Qwen3.7-Plus (`qwen3.7-plus`) | ga | 2026-06-01 | 1M | $0.40 | $1.60 | Sparse MoE (multimodal) | Low-cost multimodal agent for text, image, video | prev: `qwen3-vl-plus` |
 | Qwen3.7-Max (`qwen3.7-max`) | ga | 2026-05-19 | 1M | $2.50 | $7.50 | Sparse MoE | Frontier agentic reasoning and long-horizon coding | prev: `qwen3-max` → superseded by: `qwen3.8-max-preview` |
@@ -27,7 +28,7 @@ _Last refreshed: 2026-08-02 by genai-model-catalog routine._
 | Qwen-Plus (`qwen-plus`) | ga | — | 131K | $0.40 | $1.20 | — | Balanced cost and performance for general tasks | — |
 | Qwen-Turbo (`qwen-turbo`) | ga | — | 1M | $0.05 | $0.20 | — | High-throughput, cost-sensitive workloads | → superseded by: `qwen-flash` |
 | Qwen3.5-Omni-Flash-Realtime (`qwen3.5-omni-flash-realtime`) | ga | — | — | $0.55 | $4.50 | End-to-end omni-modal transformer | real-time voice and video chat | prev: `qwen3.5-omni-flash` |
-| Qwen3.8-Max-Preview (`qwen3.8-max-preview`) | preview | 2026-07-19 | 984K | — | — | Sparse MoE (~2.4T total parameters, multimodal) | Next-gen flagship reasoning and agentic tasks | prev: `qwen3.7-max` |
+| Qwen3.8-Max-Preview (`qwen3.8-max-preview`) | deprecated | 2026-07-19 | 1M | — | — | Sparse MoE (~2.4T total parameters, multimodal) | Next-gen flagship reasoning and agentic tasks | prev: `qwen3.7-max` → superseded by: `qwen3.8-max` |
 
 ## Amazon
 

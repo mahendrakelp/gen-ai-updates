@@ -40,31 +40,33 @@
     "provider": "Alibaba",
     "model_name": "Qwen-Flash",
     "model_id": "qwen-flash",
-    "release_date": "2026-04-27",
+    "release_date": "2025-07-28",
     "status": "ga",
     "context_window": 1000000,
-    "max_output_tokens": 32768,
+    "max_output_tokens": 65536,
     "input_price_per_1m": 0.05,
     "cached_input_price_per_1m": 0.005,
     "output_price_per_1m": 0.4,
     "modalities": [
-      "text"
+      "text",
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
-    "reasoning": false,
+    "reasoning": true,
     "open_weights": false,
-    "best_for": "Low-cost high-throughput classification and Q&A",
+    "best_for": "Low-latency, low-cost multimodal at scale",
     "pros": [
-      "Cheapest Qwen text tier with 1M context",
-      "Very low latency for high-volume workloads",
-      "Replaces Qwen-Turbo, actively maintained"
+      "Cheapest tier in the Qwen lineup",
+      "1M-token context",
+      "Multimodal input (text/image/video)"
     ],
     "cons": [
-      "Tiered pricing jumps above 256K input tokens",
-      "Not intended for hard reasoning tasks",
-      "Weaker on complex agent chains vs Plus/Max"
+      "Lower quality than Plus/Max on complex reasoning",
+      "Tiered pricing above 256K input",
+      "Shorter effective output vs flagship"
     ],
     "benchmarks": {},
     "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
@@ -72,7 +74,7 @@
     "previous_version": "qwen-turbo",
     "superseded_by": null,
     "first_seen": "2026-06-14",
-    "last_updated": "2026-07-10"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -80,28 +82,31 @@
     "model_id": "qwen-plus",
     "release_date": null,
     "status": "ga",
-    "context_window": 131072,
-    "max_output_tokens": 8192,
+    "context_window": 1000000,
+    "max_output_tokens": 32768,
     "input_price_per_1m": 0.4,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 1.2,
     "modalities": [
-      "text"
+      "text",
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
-    "mcp_support": false,
-    "reasoning": false,
+    "mcp_support": true,
+    "reasoning": true,
     "open_weights": false,
-    "best_for": "Balanced cost and performance for general tasks",
+    "best_for": "Balanced general-purpose workhorse with 1M context",
     "pros": [
-      "Attractive price/performance",
-      "Long context support",
-      "Broad language coverage"
+      "1M-token context",
+      "Switchable thinking / non-thinking modes",
+      "Multimodal input support"
     ],
     "cons": [
-      "Below flagship on hardest reasoning",
-      "Tiered pricing above 256K input"
+      "Tiered pricing jumps above 256K input",
+      "Not as strong as Max on hardest reasoning",
+      "Alias may silently point to newer snapshot"
     ],
     "benchmarks": {},
     "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
@@ -109,7 +114,7 @@
     "previous_version": null,
     "superseded_by": null,
     "first_seen": "2026-07-30",
-    "last_updated": "2026-08-14"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -349,9 +354,9 @@
     "provider": "Alibaba",
     "model_name": "Qwen3-Coder-Plus",
     "model_id": "qwen3-coder-plus",
-    "release_date": "2025-07-22",
+    "release_date": "2025-09-23",
     "status": "ga",
-    "context_window": 262144,
+    "context_window": 1000000,
     "max_output_tokens": 65536,
     "input_price_per_1m": 0.65,
     "cached_input_price_per_1m": 0.1,
@@ -363,25 +368,25 @@
     "structured_output": true,
     "mcp_support": true,
     "reasoning": false,
-    "open_weights": true,
-    "best_for": "Agentic coding, repo-scale edits and PR generation",
+    "open_weights": false,
+    "best_for": "Autonomous coding agent with repo-scale context",
     "pros": [
-      "480B MoE with 35B active parameters",
-      "256K native / 1M extrapolated context",
-      "Purpose-built for agentic coding tools"
+      "Repository-level understanding up to 1M tokens",
+      "Strong tool-calling and multi-turn agent stability",
+      "Hosted proprietary tune of open Qwen3-Coder-480B-A35B"
     ],
     "cons": [
-      "Tiered billing by input length",
-      "Not multimodal",
-      "Coder-Plus superseded internally by newer coder-next variants"
+      "Output pricing steps up sharply above 256K input",
+      "No vision input",
+      "Coding-specialized, weaker on general chat"
     ],
     "benchmarks": {},
-    "source_url": "https://qwen.ai/blog?id=qwen3-coder",
-    "architecture": "480B Mixture-of-Experts, 35B active parameters",
+    "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "architecture": "Mixture-of-Experts (hosted variant of Qwen3-Coder-480B-A35B)",
     "previous_version": "qwen2.5-coder-plus",
     "superseded_by": "qwen3-coder-next",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -480,26 +485,26 @@
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
-    "reasoning": false,
-    "open_weights": true,
-    "best_for": "Flagship open vision-language understanding and agents",
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Vision-language understanding for images and video",
     "pros": [
-      "Open weights on HuggingFace and ModelScope",
-      "Strong visual perception matching Gemini 2.5 Pro on many benchmarks",
-      "Native video and spatial-reasoning support"
+      "Strong visual perception and spatial reasoning",
+      "Handles images, video frames, and long documents",
+      "Instruct and thinking editions available"
     ],
     "cons": [
-      "Large MoE requires substantial GPU memory",
+      "Smaller context than text-only Plus tier",
       "No native audio input",
-      "Instruct variant lacks explicit reasoning traces"
+      "Superseded by newer Qwen3-VL open-weight sizes on some tasks"
     ],
     "benchmarks": {},
-    "source_url": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct",
-    "architecture": "MoE — 235B total / 22B active, 128 experts (8 active per token)",
-    "previous_version": "qwen2.5-vl-72b-instruct",
+    "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "architecture": "Vision-language transformer (hosted variant of Qwen3-VL series, up to 235B-A22B MoE)",
+    "previous_version": "qwen-vl-plus",
     "superseded_by": "qwen3.7-plus",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -782,39 +787,39 @@
     "provider": "Alibaba",
     "model_name": "Qwen3.7-Max",
     "model_id": "qwen3.7-max",
-    "release_date": "2026-05-21",
+    "release_date": "2026-05-20",
     "status": "ga",
-    "context_window": 1000000,
+    "context_window": 262144,
     "max_output_tokens": 65536,
-    "input_price_per_1m": 1.65,
+    "input_price_per_1m": 1.25,
     "cached_input_price_per_1m": 0.25,
-    "output_price_per_1m": 4.95,
+    "output_price_per_1m": 3.75,
     "modalities": [
-      "text",
-      "vision"
+      "text"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Agentic workflows and long-running autonomous tasks",
+    "best_for": "Reasoning and agentic tasks at lower cost than flagship",
     "pros": [
-      "Purpose-built for agent era",
-      "Handles hundreds/thousands of steps autonomously",
-      "50% pricing promotion through Aug 2026"
+      "Discounted vs list price on Model Studio",
+      "Strong reasoning and tool-calling",
+      "Broad third-party gateway availability"
     ],
     "cons": [
-      "Superseded by 3.8-Max flagship",
-      "Pricing tiered by input size"
+      "Text-only (not multimodal)",
+      "Smaller context than 3.8-Max",
+      "Now overshadowed by 3.8-Max"
     ],
     "benchmarks": {},
-    "source_url": "https://qwen.ai/blog?id=qwen3.7",
-    "architecture": "MoE proprietary model",
-    "previous_version": "qwen3.6-max",
+    "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "architecture": "Mixture-of-Experts",
+    "previous_version": "qwen3-max",
     "superseded_by": "qwen3.8-max",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -903,40 +908,38 @@
     "release_date": "2026-08-03",
     "status": "ga",
     "context_window": 1000000,
-    "max_output_tokens": 65536,
+    "max_output_tokens": 131072,
     "input_price_per_1m": 2,
     "cached_input_price_per_1m": 0.25,
     "output_price_per_1m": 6,
     "modalities": [
       "text",
-      "vision"
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Long-horizon agentic coding and office automation",
+    "best_for": "Flagship multimodal reasoning and agentic coding",
     "pros": [
-      "2.4T total / 95B active MoE flagship",
-      "1M token context window",
-      "Tau2-Bench 74.8 surpasses Claude Opus 4",
-      "Multi-day autonomous coding runs",
-      "Ranked #2 in Vision Arena"
+      "1M token context with flat pricing across full window",
+      "Strong multimodal (text/image/video) input",
+      "Top-tier coding and long-horizon agent performance"
     ],
     "cons": [
-      "Pricing tiered by input size (not simple flat rate)",
-      "New GA - limited third-party integrations"
+      "Highest cost in the Qwen lineup",
+      "Output capped at ~131K tokens",
+      "Newer than tooling ecosystem has caught up to"
     ],
-    "benchmarks": {
-      "tau2_bench": 74.8
-    },
-    "source_url": "https://qwen.ai/blog?id=qwen3.8",
-    "architecture": "Sparse Mixture-of-Experts with hybrid attention (2.4T params, 95B active)",
+    "benchmarks": {},
+    "source_url": "https://www.alibabacloud.com/help/en/model-studio/models",
+    "architecture": "Sparse Mixture-of-Experts, 2.4T total parameters, ~95B active per query",
     "previous_version": "qwen3.7-max",
     "superseded_by": null,
     "first_seen": "2026-08-04",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Alibaba",
@@ -999,24 +1002,26 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Cost-effective high-volume reasoning and document processing",
+    "best_for": "Fast cost-effective reasoning across modalities",
     "pros": [
-      "1M context at low price",
-      "Multimodal (text/image/video)",
-      "Fast reasoning with adjustable thinking budget",
-      "Very cheap on input tokens"
+      "1M context window",
+      "Adjustable thinking (low/med/high)",
+      "Built-in agentic tools"
     ],
     "cons": [
-      "Output tokens relatively expensive vs input",
-      "Less capable than Pro on complex tasks"
+      "Not frontier-tier intelligence",
+      "Higher per-token cost than Nova Lite v1",
+      "Video/audio depth trails Omni tier"
     ],
-    "benchmarks": {},
-    "source_url": "https://aws.amazon.com/blogs/aws/introducing-amazon-nova-2-lite-a-fast-cost-effective-reasoning-model/",
+    "benchmarks": {
+      "mmlu_pro": 80.9
+    },
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Multimodal foundation model with extended thinking",
     "previous_version": "amazon.nova-lite-v1:0",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Amazon",
@@ -1106,37 +1111,39 @@
     "status": "preview",
     "context_window": 1000000,
     "max_output_tokens": 64000,
-    "input_price_per_1m": 2.19,
-    "cached_input_price_per_1m": 0.31,
-    "output_price_per_1m": 17.5,
+    "input_price_per_1m": 1.25,
+    "cached_input_price_per_1m": 0.3125,
+    "output_price_per_1m": 10.0,
     "modalities": [
       "text",
-      "vision"
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Complex multistep agentic reasoning tasks",
+    "best_for": "Most intelligent complex multistep agentic tasks",
     "pros": [
-      "1M token context window",
-      "Extended thinking with low/medium/high intensity",
-      "Built-in code interpreter and web grounding",
-      "Remote MCP tool support"
+      "Extended thinking with three intensity levels",
+      "Strong instruction-following (79% IFBench)",
+      "Built-in code interpreter and web grounding"
     ],
     "cons": [
-      "Preview pricing significantly higher than Nova Pro v1",
-      "Preview access limited via cross-region inference",
-      "No audio input"
+      "Preview status, not yet GA",
+      "Higher latency with high reasoning",
+      "Cross-region inference only in some setups"
     ],
-    "benchmarks": {},
-    "source_url": "https://aws.amazon.com/about-aws/whats-new/2025/12/nova-2-foundation-models-amazon-bedrock/",
+    "benchmarks": {
+      "ifbench": 79
+    },
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Multimodal foundation model with extended thinking",
     "previous_version": "amazon.nova-pro-v1:0",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Amazon",
@@ -1180,7 +1187,7 @@
     "provider": "Amazon",
     "model_name": "Nova Lite",
     "model_id": "amazon.nova-lite-v1:0",
-    "release_date": "2024-12-05",
+    "release_date": "2024-12-03",
     "status": "ga",
     "context_window": 300000,
     "max_output_tokens": 5000,
@@ -1197,30 +1204,30 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Low-cost multimodal processing at high speed",
+    "best_for": "Affordable multimodal general workloads",
     "pros": [
-      "Very low cost for multimodal input",
-      "Video input support",
-      "Fast inference"
+      "Low cost multimodal",
+      "300K context",
+      "Handles image and video input"
     ],
     "cons": [
-      "Lower accuracy on complex tasks vs Pro/Premier",
-      "Only 5K max output tokens",
-      "No reasoning mode"
+      "Small max output",
+      "No native reasoning",
+      "Older-gen vs Nova 2 Lite"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-lite.html",
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Multimodal foundation model",
     "previous_version": null,
     "superseded_by": "amazon.nova-2-lite-v1:0",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Amazon",
     "model_name": "Nova Micro",
     "model_id": "amazon.nova-micro-v1:0",
-    "release_date": "2024-12-05",
+    "release_date": "2024-12-03",
     "status": "ga",
     "context_window": 128000,
     "max_output_tokens": 5000,
@@ -1235,24 +1242,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Lowest latency and cost text-only tasks",
+    "best_for": "Lowest-cost, low-latency text-only tasks",
     "pros": [
-      "Extremely low price per token",
-      "Very low latency",
-      "Prompt caching further reduces input cost"
+      "Very low cost",
+      "Fast latency",
+      "Strong for cost-sensitive text workloads"
     ],
     "cons": [
-      "Text only, no vision or video",
-      "Smaller 128K context vs other Nova models",
-      "Limited on complex reasoning"
+      "Text-only, no multimodal",
+      "Smaller context vs Nova 2",
+      "No native reasoning mode"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-micro.html",
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Text-only foundation model",
     "previous_version": null,
     "superseded_by": "amazon.nova-2-lite-v1:0",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Amazon",
@@ -1275,25 +1282,26 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Legacy multimodal reasoning; migrate to Nova 2 Pro",
+    "best_for": "Complex reasoning and distillation teacher",
     "pros": [
-      "Strong multimodal reasoning across text, image, and video",
-      "1M-token context window",
-      "Tool use and model distillation supported"
+      "1M context window",
+      "Strong multimodal understanding",
+      "Good teacher model for distillation"
     ],
     "cons": [
-      "Marked Legacy in Bedrock lifecycle; scheduled EOL 2026-09-14",
-      "New customers blocked; active customers lose access after 15 days of inactivity",
-      "No new Provisioned Throughput allowed",
-      "Superseded by Nova 2 Pro (preview) and Nova 2 Lite (GA)"
+      "Legacy status, EOL scheduled Sept 2026",
+      "No native chain-of-thought reasoning",
+      "Higher cost than Nova 2 Pro"
     ],
-    "benchmarks": {},
-    "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+    "benchmarks": {
+      "mmlu": 87.4
+    },
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Multimodal foundation model",
     "previous_version": "amazon.nova-pro-v1:0",
     "superseded_by": "amazon.nova-2-pro-preview-20251202-v1:0",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-13"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Amazon",
@@ -1316,24 +1324,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Balanced accuracy, speed, and cost for general workloads",
+    "best_for": "Balanced accuracy and cost multimodal workloads",
     "pros": [
-      "Established GA model on Bedrock",
-      "Multimodal understanding",
-      "Function calling and RAG-friendly"
+      "Strong multimodal accuracy",
+      "300K context",
+      "Solid price-performance"
     ],
     "cons": [
-      "Superseded by Nova 2 generation",
-      "No extended thinking",
-      "Smaller context than Nova 2"
+      "Small max output tokens",
+      "No native reasoning mode",
+      "Older-gen vs Nova 2 Pro"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-pro.html",
+    "source_url": "https://aws.amazon.com/bedrock/pricing/",
     "architecture": "Multimodal foundation model",
     "previous_version": null,
     "superseded_by": "amazon.nova-2-pro-preview-20251202-v1:0",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Anthropic",
@@ -1355,23 +1363,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Highest-capability long-horizon agentic work",
+    "best_for": "Most demanding reasoning and long-horizon agentic work",
     "pros": [
-      "State-of-the-art on CursorBench",
-      "Always-on adaptive thinking",
-      "1M token context"
+      "Anthropic's most capable widely released model",
+      "Always-on adaptive thinking with strong long-horizon coherence",
+      "1M context window at standard pricing",
+      "Excellent for autonomous multi-agent orchestration",
+      "Strong vision and knowledge-work performance"
     ],
     "cons": [
-      "Highest Anthropic price tier",
-      "Slower latency than Sonnet/Haiku"
+      "Highest price tier ($10/$50 per MTok)",
+      "Safety classifiers may return refusal stop_reason",
+      "Raw chain-of-thought never returned",
+      "Requires 30-day data retention (no ZDR support)",
+      "Longer per-turn latency; single requests can run minutes"
     ],
     "benchmarks": {},
     "source_url": "https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5",
     "architecture": "Mythos-class frontier model with newer tokenizer",
-    "previous_version": "claude-opus-4-8",
+    "previous_version": "claude-mythos-preview",
     "superseded_by": null,
     "first_seen": "2026-06-09",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Anthropic",
@@ -1393,25 +1406,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Fastest model with near-frontier intelligence",
+    "best_for": "Fastest near-frontier model for high-volume simple tasks",
     "pros": [
-      "73.3% on SWE-bench Verified",
-      "1/3 cost of Sonnet 4 with 2x speed",
-      "Extended thinking supported"
+      "Lowest price in current lineup ($1/$5 per MTok)",
+      "Fastest latency of current models",
+      "Supports extended thinking with budget_tokens",
+      "Effective as cheap worker in multi-agent rosters",
+      "Full tool use, structured outputs, and MCP support"
     ],
     "cons": [
-      "Smaller 200k context window",
-      "Below Sonnet 5 on complex reasoning"
+      "Smaller 200K context window",
+      "64K max output (half of Opus/Sonnet/Fable)",
+      "No adaptive thinking (uses legacy enabled+budget_tokens)",
+      "4096-token prompt-cache minimum",
+      "Weaker on hardest reasoning and long-horizon tasks"
     ],
-    "benchmarks": {
-      "swe_bench_verified": 73.3
-    },
-    "source_url": "https://www.anthropic.com/news/claude-haiku-4-5",
+    "benchmarks": {},
+    "source_url": "https://platform.claude.com/docs/en/about-claude/models/overview",
     "architecture": "Haiku-class small model with extended thinking",
     "previous_version": "claude-haiku-3-5",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Anthropic",
@@ -1601,20 +1617,20 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Long-horizon autonomous coding and agentic work",
+    "best_for": "Long-horizon agentic execution and knowledge work",
     "pros": [
-      "State-of-the-art on long-horizon agentic execution",
-      "Adaptive thinking with effort levels through 'max'",
-      "1M context at standard API pricing (no long-context premium)",
+      "State-of-the-art long-horizon autonomous execution",
+      "Warmer, clearer default writing voice",
       "Fast mode available on Claude API",
-      "Same API surface as Opus 4.7 (no new breaking changes)"
+      "Full effort ladder including xhigh and max",
+      "Recommended server-side fallback target for Opus 5 cyber refusals"
     ],
     "cons": [
-      "Superseded by Claude Opus 5 for new work",
-      "Manual budget_tokens rejected (adaptive only)",
-      "Sampling parameters (temperature/top_p/top_k) rejected",
-      "Assistant-turn prefills return 400",
-      "Under-reaches for sub-agents, memory, and custom tools by default"
+      "Superseded by Opus 5 at same price",
+      "No sampling parameters (temperature/top_p/top_k rejected)",
+      "No assistant-turn prefill support",
+      "Manual budget_tokens removed",
+      "Under-triggers subagents/memory/custom tools by default"
     ],
     "benchmarks": {},
     "source_url": "https://platform.claude.com/docs/en/about-claude/models/overview",
@@ -1622,13 +1638,13 @@
     "previous_version": "claude-opus-4-7",
     "superseded_by": "claude-opus-5",
     "first_seen": "2026-05-28",
-    "last_updated": "2026-08-06"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Anthropic",
     "model_name": "Claude Opus 5",
     "model_id": "claude-opus-5",
-    "release_date": "2026-06-04",
+    "release_date": "2026-07-24",
     "status": "ga",
     "context_window": 1000000,
     "max_output_tokens": 128000,
@@ -1646,21 +1662,30 @@
     "open_weights": false,
     "best_for": "Complex agentic coding and enterprise work",
     "pros": [
-      "More than doubles Opus 4.8 on Frontier-Bench v0.1",
-      "Supports self-managed agent memory",
-      "Fast mode available"
+      "Frontier-class capability at half Fable's price",
+      "Adaptive thinking on by default",
+      "Full effort ladder including xhigh and max",
+      "512-token prompt-cache minimum (half of Opus 4.8)",
+      "Fast mode available on Claude API",
+      "1M context window"
     ],
     "cons": [
-      "No extended-thinking toggle (adaptive only)",
-      "Fable 5 outperforms on hardest tasks"
+      "Safety classifiers may return refusal stop_reason",
+      "Raw chain-of-thought never returned",
+      "Disabling thinking rejected at xhigh/max effort",
+      "Fast mode not available on Bedrock/Vertex/Foundry",
+      "Separate rate-limit pool from Opus 4.x"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "arc_agi_3": 30.2,
+      "frontier_bench": 43.3
+    },
     "source_url": "https://www.anthropic.com/news/claude-opus-5",
     "architecture": "Opus-class model with adaptive thinking and effort control",
     "previous_version": "claude-opus-4-8",
     "superseded_by": null,
     "first_seen": "2026-07-24",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Anthropic",
@@ -1710,7 +1735,7 @@
     "provider": "Anthropic",
     "model_name": "Claude Sonnet 5",
     "model_id": "claude-sonnet-5",
-    "release_date": "2026-06-04",
+    "release_date": "2026-06-30",
     "status": "ga",
     "context_window": 1000000,
     "max_output_tokens": 128000,
@@ -1726,23 +1751,32 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Best speed-intelligence balance for production",
+    "best_for": "Balanced speed and near-Opus intelligence at low cost",
     "pros": [
-      "Performance close to Opus 4.8 at lower price",
-      "1M context window",
-      "$2/$10 introductory price made permanent"
+      "Best speed/intelligence balance in the lineup",
+      "Adaptive thinking on by default",
+      "First Sonnet with full effort ladder (low through max)",
+      "1M context window at standard pricing",
+      "High-resolution vision (2576px long edge)",
+      "Strongest gains on coding and agentic tasks"
     ],
     "cons": [
-      "No extended-thinking toggle",
-      "Below Opus 5 on hardest agentic tasks"
+      "New tokenizer produces ~30% more tokens for same text",
+      "Non-default sampling parameters rejected",
+      "No assistant-turn prefill support",
+      "Not eligible for mid-conversation system messages",
+      "Elevated cybersecurity safeguards may return refusals"
     ],
-    "benchmarks": {},
-    "source_url": "https://www.anthropic.com/news/claude-sonnet-5",
+    "benchmarks": {
+      "terminal_bench_2_1": 80.4,
+      "osworld_verified": 81.2
+    },
+    "source_url": "https://platform.claude.com/docs/en/about-claude/models/overview",
     "architecture": "Sonnet-class agentic model with adaptive thinking",
     "previous_version": "claude-sonnet-4-6",
     "superseded_by": null,
     "first_seen": "2026-06-30",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -1886,23 +1920,27 @@
     "mcp_support": true,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Enterprise RAG, tool use, agentic tasks",
+    "best_for": "Long-context enterprise chat, RAG, and agents",
     "pros": [
-      "256K context",
-      "150% higher throughput vs Command R+",
-      "Runs on 2x H100/A100"
+      "256K context window for long documents",
+      "Runs on just 2 GPUs (A100/H100); ~150% higher throughput than Command R+",
+      "Open weights on Hugging Face (CC-BY-NC), 23 languages"
     ],
     "cons": [
-      "Superseded by Command A+",
-      "Smaller 8K max output"
+      "Text-only (no vision)",
+      "Non-commercial open-weights license",
+      "Superseded by Command A+ for new deployments"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "mmlu_pro": 0.712,
+      "livecodebench": 0.287
+    },
     "source_url": "https://docs.cohere.com/docs/command-a",
-    "architecture": "Dense transformer, 111B parameters",
+    "architecture": "Dense decoder-only Transformer, 111B parameters",
     "previous_version": "command-r-plus-08-2024",
     "superseded_by": "command-a-plus-05-2026",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -2037,25 +2075,25 @@
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
-    "reasoning": true,
+    "reasoning": false,
     "open_weights": true,
-    "best_for": "Enterprise agentic workflows and multilingual RAG",
+    "best_for": "Enterprise agentic tasks with grounded citations",
     "pros": [
-      "Unified vision+reasoning+translate",
-      "Open weights under Apache 2.0",
-      "48 languages including all EU languages"
+      "First Cohere Mixture-of-Experts model with strong throughput per GPU",
+      "Native citation generation with grounding spans for RAG",
+      "Fully Apache 2.0 open-weights, 48 languages, vision + text"
     ],
     "cons": [
-      "Smaller context vs prior Command A",
-      "Higher cost than Nano-class MoEs"
+      "Newer release; ecosystem still catching up vs. bigger frontier vendors",
+      "No dedicated extended-reasoning mode"
     ],
     "benchmarks": {},
     "source_url": "https://docs.cohere.com/docs/command-a-plus",
-    "architecture": "Sparse Mixture-of-Experts, 218B total / 25B active, 128 experts (8 active + 1 shared)",
+    "architecture": "Decoder-only Sparse Mixture-of-Experts Transformer, 218B total / 25B active parameters, 128 experts (8 active per token) plus one shared expert",
     "previous_version": "command-a-03-2025",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -2174,7 +2212,7 @@
     "provider": "Cohere",
     "model_name": "Command R7B",
     "model_id": "command-r7b-12-2024",
-    "release_date": "2024-12-13",
+    "release_date": "2024-12-14",
     "status": "ga",
     "context_window": 128000,
     "max_output_tokens": 4000,
@@ -2189,23 +2227,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Small, fast RAG and on-device agentic tasks",
+    "best_for": "Low-latency RAG, tool use, and on-device agents",
     "pros": [
-      "Smallest and fastest Command R model",
-      "128K context on a 7B footprint",
-      "Very low pricing"
+      "Smallest and cheapest model in the Command family",
+      "128K context and strong RAG/tool-use performance for its size",
+      "Open weights on Hugging Face (CC-BY-NC)"
     ],
     "cons": [
-      "Lower quality than larger Command models",
-      "Limited reasoning depth"
+      "Only 4K output tokens",
+      "Text-only",
+      "Trails Command A/A+ on complex reasoning"
     ],
     "benchmarks": {},
     "source_url": "https://docs.cohere.com/docs/command-r7b",
-    "architecture": "Dense 7B transformer (Cohere2)",
+    "architecture": "Dense decoder-only Transformer, 7B parameters",
     "previous_version": "command-r-08-2024",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-08"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -2227,25 +2266,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Multimodal enterprise search embeddings",
+    "best_for": "Multimodal semantic search and enterprise RAG",
     "pros": [
-      "Text and image share vector space",
-      "Matryoshka dims 256/512/1024/1536",
-      "128K token input"
+      "128K-token context, far beyond typical embedding models",
+      "Embeds interleaved text and images in a shared vector space",
+      "Configurable output dimensions (256/512/1024/1536) via Matryoshka"
     ],
     "cons": [
-      "Image tokens cost $0.47/M (higher)",
-      "No streaming/tool use"
+      "Image tokens billed separately at $0.47 per 1M image tokens",
+      "Not open-weights",
+      "No generative/tool-use capability"
     ],
-    "benchmarks": {
-      "mteb": 65.2
-    },
-    "source_url": "https://cohere.com/blog/embed-4",
-    "architecture": "Multimodal embedding model with configurable output dimensions",
+    "benchmarks": {},
+    "source_url": "https://docs.cohere.com/changelog/embed-multimodal-v4",
+    "architecture": "Multimodal embedding model with Matryoshka-style variable output dimensions",
     "previous_version": "embed-english-v3.0",
     "superseded_by": null,
     "first_seen": "2026-07-29",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -2294,7 +2332,7 @@
     "model_name": "Rerank 3.5",
     "model_id": "rerank-v3.5",
     "release_date": "2024-12-02",
-    "status": "deprecated",
+    "status": "ga",
     "context_window": 4096,
     "max_output_tokens": null,
     "input_price_per_1m": null,
@@ -2306,26 +2344,26 @@
     "tool_use": false,
     "structured_output": false,
     "mcp_support": false,
-    "reasoning": false,
+    "reasoning": true,
     "open_weights": false,
-    "best_for": "Legacy multilingual semantic reranking",
+    "best_for": "Multilingual reranking for retrieval and RAG",
     "pros": [
-      "Multilingual support across 100+ languages",
-      "Improved reasoning over prior versions",
-      "Supports semi-structured data reranking"
+      "State-of-the-art multilingual reranking with reasoning",
+      "Handles semi-structured JSON documents",
+      "Simple per-search pricing ($2 per 1K searches of up to 100 docs)"
     ],
     "cons": [
-      "Deprecated as of July 1, 2026",
-      "Requests automatically routed to rerank-v4.0-fast as of Aug 1, 2026",
-      "Superseded by the Rerank 4 family"
+      "Only 4,096-token per-document context (shared query+doc)",
+      "Not open-weights",
+      "Priced per search, not per token"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.cohere.com/docs/deprecations",
-    "architecture": "Multilingual cross-encoder reranker",
-    "previous_version": "rerank-v3.0",
+    "source_url": "https://docs.cohere.com/changelog/rerank-v3.5",
+    "architecture": "Cross-encoder reranking model",
+    "previous_version": "rerank-english-v3.0",
     "superseded_by": "rerank-v4.0-fast",
     "first_seen": "2026-07-29",
-    "last_updated": "2026-08-13"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Cohere",
@@ -2553,6 +2591,95 @@
   },
   {
     "provider": "DeepSeek",
+    "model_name": "DeepSeek V4 Flash",
+    "model_id": "deepseek-v4-flash",
+    "release_date": "2026-07-31",
+    "status": "preview",
+    "context_window": 1048576,
+    "max_output_tokens": 384000,
+    "input_price_per_1m": 0.14,
+    "cached_input_price_per_1m": 0.0028,
+    "output_price_per_1m": 0.28,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Cost-effective coding and agent workflows at scale",
+    "pros": [
+      "Very low per-token cost",
+      "1M-token context with 384K output",
+      "MIT-licensed open weights (V4-Flash-0731)",
+      "Three reasoning modes (Non-think / Think High / Think Max)"
+    ],
+    "cons": [
+      "Trails V4-Pro on complex, high-difficulty tasks",
+      "Documented tool-call failures with very large context + many tools",
+      "Still in public beta, not full GA"
+    ],
+    "benchmarks": {
+      "mmlu_pro": 72.6,
+      "gpqa": 53.6,
+      "swe_bench_verified": 79.0,
+      "terminal_bench_2_1": 82.7,
+      "deepswe": 54.4
+    },
+    "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+    "architecture": "Sparse MoE - 284B total / 13B active, hybrid CSA + HCA attention",
+    "previous_version": "deepseek-v3.2",
+    "superseded_by": null,
+    "first_seen": "2026-05-27",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "DeepSeek",
+    "model_name": "DeepSeek V4 Pro",
+    "model_id": "deepseek-v4-pro",
+    "release_date": "2026-08-13",
+    "status": "ga",
+    "context_window": 1048576,
+    "max_output_tokens": 384000,
+    "input_price_per_1m": 0.435,
+    "cached_input_price_per_1m": 0.003625,
+    "output_price_per_1m": 0.87,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Frontier reasoning, agentic coding, long-context",
+    "pros": [
+      "Frontier reasoning at open-weight cost",
+      "1M-token context window with 384K output",
+      "MIT-licensed open weights",
+      "OpenAI- and Anthropic-compatible endpoints"
+    ],
+    "cons": [
+      "Text-only (no native vision or audio)",
+      "New peak/off-peak pricing raises effective cost",
+      "Highest quality only in Think-Max mode (higher latency)"
+    ],
+    "benchmarks": {
+      "mmlu_pro": 87.5,
+      "gpqa_diamond": 90.1,
+      "swe_bench_verified": 80.6,
+      "livecodebench": 93.5
+    },
+    "source_url": "https://api-docs.deepseek.com/news/news260813/",
+    "architecture": "Sparse MoE - 1.6T total / 49B active, hybrid CSA + HCA attention",
+    "previous_version": "deepseek-v3.2",
+    "superseded_by": null,
+    "first_seen": "2026-05-27",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "DeepSeek",
     "model_name": "DeepSeek V4-Flash-0731",
     "model_id": "deepseek-v4-flash-0731",
     "release_date": "2026-07-31",
@@ -2629,80 +2756,6 @@
     "superseded_by": null,
     "first_seen": "2026-08-13",
     "last_updated": "2026-08-13"
-  },
-  {
-    "provider": "DeepSeek",
-    "model_name": "DeepSeek-V4-Flash",
-    "model_id": "deepseek-v4-flash",
-    "release_date": "2026-04-24",
-    "status": "preview",
-    "context_window": 1000000,
-    "max_output_tokens": 384000,
-    "input_price_per_1m": 0.14,
-    "cached_input_price_per_1m": 0.028,
-    "output_price_per_1m": 0.28,
-    "modalities": [
-      "text"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": true,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Ultra-cheap million-token context inference",
-    "pros": [
-      "Extremely low per-token cost",
-      "1M context default",
-      "Thinking and non-thinking modes"
-    ],
-    "cons": [
-      "Public beta rather than fully GA",
-      "Lower ceiling than V4-Pro"
-    ],
-    "benchmarks": {},
-    "source_url": "https://api-docs.deepseek.com/news/news260424/",
-    "architecture": "Mixture-of-Experts with DeepSeek Sparse Attention (smaller sibling of V4-Pro)",
-    "previous_version": "deepseek-chat",
-    "superseded_by": null,
-    "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
-  },
-  {
-    "provider": "DeepSeek",
-    "model_name": "DeepSeek-V4-Pro",
-    "model_id": "deepseek-v4-pro",
-    "release_date": "2026-08-13",
-    "status": "ga",
-    "context_window": 1000000,
-    "max_output_tokens": 384000,
-    "input_price_per_1m": 1.74,
-    "cached_input_price_per_1m": 0.145,
-    "output_price_per_1m": 3.48,
-    "modalities": [
-      "text"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": true,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Frontier open agentic coding and reasoning",
-    "pros": [
-      "1.6T total / 49B active MoE with DeepSeek Sparse Attention",
-      "1M context by default",
-      "Cache-hit price is 10x cheaper"
-    ],
-    "cons": [
-      "Higher price than V4-Flash",
-      "China-based inference (data residency)"
-    ],
-    "benchmarks": {},
-    "source_url": "https://api-docs.deepseek.com/news/news260813/",
-    "architecture": "Mixture-of-Experts, 1.6T total / 49B active parameters, DeepSeek Sparse Attention (DSA)",
-    "previous_version": "deepseek-reasoner",
-    "superseded_by": null,
-    "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
   },
   {
     "provider": "Google",
@@ -3148,10 +3201,10 @@
     "provider": "Google",
     "model_name": "Gemini 3.1 Flash-Lite",
     "model_id": "gemini-3.1-flash-lite",
-    "release_date": "2026-03-03",
+    "release_date": "2026-05-07",
     "status": "ga",
     "context_window": 1048576,
-    "max_output_tokens": 66000,
+    "max_output_tokens": 65536,
     "input_price_per_1m": 0.25,
     "cached_input_price_per_1m": 0.025,
     "output_price_per_1m": 1.5,
@@ -3166,24 +3219,29 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Most cost-effective Gemini for volume workloads",
+    "best_for": "Cheapest GA tier for high-volume simple tasks",
     "pros": [
-      "Lowest per-token input price in the Gemini 3 family",
-      "~381 tokens/sec output throughput",
-      "1M-token context with implicit caching"
+      "Cheapest current-generation Gemini at $0.25/$1.50",
+      "Fully GA, stable model_id for production",
+      "1M-token context with multimodal input"
     ],
     "cons": [
-      "Audio input priced 2x text/image/video",
-      "Superseded by 3.5 Flash-Lite for most tasks",
-      "Closed weights"
+      "Lower reasoning quality than Flash tier",
+      "Superseded on quality by 3.5 Flash-Lite",
+      "Text-only output"
     ],
-    "benchmarks": {},
-    "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-lite/",
-    "architecture": "Gemini 3 Flash-Lite efficiency-optimized variant",
+    "benchmarks": {
+      "mmlu_pro": 78.0,
+      "gpqa_diamond": 86.9,
+      "mmmu_pro": 76.8,
+      "video_mmmu": 84.8
+    },
+    "source_url": "https://ai.google.dev/gemini-api/docs/models",
+    "architecture": "Distilled Gemini 3-family mixture-of-experts",
     "previous_version": "gemini-2.5-flash-lite",
     "superseded_by": "gemini-3.5-flash-lite",
     "first_seen": "2026-06-04",
-    "last_updated": "2026-08-06"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Google",
@@ -3229,7 +3287,7 @@
     "provider": "Google",
     "model_name": "Gemini 3.1 Pro",
     "model_id": "gemini-3.1-pro-preview",
-    "release_date": "2026-02-01",
+    "release_date": "2026-02-19",
     "status": "preview",
     "context_window": 1048576,
     "max_output_tokens": 65536,
@@ -3247,27 +3305,30 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Frontier reasoning, coding, and agentic tasks",
+    "best_for": "Frontier reasoning, multimodal analysis, agentic workflows",
     "pros": [
-      "Top SWE-Bench and GPQA scores in Gemini family",
-      "1M token context with strong long-context retrieval",
-      "Native multimodal reasoning across text, image, audio, video"
+      "Highest-scoring Gemini on GPQA Diamond and ARC-AGI-2",
+      "1M-token context with strong long-context retrieval",
+      "Native multimodal reasoning across text, image, video, audio, PDF"
     ],
     "cons": [
-      "Preview status, not GA",
-      "Higher tier pricing above 200K context ($4/$18 per 1M)",
-      "Weaker than GPT-5.4 on competition math"
+      "Still 'preview' status, not fully GA",
+      "Long-context surcharge above 200K tokens ($4 in / $18 out)",
+      "Most expensive tier in the Gemini lineup"
     ],
     "benchmarks": {
+      "gpqa_diamond": 94.3,
       "swe_bench_verified": 80.6,
-      "gpqa": 94.3
+      "arc_agi_2": 77.1,
+      "livecodebench": 91.7,
+      "humanitys_last_exam": 41.0
     },
-    "source_url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-1_pro_model_evaluation.pdf",
-    "architecture": "Sparse Mixture-of-Experts transformer",
-    "previous_version": "gemini-3-pro",
+    "source_url": "https://ai.google.dev/gemini-api/docs/models",
+    "architecture": "Sparse mixture-of-experts multimodal transformer with hybrid reasoning",
+    "previous_version": "gemini-2.5-pro",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Google",
@@ -3317,10 +3378,10 @@
     "provider": "Google",
     "model_name": "Gemini 3.5 Flash-Lite",
     "model_id": "gemini-3.5-flash-lite",
-    "release_date": "2026-07-15",
+    "release_date": "2026-07-21",
     "status": "ga",
-    "context_window": 1000000,
-    "max_output_tokens": 64000,
+    "context_window": 1048576,
+    "max_output_tokens": 65536,
     "input_price_per_1m": 0.3,
     "cached_input_price_per_1m": 0.03,
     "output_price_per_1m": 2.5,
@@ -3333,25 +3394,26 @@
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
-    "reasoning": false,
+    "reasoning": true,
     "open_weights": false,
-    "best_for": "Low-latency high-throughput agent workloads",
+    "best_for": "High-volume agentic subagents and translation",
     "pros": [
-      "Fastest 3.5-series model at ~350 tokens/s output",
-      "Significantly better than 3.1 Flash-Lite",
-      "Excellent price-to-performance"
+      "Full 1M-token context at Flash-Lite pricing",
+      "Multimodal input including PDF, video, audio",
+      "Upgraded agentic capabilities over 3.1 Flash-Lite"
     ],
     "cons": [
-      "Lower reasoning ceiling than Flash tier",
-      "Not intended for hardest tasks"
+      "Weaker reasoning than Flash tier",
+      "Higher output price than 3.1 Flash-Lite",
+      "Text-only output"
     ],
     "benchmarks": {},
-    "source_url": "https://deepmind.google/models/model-cards/gemini-3-5-flash-lite/",
-    "architecture": "Sparse Mixture-of-Experts transformer",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+    "architecture": "Distilled Gemini 3-family mixture-of-experts",
     "previous_version": "gemini-3.1-flash-lite",
     "superseded_by": null,
     "first_seen": "2026-07-21",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Google",
@@ -3398,10 +3460,10 @@
     "provider": "Google",
     "model_name": "Gemini 3.6 Flash",
     "model_id": "gemini-3.6-flash",
-    "release_date": "2026-06-10",
+    "release_date": "2026-07-21",
     "status": "ga",
-    "context_window": 1000000,
-    "max_output_tokens": 64000,
+    "context_window": 1048576,
+    "max_output_tokens": 65536,
     "input_price_per_1m": 0.75,
     "cached_input_price_per_1m": 0.15,
     "output_price_per_1m": 3.75,
@@ -3416,32 +3478,39 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Workhorse coding and multimodal Flash model",
+    "best_for": "General-purpose multimodal workhorse for agents and coding",
     "pros": [
-      "17% fewer output tokens than 3.5 Flash",
-      "Introductory pricing through Dec 2026",
-      "Better knowledge-work performance"
+      "17% output-token savings vs. Gemini 3.5 Flash",
+      "Available across AI Studio, Vertex AI, Android Studio, Antigravity",
+      "Strong agentic and multimodal benchmarks"
     ],
     "cons": [
-      "Standard pricing rises to $1.50/$7.50 in Jan 2027",
-      "Superseded by 3.7 Flash"
+      "Superseded by 3.7 Flash three weeks after release",
+      "Lower coding scores than 3.7 Flash",
+      "Text-only output"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "mmlu": 81.2,
+      "mmlu_pro": 47.1,
+      "deepswe": 49.0,
+      "osworld_verified": 83.0,
+      "mle_bench": 63.9
+    },
     "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
-    "architecture": "Sparse Mixture-of-Experts transformer",
+    "architecture": "Sparse mixture-of-experts multimodal transformer with hybrid reasoning",
     "previous_version": "gemini-3.5-flash",
     "superseded_by": "gemini-3.7-flash",
     "first_seen": "2026-07-21",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Google",
     "model_name": "Gemini 3.7 Flash",
     "model_id": "gemini-3.7-flash",
-    "release_date": "2026-07-01",
-    "status": "ga",
-    "context_window": 1000000,
-    "max_output_tokens": 64000,
+    "release_date": "2026-08-13",
+    "status": "preview",
+    "context_window": 1048576,
+    "max_output_tokens": 65536,
     "input_price_per_1m": 0.75,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 3.75,
@@ -3456,23 +3525,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Most intelligent workhorse Flash model",
+    "best_for": "Coding, agentic reasoning, and long-horizon developer workflows",
     "pros": [
-      "Latest Flash iteration with substantial coding gains",
-      "Half the cost of original 3.6 Flash intro pricing",
-      "Fast multimodal reasoning"
+      "Best-in-class Flash-tier coding scores (65.3% DeepSWE v1.1)",
+      "50% introductory price cut vs. standard through 2026-12-31",
+      "97.0% GDM-MRCR long-context retrieval at 128K"
     ],
     "cons": [
-      "Standard pricing rises to $1.50/$7.50 in Jan 2027",
-      "Newer than 3.6 with less production track record"
+      "Preview status, only 3 days old at time of catalog",
+      "Text-only output despite multimodal inputs",
+      "Standard pricing doubles on 2027-01-01"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "deepswe_v1_1": 65.3,
+      "frontier_code": 43.6,
+      "gdm_mrcr_v2_128k": 97.0
+    },
     "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
-    "architecture": "Refinement of Gemini 3.6 Flash reasoning foundation",
+    "architecture": "Distilled Gemini 3-family mixture-of-experts with hybrid reasoning",
     "previous_version": "gemini-3.6-flash",
     "superseded_by": null,
     "first_seen": "2026-08-13",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Google",
@@ -3690,29 +3764,28 @@
       "text",
       "vision"
     ],
-    "tool_use": true,
-    "structured_output": true,
+    "tool_use": false,
+    "structured_output": false,
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Teacher model distilling Llama 4 herd",
+    "best_for": "Internal teacher model for distillation",
     "pros": [
-      "288B active parameters with ~2T total",
-      "Outperforms GPT-4.5 / Claude 3.7 Sonnet / Gemini 2.0 Pro on several STEM benchmarks per Meta",
-      "Serves as teacher for Scout and Maverick"
+      "Announced early benchmarks ahead of GPT-4.5 and Claude 3.7 on STEM",
+      "Used internally to codistill Scout and Maverick"
     ],
     "cons": [
-      "Still training — not released",
-      "No weights or API access available",
-      "Massive compute footprint"
+      "Never publicly shipped as of Aug 2026 (effectively shelved)",
+      "Reported MoE routing and chunked-attention issues at 2T scale",
+      "No public API access or weights available"
     ],
     "benchmarks": {},
     "source_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
-    "architecture": "Sparse MoE — 288B active / 16 experts / ~2T total",
+    "architecture": "288B active / ~2T total Mixture-of-Experts with 16 experts",
     "previous_version": "llama-3.1-405b-instruct",
     "superseded_by": "muse-spark-1.1",
     "first_seen": "2026-05-30",
-    "last_updated": "2026-08-06"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Meta",
@@ -3760,8 +3833,8 @@
     "release_date": "2025-04-05",
     "status": "ga",
     "context_window": 1000000,
-    "max_output_tokens": 8192,
-    "input_price_per_1m": 0.19,
+    "max_output_tokens": 16384,
+    "input_price_per_1m": 0.27,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 0.85,
     "modalities": [
@@ -3773,26 +3846,28 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Flagship open multimodal assistant",
+    "best_for": "Flagship multimodal general-purpose workhorse",
     "pros": [
-      "Strong multimodal benchmarks",
-      "Efficient 17B active/400B total MoE",
-      "1M context"
+      "Strong multimodal quality (MMLU-Pro ~80.5, GPQA Diamond ~69.8)",
+      "Competitive with GPT-4o and Gemini 2.0 Flash at launch",
+      "Only 17B active params keeps inference cheap for a 400B MoE",
+      "Open weights on major hosted APIs (Groq, Together, Fireworks, Bedrock)"
     ],
     "cons": [
-      "Requires distributed inference for full precision",
-      "No dedicated reasoning mode"
+      "Not a reasoning model; trails newer reasoning models on hard math/code",
+      "400B total params requires multi-GPU for self-hosting",
+      "Commercial use requires separate license above 700M MAU"
     ],
     "benchmarks": {
       "mmlu_pro": 80.5,
       "gpqa_diamond": 69.8
     },
-    "source_url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
-    "architecture": "Mixture-of-Experts, 17B active parameters with 128 experts (~400B total), early-fusion multimodality",
+    "source_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+    "architecture": "17B active / 400B total Mixture-of-Experts with 128 experts, early-fusion multimodal transformer",
     "previous_version": "meta-llama/Llama-3.3-70B-Instruct",
     "superseded_by": null,
     "first_seen": "2026-07-15",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Meta",
@@ -3929,10 +4004,10 @@
     "release_date": "2025-04-05",
     "status": "ga",
     "context_window": 10000000,
-    "max_output_tokens": 8192,
-    "input_price_per_1m": 0.18,
+    "max_output_tokens": 16384,
+    "input_price_per_1m": 0.1,
     "cached_input_price_per_1m": null,
-    "output_price_per_1m": 0.59,
+    "output_price_per_1m": 0.3,
     "modalities": [
       "text",
       "vision"
@@ -3942,26 +4017,25 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Long-context multimodal on efficient hardware",
+    "best_for": "Long-context multimodal on a single GPU",
     "pros": [
-      "Industry-leading 10M context window",
-      "Runs on single H100",
-      "Open weights, natively multimodal"
+      "Industry-leading 10M token context window",
+      "Fits on a single H100 GPU",
+      "Native multimodal (text + image) via early fusion",
+      "Open weights under Llama community license"
     ],
     "cons": [
-      "Smaller expert count than Maverick",
-      "No native reasoning mode"
+      "Effective context in practice reported ~5-6M rather than full 10M",
+      "Non-reasoning model, weaker on hard STEM vs frontier reasoners",
+      "Commercial use requires separate license above 700M MAU"
     ],
-    "benchmarks": {
-      "mmlu_pro": 74.3,
-      "gpqa_diamond": 57.2
-    },
-    "source_url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
-    "architecture": "Mixture-of-Experts, 17B active parameters with 16 experts, early-fusion multimodality",
+    "benchmarks": {},
+    "source_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+    "architecture": "17B active / 109B total Mixture-of-Experts with 16 experts, early-fusion multimodal transformer",
     "previous_version": "meta-llama/Llama-3.3-70B-Instruct",
     "superseded_by": null,
     "first_seen": "2026-07-15",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Meta",
@@ -4099,9 +4173,9 @@
     "provider": "Meta",
     "model_name": "Llama Guard 4 12B",
     "model_id": "meta-llama/Llama-Guard-4-12B",
-    "release_date": "2025-04-29",
+    "release_date": "2025-04-30",
     "status": "ga",
-    "context_window": 131072,
+    "context_window": 163840,
     "max_output_tokens": 1024,
     "input_price_per_1m": 0.2,
     "cached_input_price_per_1m": null,
@@ -4115,24 +4189,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Multimodal content-safety classification and guardrails for Llama-family deployments",
+    "best_for": "Multimodal safety classification for prompts and responses",
     "pros": [
-      "Natively multimodal (text + image) safety classifier derived from Llama 4 Scout",
-      "Flat symmetric pricing on Groq ($0.20/$0.20) - cheap enough for per-turn moderation",
-      "Open weights under Llama community license; wide hosted availability (Groq, Together, Fireworks, OpenRouter)"
+      "Natively multimodal safety classifier (text + multiple images)",
+      "Aligned to MLCommons hazards taxonomy",
+      "Runs on a single GPU (12B dense)",
+      "Supports 12 languages"
     ],
     "cons": [
-      "Not a general-purpose chat model - single-shot safety classifier only",
-      "No tool use or agentic behavior",
-      "12B dense classifier is heavier than Llama Guard 3 8B for the same job"
+      "Dedicated safety classifier, not a general chat model",
+      "Dense architecture rather than MoE like the rest of Llama 4"
     ],
     "benchmarks": {},
-    "source_url": "https://groq.com/pricing",
-    "architecture": "Dense 12B classifier fine-tuned from Llama 4 Scout backbone for hazard taxonomy content moderation",
+    "source_url": "https://huggingface.co/meta-llama/Llama-Guard-4-12B",
+    "architecture": "12B dense early-fusion multimodal transformer (pruned from Llama 4 Scout)",
     "previous_version": "meta-llama/Llama-Guard-3-8B",
     "superseded_by": null,
     "first_seen": "2026-07-29",
-    "last_updated": "2026-07-29"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Meta",
@@ -4504,7 +4578,7 @@
     "model_name": "MAI-Code-1-Flash",
     "model_id": "mai-code-1-flash",
     "release_date": "2026-06-02",
-    "status": "deprecated",
+    "status": "ga",
     "context_window": 256000,
     "max_output_tokens": 128000,
     "input_price_per_1m": 0.75,
@@ -4518,24 +4592,24 @@
     "mcp_support": true,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Legacy fast coding on GitHub Copilot",
+    "best_for": "High-volume Copilot coding, refactors, boilerplate",
     "pros": [
+      "First-party GA coding model in GitHub Copilot",
       "256K context window",
-      "Sparse MoE architecture",
-      "Available across GitHub Copilot experiences"
+      "Low latency for autocomplete-grade tasks"
     ],
     "cons": [
-      "Retirement scheduled for September 10, 2026",
-      "4x higher price than successor MAI-Code-1.1-Flash",
-      "No native vision support (unlike successor)"
+      "Not a frontier reasoning model",
+      "No open weights",
+      "Coding-specialized, less general-purpose breadth"
     ],
     "benchmarks": {},
-    "source_url": "https://github.blog/changelog/2026-08-11-upcoming-deprecation-of-mai-code-1-flash/",
-    "architecture": "Sparse MoE transformer — 137B total parameters",
+    "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/new-mai-models-in-microsoft-foundry-across-text-image-voice-and-speech/4524632",
+    "architecture": "Sparse Mixture-of-Experts, ~137B total parameters",
     "previous_version": null,
     "superseded_by": "mai-code-1.1-flash",
     "first_seen": "2026-06-03",
-    "last_updated": "2026-08-13"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Microsoft",
@@ -4814,7 +4888,7 @@
     "provider": "Microsoft",
     "model_name": "MAI-Thinking-1",
     "model_id": "mai-thinking-1",
-    "release_date": "2026-08-11",
+    "release_date": "2026-06-02",
     "status": "preview",
     "context_window": 256000,
     "max_output_tokens": 32768,
@@ -4829,28 +4903,31 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Cost-efficient enterprise math, coding, and reasoning",
+    "best_for": "Multi-step reasoning, math, coding, enterprise workloads",
     "pros": [
-      "Preferred over Claude Sonnet 4.6 in blind human evals",
-      "97.0% AIME 2025, 94.5% AIME 2026",
-      "Function calling with encrypted chain-of-thought",
-      "Smaller inference footprint than peers"
+      "256K context window",
+      "Strong AIME 2026 (94.5%) and SWE-bench Verified (73.5%)",
+      "Trained from scratch without distillation on licensed data"
     ],
     "cons": [
-      "Public preview only, not GA",
-      "Text-only, no vision or audio",
-      "PTU deployment not yet supported"
+      "Public preview only in Microsoft Foundry",
+      "No open weights",
+      "Trails Claude Opus 4.6 on some blind evals"
     ],
     "benchmarks": {
       "aime_2025": 97.0,
-      "aime_2026": 94.5
+      "aime_2026": 94.5,
+      "gpqa_diamond": 84.2,
+      "livecodebench_v6": 87.7,
+      "swe_bench_verified": 73.5,
+      "swe_bench_pro": 52.8
     },
-    "source_url": "https://microsoft.ai/models/mai-thinking-1/",
-    "architecture": "Mixture-of-Experts, ~1T total parameters with 35B active",
+    "source_url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-thinking",
+    "architecture": "Sparse Mixture-of-Experts, ~35B active / ~1T total parameters",
     "previous_version": "mai-1-preview",
     "superseded_by": null,
     "first_seen": "2026-06-03",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Microsoft",
@@ -5106,25 +5183,27 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "Small-model complex math and reasoning",
+    "best_for": "Efficient math and reasoning on small hardware",
     "pros": [
-      "14B dense decoder-only transformer",
-      "Strong math and reasoning for its size",
-      "Open weights under MIT license",
-      "Available on Azure AI Foundry, Hugging Face, GitHub Models, Ollama"
+      "MIT-licensed open weights",
+      "Strong MMLU (~84.8) and HumanEval (82.6) for its size",
+      "Runs on a 12GB GPU at Q4"
     ],
     "cons": [
-      "Only 16K context window",
-      "Text-only, no native tool-use fine-tuning",
-      "Smaller general knowledge than frontier LLMs"
+      "Short 16K context window",
+      "Text-only",
+      "No native tool calling"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "mmlu": 84.8,
+      "humaneval": 82.6
+    },
     "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090",
-    "architecture": "Dense decoder-only transformer (14B parameters)",
-    "previous_version": null,
+    "architecture": "Dense decoder-only Transformer, 14B parameters",
+    "previous_version": "microsoft/phi-3.5",
     "superseded_by": "microsoft/phi-4-reasoning-plus",
     "first_seen": "2026-07-24",
-    "last_updated": "2026-08-08"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Microsoft",
@@ -5203,45 +5282,6 @@
     "superseded_by": "phi-4-reasoning-vision-15b",
     "first_seen": "2026-05-30",
     "last_updated": "2026-08-12"
-  },
-  {
-    "provider": "Microsoft",
-    "model_name": "Phi-4-Reasoning-Plus",
-    "model_id": "microsoft/Phi-4-reasoning-plus",
-    "release_date": "2025-04-30",
-    "status": "ga",
-    "context_window": 32000,
-    "max_output_tokens": 64000,
-    "input_price_per_1m": null,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": null,
-    "modalities": [
-      "text"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": false,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Open-weight small reasoning model for math and science",
-    "pros": [
-      "Only 14B params yet beats DeepSeek-R1-Distill-70B",
-      "Approaches full DeepSeek-R1 on AIME 2025",
-      "MIT-style open weights on Hugging Face",
-      "Handles 64K output token sequences"
-    ],
-    "cons": [
-      "No native vision or audio",
-      "Small 32K context relative to frontier peers",
-      "Older Phi-4 family; not the newest reasoning line"
-    ],
-    "benchmarks": {},
-    "source_url": "https://huggingface.co/microsoft/Phi-4-reasoning-plus",
-    "architecture": "14B dense transformer post-trained with SFT + RL",
-    "previous_version": "microsoft/Phi-4-reasoning",
-    "superseded_by": "microsoft/phi-4-reasoning-vision",
-    "first_seen": "2026-07-24",
-    "last_updated": "2026-08-15"
   },
   {
     "provider": "Microsoft",
@@ -5515,7 +5555,7 @@
   },
   {
     "provider": "Microsoft",
-    "model_name": "Phi-4-multimodal-instruct",
+    "model_name": "Phi-4-multimodal",
     "model_id": "microsoft/phi-4-multimodal-instruct",
     "release_date": "2025-02-26",
     "status": "ga",
@@ -5534,25 +5574,24 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": true,
-    "best_for": "On-device multimodal text, image, and speech input",
+    "best_for": "On-device text plus vision plus speech",
     "pros": [
-      "Only 5.6B parameters, edge-deployable",
-      "Handles text, vision, and audio inputs",
-      "Open weights on Hugging Face and Azure AI Foundry",
-      "Strong speech and vision benchmarks for its size"
+      "First Phi to combine text, vision, and speech inputs",
+      "128K context window",
+      "Ranked #1 on the OpenASR leaderboard at launch"
     ],
     "cons": [
-      "Text-only output",
-      "Smaller than dedicated multimodal frontier models",
-      "No native tool-use fine-tuning"
+      "Only 5.6B parameters limits general knowledge",
+      "Outputs text only",
+      "Speech LoRA is a small 460M component"
     ],
     "benchmarks": {},
     "source_url": "https://azure.microsoft.com/en-us/blog/empowering-innovation-the-next-generation-of-the-phi-family/",
-    "architecture": "Dense multimodal transformer (5.6B parameters)",
-    "previous_version": null,
+    "architecture": "Mixture-of-LoRAs multimodal Transformer, 5.6B parameters",
+    "previous_version": "microsoft/phi-3.5-vision-instruct",
     "superseded_by": "microsoft/phi-4-reasoning-vision",
     "first_seen": "2026-07-24",
-    "last_updated": "2026-08-14"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Microsoft",
@@ -5596,41 +5635,81 @@
     "last_updated": "2026-05-27"
   },
   {
-    "provider": "Mistral",
-    "model_name": "Codestral 25.08",
-    "model_id": "codestral-latest",
-    "release_date": "2025-08-01",
+    "provider": "Microsoft",
+    "model_name": "Phi-4-reasoning-plus",
+    "model_id": "microsoft/phi-4-reasoning-plus",
+    "release_date": "2025-05-15",
     "status": "ga",
-    "context_window": 256000,
-    "max_output_tokens": null,
-    "input_price_per_1m": 0.3,
+    "context_window": 32768,
+    "max_output_tokens": 64000,
+    "input_price_per_1m": null,
     "cached_input_price_per_1m": null,
-    "output_price_per_1m": 0.9,
+    "output_price_per_1m": null,
     "modalities": [
       "text"
     ],
-    "tool_use": true,
+    "tool_use": false,
     "structured_output": true,
     "mcp_support": false,
-    "reasoning": false,
-    "open_weights": false,
-    "best_for": "Low-latency code completion and FIM",
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Open-weight step-by-step reasoning at 14B",
     "pros": [
-      "Optimized for high-frequency fill-in-the-middle and code correction",
-      "256K context handles large repositories",
-      "Function calling and file input supported"
+      "MIT-licensed open weights",
+      "Outperforms DeepSeek-R1-Distill-Llama-70B on reasoning",
+      "Reinforcement-learning tuned for inference-time compute"
     ],
     "cons": [
-      "Not open-weight; Mistral commercial license",
-      "Not a general-purpose or reasoning model"
+      "Uses ~1.5x more tokens per answer than base reasoning",
+      "Text-only",
+      "Smaller than closed frontier reasoning models"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.mistral.ai/models/model-cards/codestral-25-08",
-    "architecture": "Dense transformer specialized for code",
-    "previous_version": "codestral-2501",
+    "source_url": "https://www.microsoft.com/en-us/research/publication/phi-4-reasoning-technical-report/",
+    "architecture": "Dense decoder-only Transformer, 14.7B parameters, SFT + RL",
+    "previous_version": "microsoft/phi-4-reasoning",
+    "superseded_by": "microsoft/phi-4-reasoning-vision",
+    "first_seen": "2026-07-24",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "Microsoft",
+    "model_name": "Phi-4-reasoning-vision-15B",
+    "model_id": "microsoft/phi-4-reasoning-vision-15B",
+    "release_date": "2026-03-04",
+    "status": "ga",
+    "context_window": 16384,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": false,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Compact multimodal reasoning for math, science, UI",
+    "pros": [
+      "Selectively decides when to invoke reasoning",
+      "Matches larger models on multimodal reasoning benchmarks",
+      "Open weights, trained on just 200B tokens"
+    ],
+    "cons": [
+      "Only 16K context",
+      "Trails Qwen3-VL-32B on hardest tasks",
+      "No audio modality"
+    ],
+    "benchmarks": {},
+    "source_url": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+    "architecture": "Mid-fusion: SigLIP-2 Naflex vision encoder + Phi-4-Reasoning backbone, 15B parameters",
+    "previous_version": "microsoft/phi-4-multimodal-instruct",
     "superseded_by": null,
-    "first_seen": "2026-07-23",
-    "last_updated": "2026-07-28"
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -5705,6 +5784,43 @@
     "superseded_by": null,
     "first_seen": "2026-08-15",
     "last_updated": "2026-08-15"
+  },
+  {
+    "provider": "Mistral",
+    "model_name": "Codestral 2508",
+    "model_id": "codestral-latest",
+    "release_date": "2025-08-01",
+    "status": "ga",
+    "context_window": 256000,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0.3,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.9,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": false,
+    "open_weights": false,
+    "best_for": "Low-latency code completion and fill-in-the-middle",
+    "pros": [
+      "State-of-the-art fill-in-the-middle (FIM) capability",
+      "Supports 80+ programming languages",
+      "256K context for multi-file code understanding"
+    ],
+    "cons": [
+      "Not designed for general chat or reasoning",
+      "Weights are not Apache-licensed (Mistral Non-Production License)"
+    ],
+    "benchmarks": {},
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "architecture": "Dense transformer specialized for code",
+    "previous_version": "codestral-2501",
+    "superseded_by": null,
+    "first_seen": "2026-07-23",
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -5821,6 +5937,45 @@
     "superseded_by": null,
     "first_seen": "2026-08-15",
     "last_updated": "2026-08-15"
+  },
+  {
+    "provider": "Mistral",
+    "model_name": "Devstral 2",
+    "model_id": "devstral-medium-latest",
+    "release_date": "2025-12-09",
+    "status": "ga",
+    "context_window": 256000,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0.4,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 2.0,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Agentic coding, shell use, and multi-step SWE tasks",
+    "pros": [
+      "72.2% on SWE-bench Verified (open-weight leader)",
+      "Purpose-built for code agents (shells, dependencies, iteration)",
+      "Available in 24B (Small) and 123B (Medium) sizes"
+    ],
+    "cons": [
+      "Not intended for general chat/instruction workloads",
+      "123B dense weights need substantial GPU memory to self-host"
+    ],
+    "benchmarks": {
+      "swe_bench_verified": 72.2
+    },
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "architecture": "Dense Transformer, 123B parameters",
+    "previous_version": "devstral-medium-2507",
+    "superseded_by": null,
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -6154,36 +6309,37 @@
     "model_id": "ministral-8b-latest",
     "release_date": "2025-12-04",
     "status": "ga",
-    "context_window": 256000,
+    "context_window": 260000,
     "max_output_tokens": null,
-    "input_price_per_1m": 0.1,
+    "input_price_per_1m": 0.15,
     "cached_input_price_per_1m": null,
-    "output_price_per_1m": 0.1,
+    "output_price_per_1m": 0.15,
     "modalities": [
-      "text"
+      "text",
+      "vision"
     ],
     "tool_use": true,
     "structured_output": true,
-    "mcp_support": false,
-    "reasoning": false,
+    "mcp_support": true,
+    "reasoning": true,
     "open_weights": true,
-    "best_for": "edge and high-throughput classification, extraction, routing",
+    "best_for": "On-device and edge inference with image input",
     "pros": [
-      "Very low per-token cost suited to high-volume workloads",
-      "256k context is unusual at 8B scale",
-      "Open weights allow on-device and edge deployment"
+      "Optimized for edge and on-device deployment",
+      "Symmetric $0.15 in/out pricing",
+      "Includes image understanding at 8B scale"
     ],
     "cons": [
-      "Not competitive with mid/large tiers on complex reasoning",
-      "Text-only, no native vision"
+      "Limited capacity for complex multi-step reasoning",
+      "Small parameter count constrains long-form generation quality"
     ],
     "benchmarks": {},
-    "source_url": "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512",
-    "architecture": "8B dense transformer, part of Ministral 3 edge family",
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "architecture": "Dense Transformer, 8B parameters",
     "previous_version": "ministral-8b-2410",
     "superseded_by": null,
     "first_seen": "2026-07-23",
-    "last_updated": "2026-07-23"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -6302,9 +6458,9 @@
     "provider": "Mistral",
     "model_name": "Mistral Large 3",
     "model_id": "mistral-large-latest",
-    "release_date": "2025-12-04",
+    "release_date": "2025-12-02",
     "status": "ga",
-    "context_window": 262144,
+    "context_window": 256000,
     "max_output_tokens": null,
     "input_price_per_1m": 0.5,
     "cached_input_price_per_1m": null,
@@ -6316,29 +6472,25 @@
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
-    "reasoning": false,
+    "reasoning": true,
     "open_weights": true,
-    "best_for": "Flagship general-purpose multimodal MoE",
+    "best_for": "Flagship multimodal reasoning and agentic workflows",
     "pros": [
-      "Sparse MoE efficiency (41B active of 675B total)",
-      "256K context window with multimodal input",
-      "Open weights under Apache 2.0"
+      "Very large 256K context window",
+      "Open-weight (Apache 2.0) MoE at frontier scale",
+      "Native vision plus strong function calling"
     ],
     "cons": [
-      "Not a dedicated reasoning model; lower GPQA than reasoning peers",
-      "Very large total weights make self-hosting hardware-intensive"
+      "675B total params make self-hosting hardware-intensive",
+      "Higher latency than smaller Mistral models"
     ],
-    "benchmarks": {
-      "mmlu": 85.5,
-      "humaneval": 92,
-      "gpqa_diamond": 43.9
-    },
-    "source_url": "https://docs.mistral.ai/models/model-cards/mistral-large-3-25-12",
-    "architecture": "Sparse mixture-of-experts, ~675B total / ~41B active parameters, multimodal",
+    "benchmarks": {},
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "architecture": "Sparse Mixture-of-Experts, 41B active / 675B total parameters",
     "previous_version": "mistral-large-2411",
     "superseded_by": null,
     "first_seen": "2026-07-23",
-    "last_updated": "2026-07-28"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -6515,27 +6667,25 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Agentic coding and mid-tier multimodal work",
+    "best_for": "Unified chat, reasoning, coding, and vision workhorse",
     "pros": [
-      "Strong 77.6% SWE-Bench Verified for agentic coding",
-      "128B dense multimodal model with 256K context",
-      "Configurable reasoning-effort setting"
+      "Consolidates reasoning, coding, and vision in one model",
+      "Configurable reasoning effort per request",
+      "Runs on as few as 4 GPUs when self-hosted"
     ],
     "cons": [
-      "Higher output pricing than the Large tier",
-      "Mistral has not published standard MMLU / AIME numbers at launch"
+      "Output pricing higher than Large 3 despite smaller size",
+      "Newer release, less third-party tooling maturity"
     ],
     "benchmarks": {
-      "swe_bench_verified": 77.6,
-      "gpqa_diamond": 74.8,
-      "tau2_bench": 94.2
+      "swe_bench_verified": 77.6
     },
-    "source_url": "https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04",
-    "architecture": "128B dense multimodal transformer with configurable reasoning",
-    "previous_version": "mistral-medium-2505",
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+    "architecture": "Dense Transformer, 128B parameters",
+    "previous_version": "mistral-medium-3",
     "superseded_by": null,
     "first_seen": "2026-07-23",
-    "last_updated": "2026-08-03"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Mistral",
@@ -6676,27 +6826,23 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Low-cost multimodal reasoning and coding",
+    "best_for": "High-throughput unified small model for production",
     "pros": [
-      "Unifies former Magistral, Pixtral, and Devstral into one MoE",
-      "Configurable reasoning_effort (none to high)",
-      "Only ~6B active parameters keeps inference cheap"
+      "Merges Magistral, Pixtral, and Devstral capabilities in one model",
+      "Very low price at $0.15 / $0.60 per 1M tokens",
+      "262K context window"
     ],
     "cons": [
-      "119B total weights still non-trivial to self-host",
-      "Trails Large 3 and Medium 3.5 on the hardest agentic tasks"
+      "Trails Large 3 and Medium 3.5 on hardest reasoning tasks",
+      "Multiple capabilities in one model can complicate routing decisions"
     ],
-    "benchmarks": {
-      "mmlu_pro": 78,
-      "gpqa_diamond": 71.2,
-      "aime_2025": 83.8
-    },
-    "source_url": "https://docs.mistral.ai/models/model-cards/mistral-small-4-0-26-03",
+    "benchmarks": {},
+    "source_url": "https://docs.mistral.ai/getting-started/models/models_overview/",
     "architecture": "Mixture-of-experts, ~119B total / ~6B active parameters, multimodal with configurable reasoning",
-    "previous_version": "mistral-small-2506",
+    "previous_version": "mistral-small-3.2",
     "superseded_by": null,
     "first_seen": "2026-07-23",
-    "last_updated": "2026-07-28"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Moonshot",
@@ -6861,38 +7007,41 @@
     "release_date": "2026-04-20",
     "status": "ga",
     "context_window": 262144,
-    "max_output_tokens": 65535,
-    "input_price_per_1m": 0.6,
-    "cached_input_price_per_1m": 0.19,
-    "output_price_per_1m": 2.5,
+    "max_output_tokens": 262144,
+    "input_price_per_1m": 0.95,
+    "cached_input_price_per_1m": 0.16,
+    "output_price_per_1m": 4.0,
     "modalities": [
       "text",
-      "vision"
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "General agentic tasks with strong open-weight coding",
+    "best_for": "Balanced everyday agentic and multimodal workloads",
     "pros": [
-      "Open weights",
-      "Ties GPT-5.5 on SWE-bench Pro at ~1/5 cost",
-      "Multi-agent orchestration"
+      "Strong 80.2% SWE-bench Verified for its price tier",
+      "Native MoonViT vision encoder for image and video",
+      "Native INT4 quantization for efficient deployment",
+      "Supports up to 300 sub-agents"
     ],
     "cons": [
-      "Superseded by K3 for frontier tasks",
-      "Shorter context than K3"
+      "Outclassed on frontier reasoning benchmarks by K3",
+      "Higher output price than K2.5",
+      "Not specialized for coding like K2.7 Code"
     ],
     "benchmarks": {
-      "artificial_analysis_intelligence_index": 54
+      "swe_bench_verified": 80.2
     },
-    "source_url": "https://forum.moonshot.ai/c/announcement/5",
-    "architecture": "Sparse MoE, 1T total / 32B active, 384 experts (8 activated) with MLA + SwiGLU",
+    "source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+    "architecture": "1T-parameter MoE with 32B active parameters per token, 384 experts (8+1 shared), 61 layers, Multi-head Latent Attention (MLA), 400M MoonViT vision encoder",
     "previous_version": "kimi-k2.5",
     "superseded_by": "kimi-k3",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Moonshot",
@@ -6907,30 +7056,35 @@
     "output_price_per_1m": 4.0,
     "modalities": [
       "text",
-      "vision"
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Long-horizon autonomous coding agents",
+    "best_for": "Agentic software engineering and coding tasks",
     "pros": [
-      "+21.8% Kimi Code Bench v2 over K2.6",
-      "Native prompt caching",
-      "Always-on thinking mode"
+      "Uses ~30% fewer reasoning tokens than K2.6 for lower effective cost",
+      "Strong agentic coding performance at value-tier pricing",
+      "256K context and multimodal input"
     ],
     "cons": [
-      "Coding-specialized (not general chat)",
-      "Text-only output"
+      "Specialized for coding; less balanced for general chat",
+      "Text-only output despite multimodal input",
+      "Public SWE-bench Verified scores not published by vendor at launch"
     ],
-    "benchmarks": {},
-    "source_url": "https://forum.moonshot.ai/c/announcement/5",
-    "architecture": "Sparse MoE, ~1T total / 32B active parameters, native multimodal",
+    "benchmarks": {
+      "swe_bench_pro_vendor": 58.6,
+      "kimi_code_bench_v2": 62.0
+    },
+    "source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+    "architecture": "1T-parameter MoE with 32B active parameters per token",
     "previous_version": "kimi-k2.6",
     "superseded_by": null,
     "first_seen": "2026-06-12",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Moonshot",
@@ -6938,42 +7092,43 @@
     "model_id": "kimi-k3",
     "release_date": "2026-07-16",
     "status": "ga",
-    "context_window": 1000000,
+    "context_window": 1048576,
     "max_output_tokens": 131072,
     "input_price_per_1m": 3.0,
     "cached_input_price_per_1m": 0.3,
     "output_price_per_1m": 15.0,
     "modalities": [
       "text",
-      "vision"
+      "vision",
+      "video"
     ],
     "tool_use": true,
     "structured_output": true,
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Frontier coding, long-horizon agentic reasoning",
+    "best_for": "Frontier reasoning, agentic tasks, long-context work",
     "pros": [
-      "2.8T-parameter open model",
-      "1M-token context",
-      "Prompt caching at $0.30/M input"
+      "1M-token context with flat pricing (no long-context surcharge)",
+      "Native multimodal (image and video) input",
+      "State-of-the-art open-weight reasoning and agentic performance",
+      "Kimi Delta Attention cuts KV-cache memory up to 75% at long context"
     ],
     "cons": [
-      "Highest Kimi pricing",
-      "Trails top closed models on hardest reasoning"
+      "Highest per-token cost in the Kimi lineup",
+      "Vision input requires base64 or ms:// file-id (no public image URLs)",
+      "Very large weights make self-hosting hardware-intensive"
     ],
     "benchmarks": {
       "swe_bench_verified": 76.8,
-      "program_bench": 77.8,
-      "frontier_swe": 81.2,
-      "swe_marathon": 42.0
+      "gpqa_diamond": 93.5
     },
-    "source_url": "https://forum.moonshot.ai/t/kimi-k3-is-here-our-most-capable-model/480",
-    "architecture": "Sparse MoE, 2.8T parameters with Kimi Delta Attention and Stable LatentMoE",
-    "previous_version": "kimi-k2.6",
+    "source_url": "https://platform.moonshot.ai/docs/pricing/chat",
+    "architecture": "2.8T-parameter MoE with Kimi Delta Attention (KDA) hybrid linear/full attention, ~104B active parameters per token (16 of 896 experts)",
+    "previous_version": "kimi-k2.7-code",
     "superseded_by": null,
     "first_seen": "2026-07-17",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Moonshot",
@@ -7411,7 +7566,7 @@
     "model_id": "nvidia/nemotron-3-nano-30b-a3b",
     "release_date": "2025-12-15",
     "status": "ga",
-    "context_window": 256000,
+    "context_window": 1000000,
     "max_output_tokens": 262144,
     "input_price_per_1m": 0.05,
     "cached_input_price_per_1m": null,
@@ -7424,23 +7579,31 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Cost-efficient always-on specialized sub-agents",
+    "best_for": "Low-cost high-throughput agent workflows",
     "pros": [
-      "Runs on DGX Spark / single H100",
-      "Unified reasoning + non-reasoning",
-      "Open commercial license"
+      "31.6B / 3.6B-active MoE runs on single GPU",
+      "4x higher throughput than Nemotron 2 Nano",
+      "1M context with validated long-context recall",
+      "Unified reasoning + non-reasoning inference"
     ],
     "cons": [
-      "Smaller 256K context vs Super/Ultra",
-      "Lower peak accuracy"
+      "Lower accuracy ceiling than Super/Ultra tiers",
+      "Slightly behind Qwen3-30B on broad MMLU knowledge"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "mmlu_pro": 78.3,
+      "gpqa": 73.04,
+      "livecodebench_v6": 68.3,
+      "arena_hard_v2": 67.7,
+      "ruler_64k": 87.5,
+      "ruler_512k": 70.56
+    },
     "source_url": "https://build.nvidia.com/nvidia/nemotron-3-nano-30b-a3b",
-    "architecture": "Hybrid: 23 Mamba-2 + 23 MoE + 6 Attention layers, 30B total / 3.5B active",
-    "previous_version": "nvidia/nemotron-mini-4b-instruct",
+    "architecture": "Hybrid MoE with 23 Mamba-2 + 23 MoE + 6 Attention layers",
+    "previous_version": "nvidia/nemotron-nano-9b-v2",
     "superseded_by": "nvidia/nemotron-3-super-120b-a12b",
     "first_seen": "2026-06-09",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "NVIDIA",
@@ -7561,46 +7724,6 @@
   },
   {
     "provider": "NVIDIA",
-    "model_name": "Nemotron 3 Nano Omni",
-    "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
-    "release_date": "2026-04-29",
-    "status": "ga",
-    "context_window": 260000,
-    "max_output_tokens": 16384,
-    "input_price_per_1m": 0.07,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": 0.3,
-    "modalities": [
-      "text",
-      "vision",
-      "audio",
-      "video"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": true,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Omni-modal agent perception in a single small model",
-    "pros": [
-      "Handles image/video/speech/text in one model",
-      "3B active parameters",
-      "Runs on 16 GB GPU"
-    ],
-    "cons": [
-      "Text-only output",
-      "Smaller than Ultra/Super for pure text reasoning"
-    ],
-    "benchmarks": {},
-    "source_url": "https://build.nvidia.com/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
-    "architecture": "Omni-modal MoE, 30B total / 3B active parameters",
-    "previous_version": "nvidia/nemotron-3-nano-30b-a3b",
-    "superseded_by": null,
-    "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
-  },
-  {
-    "provider": "NVIDIA",
     "model_name": "Nemotron 3 Nano Omni 30B A3B Reasoning",
     "model_id": "nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
     "release_date": "2026-04-29",
@@ -7641,6 +7764,47 @@
   },
   {
     "provider": "NVIDIA",
+    "model_name": "Nemotron 3 Nano Omni Reasoning",
+    "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+    "release_date": "2026-04-28",
+    "status": "ga",
+    "context_window": 260000,
+    "max_output_tokens": 16384,
+    "input_price_per_1m": 0.07,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.3,
+    "modalities": [
+      "text",
+      "vision",
+      "audio",
+      "video"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Unified multimodal document, audio, and video agents",
+    "pros": [
+      "Single unified model for text, image, audio, video",
+      "9x higher throughput than comparable open multimodal models",
+      "Leads MMLongBench-Doc, OCRBenchV2, WorldSense, VoiceBench",
+      "Runs on ~25GB RAM (edge/DGX Spark friendly)"
+    ],
+    "cons": [
+      "Smaller reasoning ceiling than Ultra/Super text models",
+      "Newer release with less ecosystem tooling"
+    ],
+    "benchmarks": {},
+    "source_url": "https://build.nvidia.com/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+    "architecture": "Unified multimodal hybrid Mamba-Transformer MoE (30B total / 3B active)",
+    "previous_version": "nvidia/nemotron-3-nano-30b-a3b",
+    "superseded_by": null,
+    "first_seen": "2026-05-27",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "NVIDIA",
     "model_name": "Nemotron 3 Super",
     "model_id": "nvidia/nemotron-3-super-120b-a12b",
     "release_date": "2026-03-11",
@@ -7658,23 +7822,29 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Efficient reasoning and multi-agent tool calling",
+    "best_for": "Efficient multi-agent and coding workloads",
     "pros": [
-      "1M context",
-      "Only 12B active parameters",
-      "Trained on 25T tokens"
+      "120B / 12B-active MoE fits single-node H100 deployments",
+      "50%+ higher token generation than leading open peers",
+      "Strong coding and agent scores (SWE-Bench 60.5)",
+      "Fully open weights, datasets, and recipes"
     ],
     "cons": [
-      "Behind Ultra on hardest reasoning",
-      "Requires Hopper-class GPUs"
+      "Trails Ultra on hardest reasoning benchmarks",
+      "Default 256k context in practice (VRAM-limited)"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "mmlu_pro": 83.73,
+      "gpqa": 79.23,
+      "livecodebench_v6": 78.69,
+      "swe_bench_opencode": 60.47
+    },
     "source_url": "https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b",
-    "architecture": "Hybrid Mamba-Attention Mixture-of-Experts, 120B total / 12B active",
-    "previous_version": "nvidia/nemotron-4-340b-instruct",
+    "architecture": "Hybrid LatentMoE Mamba-2/Transformer with Multi-Token Prediction (MTP), NVFP4 pre-training",
+    "previous_version": "nvidia/llama-3.3-nemotron-super-49b-v1",
     "superseded_by": "nvidia/nemotron-3-ultra-550b-a55b",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "NVIDIA",
@@ -7769,28 +7939,31 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Frontier reasoning and long-running agent orchestration",
+    "best_for": "Frontier agentic reasoning and orchestration",
     "pros": [
-      "1M-token context",
-      "Open weights under NVIDIA license",
-      "5x faster inference on agentic tasks"
+      "550B total / 55B active MoE with strong reasoning",
+      "1M token context for long-running agents",
+      "5x higher inference throughput than comparable open LLMs",
+      "Open weights under NVIDIA Open License"
     ],
     "cons": [
-      "Requires substantial GPU footprint",
-      "No first-party token pricing published"
+      "Massive footprint requires multi-GPU deployment",
+      "Higher latency than smaller Nemotron tiers"
     ],
     "benchmarks": {
-      "mmlu": 90,
-      "swe_bench_verified": 71.9,
-      "terminal_bench_2_1": 56.4,
-      "ioi_2025": 570.0
+      "mmlu_pro": 86.8,
+      "gpqa": 87.0,
+      "livecodebench_v6": 89.0,
+      "swe_bench_verified": 70.7,
+      "swe_bench_multilingual": 67.7,
+      "ruler_1m": 76.83
     },
     "source_url": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b",
-    "architecture": "Hybrid Mamba-Transformer Mixture-of-Experts, 550B total / 55B active",
-    "previous_version": "nvidia/nemotron-4-340b-instruct",
+    "architecture": "Hybrid LatentMoE Mamba-2/Transformer with Multi-Token Prediction (MTP), NVFP4 pre-training",
+    "previous_version": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
     "superseded_by": null,
     "first_seen": "2026-05-30",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "NVIDIA",
@@ -8610,30 +8783,33 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "High-throughput cost-efficient inference",
+    "best_for": "High-volume, low-cost everyday tasks",
     "pros": [
-      "Extremely low price after 80% July 30 cut",
-      "Large context window",
+      "Very low price after 80% cut",
+      "1.05M-token context",
       "Fast latency"
     ],
     "cons": [
-      "Lower capability ceiling than Sol/Terra",
-      "Less suited to hardest reasoning"
+      "Weaker on hardest reasoning",
+      "Lower coding ceiling than Sol/Terra"
     ],
-    "benchmarks": {},
-    "source_url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+    "benchmarks": {
+      "swe_bench_pro": 62.7,
+      "terminal_bench_2_1": 84.7
+    },
+    "source_url": "https://openai.com/index/gpt-5-6/",
     "architecture": "Fast, cost-efficient variant of the GPT-5.6 family",
-    "previous_version": "gpt-5.5",
+    "previous_version": "gpt-5.4-nano",
     "superseded_by": null,
     "first_seen": "2026-07-01",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "OpenAI",
     "model_name": "GPT-5.6 Sol",
     "model_id": "gpt-5.6-sol",
-    "release_date": "2026-08-12",
-    "status": "preview",
+    "release_date": "2026-07-09",
+    "status": "ga",
     "context_window": 1050000,
     "max_output_tokens": 128000,
     "input_price_per_1m": 5.0,
@@ -8648,24 +8824,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Frontier reasoning and complex agentic tasks",
+    "best_for": "Hardest coding, reasoning, and agentic tasks",
     "pros": [
-      "State-of-the-art on Terminal-Bench 2.1",
-      "Strong long-horizon reasoning",
-      "Robust safety stack"
+      "Frontier reasoning quality",
+      "1.05M-token context",
+      "Strong SWE-Bench Pro (64.6)",
+      "Programmatic tool calling"
     ],
     "cons": [
-      "Highest price tier",
-      "Currently in limited preview",
+      "High per-token cost",
+      "Overkill for simple tasks",
       "Slower than Terra/Luna"
     ],
-    "benchmarks": {},
-    "source_url": "https://openai.com/index/previewing-gpt-5-6-sol/",
+    "benchmarks": {
+      "swe_bench_pro": 64.6,
+      "agents_last_exam": 53.6
+    },
+    "source_url": "https://openai.com/index/gpt-5-6/",
     "architecture": "Frontier multimodal reasoning model with extended thinking",
     "previous_version": "gpt-5.5",
     "superseded_by": null,
     "first_seen": "2026-06-29",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "OpenAI",
@@ -8687,23 +8867,25 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Balanced everyday production workloads",
+    "best_for": "Balanced production workloads at moderate cost",
     "pros": [
-      "Competitive with GPT-5.5 at lower cost",
-      "Large 1M+ context window",
-      "Broad tool support"
+      "Near-Sol quality at ~40% of cost",
+      "1.05M-token context",
+      "Recent 20% price cut"
     ],
     "cons": [
-      "Not as capable as Sol on hardest tasks",
-      "Long-context surcharge over 272k tokens"
+      "Lower ceiling than Sol on hardest tasks",
+      "Not the cheapest tier"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "swe_bench_pro": 63.4
+    },
     "source_url": "https://openai.com/index/gpt-5-6/",
     "architecture": "Mid-tier variant of the GPT-5.6 family",
     "previous_version": "gpt-5.5",
     "superseded_by": null,
     "first_seen": "2026-07-01",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "OpenAI",
@@ -8904,6 +9086,45 @@
   },
   {
     "provider": "OpenAI",
+    "model_name": "OpenAI o3-pro",
+    "model_id": "o3-pro",
+    "release_date": "2025-06-10",
+    "status": "deprecated",
+    "context_window": 200000,
+    "max_output_tokens": 100000,
+    "input_price_per_1m": 20.0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 80.0,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Deep multi-step reasoning with tool use",
+    "pros": [
+      "Deliberate multi-step reasoning",
+      "Reliable tool use",
+      "Responses API multi-turn"
+    ],
+    "cons": [
+      "Scheduled shutdown Dec 11, 2026",
+      "Very high cost",
+      "Slow responses"
+    ],
+    "benchmarks": {},
+    "source_url": "https://developers.openai.com/api/docs/models/o3-pro",
+    "architecture": null,
+    "previous_version": "o1-pro",
+    "superseded_by": "gpt-5.6-sol",
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "OpenAI",
     "model_name": "gpt-oss-120b",
     "model_id": "gpt-oss-120b",
     "release_date": "2025-08-05",
@@ -8921,25 +9142,25 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "On-prem open-weight reasoning on single 80GB GPU",
+    "best_for": "Self-hosted open-weight reasoning workloads",
     "pros": [
-      "Apache 2.0 license - fully open weights",
-      "MoE with only 5.1B active params runs on one 80GB H100",
-      "Near-parity with o4-mini on core reasoning benchmarks",
-      "Configurable reasoning effort setting"
+      "Apache 2.0 license",
+      "Runs on single 80GB GPU",
+      "Near o4-mini on reasoning benchmarks",
+      "Configurable reasoning effort"
     ],
     "cons": [
-      "Text-only, no native vision or audio",
-      "Below GPT-5.x family on frontier benchmarks",
-      "Self-hosting requires GPU infrastructure"
+      "Not served on OpenAI API",
+      "Text only, no vision",
+      "Requires own inference infra"
     ],
     "benchmarks": {},
     "source_url": "https://openai.com/index/introducing-gpt-oss/",
-    "architecture": "Mixture-of-Experts, 120B total / 5.1B active params, 36 layers, 128 experts top-4 routing, GQA, RoPE, RMSNorm, MXFP4 quantization",
+    "architecture": "Mixture-of-Experts, 36 layers, 116.8B total / 5.1B active params",
     "previous_version": null,
     "superseded_by": null,
     "first_seen": "2026-06-09",
-    "last_updated": "2026-08-08"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "OpenAI",
@@ -9036,23 +9257,22 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Fast, cheap grounded web search answers",
+    "best_for": "Fast, cost-effective search-grounded answers",
     "pros": [
-      "Very low $1/$1 pricing",
-      "Live web citations",
-      "Optimized for search"
+      "Lowest-cost Sonar tier with symmetric $1/$1 pricing",
+      "Optimized for Perplexity search speed and citation quality"
     ],
     "cons": [
-      "No native tool use",
-      "Per-request search fees on top of tokens"
+      "Per-request search fee stacks on top of token cost",
+      "No native reasoning trace"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/docs/getting-started/pricing",
-    "architecture": "Search-augmented model built on Llama 3.3 70B",
+    "source_url": "https://docs.perplexity.ai/guides/model-cards",
+    "architecture": "Llama 3.3 70B base fine-tuned for search",
     "previous_version": null,
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Perplexity",
@@ -9073,32 +9293,31 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Long autonomous research reports with citations",
+    "best_for": "Autonomous long-form research with many searches",
     "pros": [
-      "Runs multi-hop web research",
-      "Structured long-form reports",
-      "Cheaper per-token than Sonar Pro"
+      "Plans and iterates dozens of web searches per query autonomously",
+      "Produces detailed, citation-backed synthesized reports"
     ],
     "cons": [
-      "Extra $2/M citation, $3/M reasoning, $5/1k search fees",
-      "Can truncate very long outputs"
+      "Additional per-1M citation and reasoning token fees plus per-1K search fee",
+      "Slower and less predictable cost per query"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/docs/getting-started/pricing",
+    "source_url": "https://docs.perplexity.ai/guides/model-cards",
     "architecture": "Agentic deep-research pipeline with iterative search and reasoning",
     "previous_version": null,
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Pro",
     "model_id": "sonar-pro",
-    "release_date": "2025-03-07",
+    "release_date": "2025-01-21",
     "status": "ga",
     "context_window": 200000,
-    "max_output_tokens": 8192,
+    "max_output_tokens": 8000,
     "input_price_per_1m": 3.0,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 15.0,
@@ -9110,23 +9329,22 @@
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "In-depth grounded answers with large context",
+    "best_for": "Complex search queries needing broader retrieval",
     "pros": [
-      "200K context (largest in family)",
-      "High/Medium/Low search modes",
-      "Citations free of charge"
+      "200K context window with roughly 2x more citations than Sonar",
+      "Higher-quality grounding for multi-topic queries"
     ],
     "cons": [
-      "High $15/M output cost",
-      "Per-1k-request search fees apply"
+      "5x output token cost vs. base Sonar",
+      "Max output capped at 8K tokens"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/docs/getting-started/pricing",
+    "source_url": "https://docs.perplexity.ai/guides/model-cards",
     "architecture": "Search-augmented premium tier model with expanded retrieval",
     "previous_version": "sonar",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Perplexity",
@@ -9186,16 +9404,14 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Analytical questions needing chain-of-thought",
+    "best_for": "Chain-of-thought answers with live web search",
     "pros": [
-      "Chain-of-thought reasoning at low input cost",
-      "Real-time web search grounding with citations",
-      "Cheaper than Reasoning Pro tier"
+      "Exposes reasoning trace alongside cited answer",
+      "128K context suitable for multi-step queries"
     ],
     "cons": [
-      "128K context is smaller than Sonar Pro",
-      "Output tokens are 5x input price",
-      "Superseded on complex analytical tasks by Reasoning Pro"
+      "Reasoning tokens increase latency and effective cost",
+      "Less capable than sonar-reasoning-pro on hard queries"
     ],
     "benchmarks": {},
     "source_url": "https://docs.perplexity.ai/guides/model-cards",
@@ -9203,13 +9419,13 @@
     "previous_version": null,
     "superseded_by": "sonar-reasoning-pro",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-08"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Reasoning Pro",
     "model_id": "sonar-reasoning-pro",
-    "release_date": "2025-03-07",
+    "release_date": "2025-01-28",
     "status": "ga",
     "context_window": 128000,
     "max_output_tokens": 8192,
@@ -9224,23 +9440,22 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Complex multi-step grounded reasoning",
+    "best_for": "Advanced multi-step reasoning over live web",
     "pros": [
-      "Chain-of-thought over live web",
-      "Three search modes",
-      "Free citation tokens"
+      "Premier reasoning quality with visible think trace plus JSON output",
+      "More citations per search than non-pro reasoning tier"
     ],
     "cons": [
-      "Reasoning tokens billed",
-      "Per-request search fees"
+      "Reasoning tokens billed as output at $8/M",
+      "Per-request search fee applies in addition to tokens"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/docs/getting-started/pricing",
-    "architecture": "Reasoning model powered by DeepSeek R1 with Perplexity search",
+    "source_url": "https://docs.perplexity.ai/guides/model-cards",
+    "architecture": "Powered by DeepSeek R1 with Chain-of-Thought",
     "previous_version": "sonar-reasoning",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-15"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "xAI",
@@ -9547,6 +9762,82 @@
   },
   {
     "provider": "xAI",
+    "model_name": "Grok 4.1 Fast Non-Reasoning",
+    "model_id": "grok-4.1-fast-non-reasoning",
+    "release_date": "2025-11-19",
+    "status": "ga",
+    "context_window": 2000000,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0.2,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.5,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": false,
+    "open_weights": false,
+    "best_for": "Low-latency, high-throughput agent tool loops",
+    "pros": [
+      "No chain-of-thought overhead — fastest and cheapest per request",
+      "2M context ideal for tool-heavy agent workflows",
+      "Direct-response format optimized for structured tool calls"
+    ],
+    "cons": [
+      "No reasoning traces — weaker on complex multi-step problems",
+      "Text-only (no vision input)",
+      "Not suitable for hardest reasoning or math benchmarks"
+    ],
+    "benchmarks": {},
+    "source_url": "https://docs.x.ai/developers/models/grok-4-1-fast-non-reasoning",
+    "architecture": null,
+    "previous_version": "grok-4-fast-non-reasoning",
+    "superseded_by": null,
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "xAI",
+    "model_name": "Grok 4.1 Fast Reasoning",
+    "model_id": "grok-4.1-fast-reasoning",
+    "release_date": "2025-11-19",
+    "status": "ga",
+    "context_window": 2000000,
+    "max_output_tokens": null,
+    "input_price_per_1m": 0.2,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.5,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "High-volume agent workflows with tool calling",
+    "pros": [
+      "2M-token context at bargain pricing",
+      "Trained with long-horizon RL for multi-turn agent loops",
+      "Tool invocation costs reduced up to 50%"
+    ],
+    "cons": [
+      "Not frontier-tier on hardest reasoning benchmarks",
+      "Text-only (no vision input)",
+      "Older model family than 4.5/4.6"
+    ],
+    "benchmarks": {},
+    "source_url": "https://docs.x.ai/developers/models/grok-4-1-fast-reasoning",
+    "architecture": null,
+    "previous_version": "grok-4-fast-reasoning",
+    "superseded_by": null,
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "xAI",
     "model_name": "Grok 4.20",
     "model_id": "grok-4.20",
     "release_date": "2026-03-10",
@@ -9801,27 +10092,24 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Coding and agentic workflows",
+    "best_for": "Coding and agentic work at frontier tier",
     "pros": [
-      "Top-tier agentic tool use",
-      "Trained on real Cursor developer sessions",
-      "Configurable reasoning effort",
-      "Strong SWE-bench performance"
+      "500K context with function calling, web/X search, and code execution",
+      "Configurable low/medium/high reasoning effort",
+      "Same base pricing as 4.6 with proven stability"
     ],
     "cons": [
-      "500K context smaller than 4.3",
-      "Limited published classical benchmarks",
-      "Superseded by Grok 4.6"
+      "Superseded by Grok 4.6 for frontier tasks",
+      "Long-context pricing doubles above 200K tokens",
+      "Reportedly not available to EU API console users"
     ],
-    "benchmarks": {
-      "swe_bench_verified": 86.6
-    },
+    "benchmarks": {},
     "source_url": "https://docs.x.ai/developers/models",
     "architecture": "Mixture-of-Experts (V9, ~1.5T parameters)",
     "previous_version": "grok-4.3",
     "superseded_by": "grok-4.6",
     "first_seen": "2026-07-08",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "xAI",
@@ -9881,25 +10169,26 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Frontier agentic coding and knowledge work",
+    "best_for": "Frontier coding, agentic tasks, long-horizon workflows",
     "pros": [
-      "Frontier-tier intelligence at mid-tier price",
-      "Strong agentic tool use",
-      "Configurable reasoning effort",
-      "Available on Cursor, OpenRouter, Vercel, Cloudflare day-one"
+      "Frontier-tier intelligence at roughly half the price of rival flagships",
+      "500K context with native image input and parallel tool calls",
+      "Configurable reasoning effort (low/medium/high/xhigh)"
     ],
     "cons": [
-      "500K context is smaller than Grok 4.3",
-      "Prices double for prompts above 200K tokens",
-      "Cached input price rose vs Grok 4.5"
+      "Pricing doubles to $4/$12 per 1M once a prompt crosses 200K tokens",
+      "Text-only output (no native image or audio generation)",
+      "Knowledge cutoff Feb 1, 2026"
     ],
-    "benchmarks": {},
+    "benchmarks": {
+      "artificial_analysis_intelligence_index": 61
+    },
     "source_url": "https://docs.x.ai/developers/models",
     "architecture": "Mixture-of-Experts (V9 upgrade)",
     "previous_version": "grok-4.5",
     "superseded_by": null,
     "first_seen": "2026-08-12",
-    "last_updated": "2026-08-12"
+    "last_updated": "2026-08-16"
   },
   {
     "provider": "xAI",

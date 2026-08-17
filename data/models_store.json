@@ -903,6 +903,48 @@
   },
   {
     "provider": "Alibaba",
+    "model_name": "Qwen3.8-27B",
+    "model_id": "qwen3.8-27b",
+    "release_date": "2026-08-14",
+    "status": "ga",
+    "context_window": 262144,
+    "max_output_tokens": 32768,
+    "input_price_per_1m": 0.4,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 3.0,
+    "modalities": [
+      "text",
+      "vision",
+      "video"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": true,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Open-weight dense VL for single-GPU deployment",
+    "pros": [
+      "Apache 2.0 open weights, commercial-friendly",
+      "Native 262K context (extendable via YaRN)",
+      "Dense 27B fits on a single high-end GPU",
+      "Native vision-language (images + video)",
+      "Toggleable thinking/non-thinking modes"
+    ],
+    "cons": [
+      "Well below Qwen3.8-Max on frontier benchmarks",
+      "Dense architecture less efficient than MoE peers at similar quality",
+      "Output cap lower than flagship siblings"
+    ],
+    "benchmarks": {},
+    "source_url": "https://www.alibabacloud.com/blog/what-it-actually-takes-to-run-qwen3-8-27b-locally_603428",
+    "architecture": "Dense 27B parameter vision-language transformer",
+    "previous_version": "qwen3.6-27b",
+    "superseded_by": null,
+    "first_seen": "2026-08-17",
+    "last_updated": "2026-08-17"
+  },
+  {
+    "provider": "Alibaba",
     "model_name": "Qwen3.8-Max",
     "model_id": "qwen3.8-max",
     "release_date": "2026-08-03",
@@ -2594,11 +2636,11 @@
     "model_name": "DeepSeek V4 Flash",
     "model_id": "deepseek-v4-flash",
     "release_date": "2026-07-31",
-    "status": "preview",
+    "status": "ga",
     "context_window": 1048576,
     "max_output_tokens": 384000,
     "input_price_per_1m": 0.14,
-    "cached_input_price_per_1m": 0.0028,
+    "cached_input_price_per_1m": 0.028,
     "output_price_per_1m": 0.28,
     "modalities": [
       "text"
@@ -2608,17 +2650,17 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Cost-effective coding and agent workflows at scale",
+    "best_for": "High-throughput, cost-sensitive 1M-context tasks",
     "pros": [
-      "Very low per-token cost",
-      "1M-token context with 384K output",
-      "MIT-licensed open weights (V4-Flash-0731)",
-      "Three reasoning modes (Non-think / Think High / Think Max)"
+      "Very low price",
+      "1M context",
+      "Off-peak 50% discount",
+      "Three thinking effort levels",
+      "Now routes deprecated deepseek-chat/reasoner traffic"
     ],
     "cons": [
-      "Trails V4-Pro on complex, high-difficulty tasks",
-      "Documented tool-call failures with very large context + many tools",
-      "Still in public beta, not full GA"
+      "Smaller active parameters than Pro",
+      "Text-only"
     ],
     "benchmarks": {
       "mmlu_pro": 72.6,
@@ -2627,12 +2669,12 @@
       "terminal_bench_2_1": 82.7,
       "deepswe": 54.4
     },
-    "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
-    "architecture": "Sparse MoE - 284B total / 13B active, hybrid CSA + HCA attention",
-    "previous_version": "deepseek-v3.2",
+    "source_url": "https://api-docs.deepseek.com/news/news260424/",
+    "architecture": "MoE 284B total / 13B active, DeepSeek Sparse Attention",
+    "previous_version": "deepseek-chat",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "DeepSeek",
@@ -2642,9 +2684,9 @@
     "status": "ga",
     "context_window": 1048576,
     "max_output_tokens": 384000,
-    "input_price_per_1m": 0.435,
-    "cached_input_price_per_1m": 0.003625,
-    "output_price_per_1m": 0.87,
+    "input_price_per_1m": 1.74,
+    "cached_input_price_per_1m": 0.145,
+    "output_price_per_1m": 3.48,
     "modalities": [
       "text"
     ],
@@ -2653,30 +2695,31 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Frontier reasoning, agentic coding, long-context",
+    "best_for": "Agentic coding and long-context reasoning",
     "pros": [
-      "Frontier reasoning at open-weight cost",
-      "1M-token context window with 384K output",
-      "MIT-licensed open weights",
-      "OpenAI- and Anthropic-compatible endpoints"
+      "1M-token context",
+      "Strong SWE-bench and agent performance",
+      "Three thinking effort levels (low/high/max)",
+      "50% off-peak pricing",
+      "Responses API + Codex integration"
     ],
     "cons": [
-      "Text-only (no native vision or audio)",
-      "New peak/off-peak pricing raises effective cost",
-      "Highest quality only in Think-Max mode (higher latency)"
+      "Peak pricing ~4x higher than pre-GA promotional rates",
+      "Text-only modality"
     ],
     "benchmarks": {
       "mmlu_pro": 87.5,
       "gpqa_diamond": 90.1,
+      "livecodebench": 93.5,
       "swe_bench_verified": 80.6,
-      "livecodebench": 93.5
+      "swe_bench_pro": 55.4
     },
     "source_url": "https://api-docs.deepseek.com/news/news260813/",
-    "architecture": "Sparse MoE - 1.6T total / 49B active, hybrid CSA + HCA attention",
+    "architecture": "MoE 1.6T total / 49B active, DeepSeek Sparse Attention",
     "previous_version": "deepseek-v3.2",
     "superseded_by": null,
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "DeepSeek",
@@ -2687,7 +2730,7 @@
     "context_window": 1048576,
     "max_output_tokens": 393216,
     "input_price_per_1m": 0.14,
-    "cached_input_price_per_1m": 0.0028,
+    "cached_input_price_per_1m": 0.028,
     "output_price_per_1m": 0.28,
     "modalities": [
       "text"
@@ -2697,23 +2740,22 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Cheap 1M-context reasoning at scale",
+    "best_for": "Pinned snapshot for cheap 1M-context inference",
     "pros": [
-      "Extremely low cache-hit input price",
-      "Toggleable thinking mode",
-      "MIT-licensed open weights"
+      "Version-pinned",
+      "Cache reads at $0.028/1M",
+      "Three thinking effort levels"
     ],
     "cons": [
-      "Text only",
-      "Recent 0731 re-post-train may shift behavior vs earlier snapshots"
+      "Text-only"
     ],
     "benchmarks": {},
-    "source_url": "https://api-docs.deepseek.com/updates/",
-    "architecture": "Sparse Mixture-of-Experts, 284B total / 13B active parameters",
+    "source_url": "https://api-docs.deepseek.com/news/news260424/",
+    "architecture": "MoE 284B total / 13B active, DeepSeek Sparse Attention",
     "previous_version": "deepseek-v4-flash",
     "superseded_by": null,
     "first_seen": "2026-07-31",
-    "last_updated": "2026-08-01"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "DeepSeek",
@@ -2723,9 +2765,9 @@
     "status": "ga",
     "context_window": 1048576,
     "max_output_tokens": 384000,
-    "input_price_per_1m": 0.435,
-    "cached_input_price_per_1m": 0.003625,
-    "output_price_per_1m": 0.87,
+    "input_price_per_1m": 1.74,
+    "cached_input_price_per_1m": 0.145,
+    "output_price_per_1m": 3.48,
     "modalities": [
       "text"
     ],
@@ -2734,28 +2776,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": true,
-    "best_for": "Agentic coding, tool use, and long-context reasoning",
+    "best_for": "Version-pinned V4 Pro snapshot for production",
     "pros": [
-      "1M context window with 384K max output",
-      "Ultra-cheap cache-hit pricing ($0.003625 per 1M)",
-      "Available via both OpenAI- and Anthropic-compatible endpoints",
-      "Open weights on Hugging Face"
+      "Pinned snapshot",
+      "Enhanced agent capabilities",
+      "Responses API + Codex support",
+      "Three thinking effort levels"
     ],
     "cons": [
-      "Benchmark scores not yet independently verified",
-      "Shipped without a formal blog post",
-      "Announced price increase on Aug 16, 2026",
-      "Still trails Claude Opus 4.8 on several agent benchmarks"
+      "Higher peak pricing after 2026-08-16",
+      "Text-only"
     ],
     "benchmarks": {
-      "swe_bench_verified": 62.7
+      "mmlu_pro": 87.5,
+      "swe_bench_verified": 80.6,
+      "swe_bench_pro": 55.4
     },
-    "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
-    "architecture": "Mixture-of-Experts — 1.6T total / 49B active, hybrid Compressed Sparse Attention + Heavily Compressed Attention",
+    "source_url": "https://api-docs.deepseek.com/news/news260813/",
+    "architecture": "MoE 1.6T total / 49B active, DeepSeek Sparse Attention",
     "previous_version": "deepseek-v4-pro",
     "superseded_by": null,
     "first_seen": "2026-08-13",
-    "last_updated": "2026-08-13"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Google",
@@ -3508,7 +3550,7 @@
     "model_name": "Gemini 3.7 Flash",
     "model_id": "gemini-3.7-flash",
     "release_date": "2026-08-13",
-    "status": "preview",
+    "status": "ga",
     "context_window": 1048576,
     "max_output_tokens": 65536,
     "input_price_per_1m": 0.75,
@@ -3525,28 +3567,28 @@
     "mcp_support": true,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Coding, agentic reasoning, and long-horizon developer workflows",
+    "best_for": "High-throughput coding and agent workflows",
     "pros": [
-      "Best-in-class Flash-tier coding scores (65.3% DeepSWE v1.1)",
-      "50% introductory price cut vs. standard through 2026-12-31",
-      "97.0% GDM-MRCR long-context retrieval at 128K"
+      "Highest coding accuracy in Flash tier (43.6% FrontierCode 1.1 Main, 65.3% DeepSWE v1.1)",
+      "Tunable thinking levels (low/medium/high)",
+      "Introductory pricing through Dec 31, 2026 (standard $1.50/$7.50 from Jan 1, 2027)",
+      "Native multimodal input (text, image, audio, video)"
     ],
     "cons": [
-      "Preview status, only 3 days old at time of catalog",
-      "Text-only output despite multimodal inputs",
-      "Standard pricing doubles on 2027-01-01"
+      "Introductory pricing expires Dec 31, 2026; effective price doubles Jan 1, 2027",
+      "Text-only output",
+      "Rapid version churn (released three weeks after 3.6 Flash)"
     ],
     "benchmarks": {
-      "deepswe_v1_1": 65.3,
-      "frontier_code": 43.6,
-      "gdm_mrcr_v2_128k": 97.0
+      "frontiercode_1_1_main": 43.6,
+      "deepswe_v1_1": 65.3
     },
     "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
-    "architecture": "Distilled Gemini 3-family mixture-of-experts with hybrid reasoning",
+    "architecture": "Sparse mixture-of-experts, natively multimodal reasoning model (Gemini 3 series)",
     "previous_version": "gemini-3.6-flash",
     "superseded_by": null,
     "first_seen": "2026-08-13",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Google",
@@ -5285,89 +5327,6 @@
   },
   {
     "provider": "Microsoft",
-    "model_name": "Phi-4-Reasoning-Vision",
-    "model_id": "microsoft/phi-4-reasoning-vision",
-    "release_date": "2026-03-04",
-    "status": "preview",
-    "context_window": null,
-    "max_output_tokens": null,
-    "input_price_per_1m": null,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": null,
-    "modalities": [
-      "text",
-      "vision"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": null,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Multimodal reasoning with high-fidelity vision",
-    "pros": [
-      "15B parameter reasoning model with vision",
-      "Available on Microsoft Foundry and Hugging Face",
-      "Extends Phi-4 reasoning family to images"
-    ],
-    "cons": [
-      "Smaller than frontier vision models",
-      "Preview status"
-    ],
-    "benchmarks": {},
-    "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-reasoning-vision-to-microsoft-foundry/4499154",
-    "architecture": "Dense transformer, 15B parameters, vision-language model",
-    "previous_version": "microsoft/phi-4-reasoning-plus",
-    "superseded_by": null,
-    "first_seen": "2026-07-24",
-    "last_updated": "2026-08-14"
-  },
-  {
-    "provider": "Microsoft",
-    "model_name": "Phi-4-Reasoning-Vision-15B",
-    "model_id": "phi-4-reasoning-vision-15b",
-    "release_date": "2026-03-04",
-    "status": "preview",
-    "context_window": 32768,
-    "max_output_tokens": 16384,
-    "input_price_per_1m": null,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": null,
-    "modalities": [
-      "text",
-      "vision"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": false,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Compact multimodal reasoning for charts, diagrams, UI",
-    "pros": [
-      "Matches models 10x its size on math and UI tasks",
-      "Trained on only 200B tokens - highly compute-efficient",
-      "Learned when to invoke chain-of-thought vs answer directly",
-      "Open weights on Hugging Face plus Foundry deployment"
-    ],
-    "cons": [
-      "32K context is smaller than most frontier VLMs",
-      "No audio/video modalities",
-      "Preview status in Foundry Labs"
-    ],
-    "benchmarks": {
-      "ai2d": 84.8,
-      "chartqa": 83.3,
-      "mathvista_mini": 75.2,
-      "screenspot_v2": 88.2
-    },
-    "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-reasoning-vision-to-microsoft-foundry/4499154",
-    "architecture": "15B-parameter multimodal transformer built on Phi-4 reasoning family with SigLIP-2 vision encoder (mid-fusion)",
-    "previous_version": "phi-4-reasoning-plus",
-    "superseded_by": null,
-    "first_seen": "2026-05-29",
-    "last_updated": "2026-08-02"
-  },
-  {
-    "provider": "Microsoft",
     "model_name": "Phi-4-mini",
     "model_id": "phi-4-mini",
     "release_date": "2025-02-26",
@@ -5671,6 +5630,89 @@
     "superseded_by": "microsoft/phi-4-reasoning-vision",
     "first_seen": "2026-07-24",
     "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "Microsoft",
+    "model_name": "Phi-4-Reasoning-Vision",
+    "model_id": "microsoft/phi-4-reasoning-vision",
+    "release_date": "2026-03-04",
+    "status": "preview",
+    "context_window": null,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Multimodal reasoning with high-fidelity vision",
+    "pros": [
+      "15B parameter reasoning model with vision",
+      "Available on Microsoft Foundry and Hugging Face",
+      "Extends Phi-4 reasoning family to images"
+    ],
+    "cons": [
+      "Smaller than frontier vision models",
+      "Preview status"
+    ],
+    "benchmarks": {},
+    "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-reasoning-vision-to-microsoft-foundry/4499154",
+    "architecture": "Dense transformer, 15B parameters, vision-language model",
+    "previous_version": "microsoft/phi-4-reasoning-plus",
+    "superseded_by": null,
+    "first_seen": "2026-07-24",
+    "last_updated": "2026-08-14"
+  },
+  {
+    "provider": "Microsoft",
+    "model_name": "Phi-4-Reasoning-Vision-15B",
+    "model_id": "phi-4-reasoning-vision-15b",
+    "release_date": "2026-03-04",
+    "status": "preview",
+    "context_window": 32768,
+    "max_output_tokens": 16384,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Compact multimodal reasoning for charts, diagrams, UI",
+    "pros": [
+      "Matches models 10x its size on math and UI tasks",
+      "Trained on only 200B tokens - highly compute-efficient",
+      "Learned when to invoke chain-of-thought vs answer directly",
+      "Open weights on Hugging Face plus Foundry deployment"
+    ],
+    "cons": [
+      "32K context is smaller than most frontier VLMs",
+      "No audio/video modalities",
+      "Preview status in Foundry Labs"
+    ],
+    "benchmarks": {
+      "ai2d": 84.8,
+      "chartqa": 83.3,
+      "mathvista_mini": 75.2,
+      "screenspot_v2": 88.2
+    },
+    "source_url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-phi-4-reasoning-vision-to-microsoft-foundry/4499154",
+    "architecture": "15B-parameter multimodal transformer built on Phi-4 reasoning family with SigLIP-2 vision encoder (mid-fusion)",
+    "previous_version": "phi-4-reasoning-plus",
+    "superseded_by": null,
+    "first_seen": "2026-05-29",
+    "last_updated": "2026-08-02"
   },
   {
     "provider": "Microsoft",
@@ -7132,43 +7174,6 @@
   },
   {
     "provider": "Moonshot",
-    "model_name": "Moonshot V1 32K",
-    "model_id": "moonshot-v1-32k",
-    "release_date": null,
-    "status": "deprecated",
-    "context_window": 32768,
-    "max_output_tokens": null,
-    "input_price_per_1m": null,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": null,
-    "modalities": [
-      "text"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": false,
-    "reasoning": false,
-    "open_weights": false,
-    "best_for": "Legacy compatibility for existing moonshot-v1 integrations",
-    "pros": [
-      "Long-standing stable API contract",
-      "OpenAI-compatible endpoint"
-    ],
-    "cons": [
-      "Closed to newly registered users after Kimi K3 launch",
-      "Scheduled full platform sunset on 2026-08-31",
-      "No multimodal or reasoning capabilities"
-    ],
-    "benchmarks": {},
-    "source_url": "https://platform.moonshot.ai/docs/introduction",
-    "architecture": null,
-    "previous_version": null,
-    "superseded_by": "kimi-k3",
-    "first_seen": "2026-08-08",
-    "last_updated": "2026-08-08"
-  },
-  {
-    "provider": "Moonshot",
     "model_name": "Moonshot v1 128K",
     "model_id": "moonshot-v1-128k",
     "release_date": null,
@@ -7204,6 +7209,43 @@
     "superseded_by": "kimi-k2.6",
     "first_seen": "2026-08-10",
     "last_updated": "2026-08-10"
+  },
+  {
+    "provider": "Moonshot",
+    "model_name": "Moonshot V1 32K",
+    "model_id": "moonshot-v1-32k",
+    "release_date": null,
+    "status": "deprecated",
+    "context_window": 32768,
+    "max_output_tokens": null,
+    "input_price_per_1m": null,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": null,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": false,
+    "open_weights": false,
+    "best_for": "Legacy compatibility for existing moonshot-v1 integrations",
+    "pros": [
+      "Long-standing stable API contract",
+      "OpenAI-compatible endpoint"
+    ],
+    "cons": [
+      "Closed to newly registered users after Kimi K3 launch",
+      "Scheduled full platform sunset on 2026-08-31",
+      "No multimodal or reasoning capabilities"
+    ],
+    "benchmarks": {},
+    "source_url": "https://platform.moonshot.ai/docs/introduction",
+    "architecture": null,
+    "previous_version": null,
+    "superseded_by": "kimi-k3",
+    "first_seen": "2026-08-08",
+    "last_updated": "2026-08-08"
   },
   {
     "provider": "NVIDIA",
@@ -8928,6 +8970,45 @@
   },
   {
     "provider": "OpenAI",
+    "model_name": "gpt-oss-120b",
+    "model_id": "gpt-oss-120b",
+    "release_date": "2025-08-05",
+    "status": "ga",
+    "context_window": 131072,
+    "max_output_tokens": 131072,
+    "input_price_per_1m": 0.03,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 0.15,
+    "modalities": [
+      "text"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": false,
+    "reasoning": true,
+    "open_weights": true,
+    "best_for": "Self-hosted open-weight reasoning workloads",
+    "pros": [
+      "Apache 2.0 license",
+      "Runs on single 80GB GPU",
+      "Near o4-mini on reasoning benchmarks",
+      "Configurable reasoning effort"
+    ],
+    "cons": [
+      "Not served on OpenAI API",
+      "Text only, no vision",
+      "Requires own inference infra"
+    ],
+    "benchmarks": {},
+    "source_url": "https://openai.com/index/introducing-gpt-oss/",
+    "architecture": "Mixture-of-Experts, 36 layers, 116.8B total / 5.1B active params",
+    "previous_version": null,
+    "superseded_by": null,
+    "first_seen": "2026-06-09",
+    "last_updated": "2026-08-16"
+  },
+  {
+    "provider": "OpenAI",
     "model_name": "GPT-Realtime-2",
     "model_id": "gpt-realtime-2",
     "release_date": null,
@@ -9086,84 +9167,6 @@
   },
   {
     "provider": "OpenAI",
-    "model_name": "OpenAI o3-pro",
-    "model_id": "o3-pro",
-    "release_date": "2025-06-10",
-    "status": "deprecated",
-    "context_window": 200000,
-    "max_output_tokens": 100000,
-    "input_price_per_1m": 20.0,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": 80.0,
-    "modalities": [
-      "text",
-      "vision"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": null,
-    "reasoning": true,
-    "open_weights": false,
-    "best_for": "Deep multi-step reasoning with tool use",
-    "pros": [
-      "Deliberate multi-step reasoning",
-      "Reliable tool use",
-      "Responses API multi-turn"
-    ],
-    "cons": [
-      "Scheduled shutdown Dec 11, 2026",
-      "Very high cost",
-      "Slow responses"
-    ],
-    "benchmarks": {},
-    "source_url": "https://developers.openai.com/api/docs/models/o3-pro",
-    "architecture": null,
-    "previous_version": "o1-pro",
-    "superseded_by": "gpt-5.6-sol",
-    "first_seen": "2026-08-16",
-    "last_updated": "2026-08-16"
-  },
-  {
-    "provider": "OpenAI",
-    "model_name": "gpt-oss-120b",
-    "model_id": "gpt-oss-120b",
-    "release_date": "2025-08-05",
-    "status": "ga",
-    "context_window": 131072,
-    "max_output_tokens": 131072,
-    "input_price_per_1m": 0.03,
-    "cached_input_price_per_1m": null,
-    "output_price_per_1m": 0.15,
-    "modalities": [
-      "text"
-    ],
-    "tool_use": true,
-    "structured_output": true,
-    "mcp_support": false,
-    "reasoning": true,
-    "open_weights": true,
-    "best_for": "Self-hosted open-weight reasoning workloads",
-    "pros": [
-      "Apache 2.0 license",
-      "Runs on single 80GB GPU",
-      "Near o4-mini on reasoning benchmarks",
-      "Configurable reasoning effort"
-    ],
-    "cons": [
-      "Not served on OpenAI API",
-      "Text only, no vision",
-      "Requires own inference infra"
-    ],
-    "benchmarks": {},
-    "source_url": "https://openai.com/index/introducing-gpt-oss/",
-    "architecture": "Mixture-of-Experts, 36 layers, 116.8B total / 5.1B active params",
-    "previous_version": null,
-    "superseded_by": null,
-    "first_seen": "2026-06-09",
-    "last_updated": "2026-08-16"
-  },
-  {
-    "provider": "OpenAI",
     "model_name": "o3",
     "model_id": "o3",
     "release_date": "2025-04-16",
@@ -9239,47 +9242,88 @@
     "last_updated": "2026-08-15"
   },
   {
+    "provider": "OpenAI",
+    "model_name": "OpenAI o3-pro",
+    "model_id": "o3-pro",
+    "release_date": "2025-06-10",
+    "status": "deprecated",
+    "context_window": 200000,
+    "max_output_tokens": 100000,
+    "input_price_per_1m": 20.0,
+    "cached_input_price_per_1m": null,
+    "output_price_per_1m": 80.0,
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "tool_use": true,
+    "structured_output": true,
+    "mcp_support": null,
+    "reasoning": true,
+    "open_weights": false,
+    "best_for": "Deep multi-step reasoning with tool use",
+    "pros": [
+      "Deliberate multi-step reasoning",
+      "Reliable tool use",
+      "Responses API multi-turn"
+    ],
+    "cons": [
+      "Scheduled shutdown Dec 11, 2026",
+      "Very high cost",
+      "Slow responses"
+    ],
+    "benchmarks": {},
+    "source_url": "https://developers.openai.com/api/docs/models/o3-pro",
+    "architecture": null,
+    "previous_version": "o1-pro",
+    "superseded_by": "gpt-5.6-sol",
+    "first_seen": "2026-08-16",
+    "last_updated": "2026-08-16"
+  },
+  {
     "provider": "Perplexity",
     "model_name": "Sonar",
     "model_id": "sonar",
     "release_date": "2025-01-27",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
-    "max_output_tokens": 8192,
+    "max_output_tokens": 8000,
     "input_price_per_1m": 1.0,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 1.0,
     "modalities": [
-      "text"
+      "text",
+      "vision"
     ],
     "tool_use": false,
     "structured_output": true,
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Fast, cost-effective search-grounded answers",
+    "best_for": "Fast grounded search; migrate to Agent API",
     "pros": [
-      "Lowest-cost Sonar tier with symmetric $1/$1 pricing",
-      "Optimized for Perplexity search speed and citation quality"
+      "Low cost",
+      "Grounded citations",
+      "Fast"
     ],
     "cons": [
-      "Per-request search fee stacks on top of token cost",
-      "No native reasoning trace"
+      "Retiring 2026-09-27",
+      "No agentic multi-step"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
-    "architecture": "Llama 3.3 70B base fine-tuned for search",
+    "source_url": "https://community.perplexity.ai/t/sonar-is-moving-to-the-agent-api/5802",
+    "architecture": "Search-grounded LLM",
     "previous_version": null,
-    "superseded_by": null,
+    "superseded_by": "agent-api-fast",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Deep Research",
     "model_id": "sonar-deep-research",
     "release_date": "2025-03-07",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
     "max_output_tokens": 8192,
     "input_price_per_1m": 2.0,
@@ -9288,72 +9332,71 @@
     "modalities": [
       "text"
     ],
-    "tool_use": false,
+    "tool_use": true,
     "structured_output": true,
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Autonomous long-form research with many searches",
+    "best_for": "Exhaustive research; migrate to Agent API high",
     "pros": [
-      "Plans and iterates dozens of web searches per query autonomously",
-      "Produces detailed, citation-backed synthesized reports"
+      "Deep synthesis"
     ],
     "cons": [
-      "Additional per-1M citation and reasoning token fees plus per-1K search fee",
-      "Slower and less predictable cost per query"
+      "Retiring 2026-09-27",
+      "Charges reasoning/citation tokens + $5/1K searches"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
-    "architecture": "Agentic deep-research pipeline with iterative search and reasoning",
+    "source_url": "https://community.perplexity.ai/t/sonar-is-moving-to-the-agent-api/5802",
+    "architecture": "Deep research agent",
     "previous_version": null,
-    "superseded_by": null,
+    "superseded_by": "agent-api-high",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Pro",
     "model_id": "sonar-pro",
     "release_date": "2025-01-21",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 200000,
     "max_output_tokens": 8000,
     "input_price_per_1m": 3.0,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 15.0,
     "modalities": [
-      "text"
+      "text",
+      "vision"
     ],
-    "tool_use": false,
+    "tool_use": true,
     "structured_output": true,
     "mcp_support": false,
     "reasoning": false,
     "open_weights": false,
-    "best_for": "Complex search queries needing broader retrieval",
+    "best_for": "Multi-source queries; migrate to Agent API low",
     "pros": [
-      "200K context window with roughly 2x more citations than Sonar",
-      "Higher-quality grounding for multi-topic queries"
+      "200K context",
+      "Grounded citations"
     ],
     "cons": [
-      "5x output token cost vs. base Sonar",
-      "Max output capped at 8K tokens"
+      "Retiring 2026-09-27"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
-    "architecture": "Search-augmented premium tier model with expanded retrieval",
+    "source_url": "https://community.perplexity.ai/t/sonar-is-moving-to-the-agent-api/5802",
+    "architecture": "Search-grounded LLM",
     "previous_version": "sonar",
-    "superseded_by": null,
+    "superseded_by": "agent-api-low",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Pro Search",
     "model_id": "sonar-pro-search",
     "release_date": "2025-10-30",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 200000,
-    "max_output_tokens": 8192,
+    "max_output_tokens": 8000,
     "input_price_per_1m": 3,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 15,
@@ -9364,33 +9407,30 @@
     "tool_use": true,
     "structured_output": true,
     "mcp_support": false,
-    "reasoning": false,
+    "reasoning": true,
     "open_weights": false,
-    "best_for": "Advanced agentic multi-step web search",
+    "best_for": "Agentic research; migrate to Agent API",
     "pros": [
-      "Most advanced agentic search mode in the Sonar family",
-      "Automated multi-query planning and URL fetching",
-      "Same token pricing as Sonar Pro"
+      "Autonomous tool orchestration"
     ],
     "cons": [
-      "Higher per-request fees ($14-$22 per 1K requests)",
-      "Newer, less-documented model card",
-      "No pure reasoning specialization"
+      "Retiring 2026-09-27",
+      "Request fee $14-22/1K"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/pricing",
-    "architecture": "Sonar Pro with agentic Pro Search orchestration for multi-step retrieval",
+    "source_url": "https://community.perplexity.ai/t/sonar-is-moving-to-the-agent-api/5802",
+    "architecture": "Agentic search-grounded LLM",
     "previous_version": "sonar-pro",
-    "superseded_by": null,
+    "superseded_by": "agent-api",
     "first_seen": "2026-06-06",
-    "last_updated": "2026-07-28"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Reasoning",
     "model_id": "sonar-reasoning",
     "release_date": "2025-01-21",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
     "max_output_tokens": 8192,
     "input_price_per_1m": 1,
@@ -9404,58 +9444,56 @@
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Chain-of-thought answers with live web search",
+    "best_for": "Chain-of-thought reasoning (retired)",
     "pros": [
       "Exposes reasoning trace alongside cited answer",
       "128K context suitable for multi-step queries"
     ],
     "cons": [
-      "Reasoning tokens increase latency and effective cost",
-      "Less capable than sonar-reasoning-pro on hard queries"
+      "Retired 2025-12-15"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
-    "architecture": "Reasoning-tuned Sonar model with chain-of-thought over web search results",
+    "source_url": "https://docs.perplexity.ai/docs/resources/changelog",
+    "architecture": "Reasoning search LLM",
     "previous_version": null,
     "superseded_by": "sonar-reasoning-pro",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "Perplexity",
     "model_name": "Sonar Reasoning Pro",
     "model_id": "sonar-reasoning-pro",
     "release_date": "2025-01-28",
-    "status": "ga",
+    "status": "deprecated",
     "context_window": 128000,
-    "max_output_tokens": 8192,
+    "max_output_tokens": 8000,
     "input_price_per_1m": 2.0,
     "cached_input_price_per_1m": null,
     "output_price_per_1m": 8.0,
     "modalities": [
       "text"
     ],
-    "tool_use": false,
+    "tool_use": true,
     "structured_output": true,
     "mcp_support": false,
     "reasoning": true,
     "open_weights": false,
-    "best_for": "Advanced multi-step reasoning over live web",
+    "best_for": "Analytical reasoning; migrate to Agent API medium",
     "pros": [
-      "Premier reasoning quality with visible think trace plus JSON output",
-      "More citations per search than non-pro reasoning tier"
+      "Chain-of-thought",
+      "Grounded"
     ],
     "cons": [
-      "Reasoning tokens billed as output at $8/M",
-      "Per-request search fee applies in addition to tokens"
+      "Retiring 2026-09-27"
     ],
     "benchmarks": {},
-    "source_url": "https://docs.perplexity.ai/guides/model-cards",
-    "architecture": "Powered by DeepSeek R1 with Chain-of-Thought",
+    "source_url": "https://community.perplexity.ai/t/sonar-is-moving-to-the-agent-api/5802",
+    "architecture": "Reasoning search LLM",
     "previous_version": "sonar-reasoning",
-    "superseded_by": null,
+    "superseded_by": "agent-api-medium",
     "first_seen": "2026-05-27",
-    "last_updated": "2026-08-16"
+    "last_updated": "2026-08-17"
   },
   {
     "provider": "xAI",

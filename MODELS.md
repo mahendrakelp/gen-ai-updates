@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-08-19 by genai-model-catalog routine._
+_Last refreshed: 2026-08-20 by genai-model-catalog routine._
 
 This catalog tracks GA and stable public-preview LLMs across 14 major providers. See `data/models_store.json` for the full schema (release date, benchmarks, architecture, lineage, source URLs).
 
@@ -234,8 +234,8 @@ This catalog tracks GA and stable public-preview LLMs across 14 major providers.
 | Kimi K2 Thinking (`kimi-k2-thinking`) | ga | 2025-11-06 | 262.1K | $0.60 | $2.50 | 1T-parameter MoE with 32B active parameters | open-weight reasoning with 200+ tool-call agents | prev: `kimi-k2-instruct` → superseded by: `kimi-k3` |
 | Kimi K2 Thinking Turbo (`kimi-k2-thinking-turbo`) | ga | 2025-11-06 | 262.1K | $1.15 | $8.00 | 1T-parameter MoE with 32B active parameters | faster interleaved reasoning with tool use | prev: `kimi-k2-thinking` |
 | Kimi K2 Instruct 0905 (`kimi-k2-instruct-0905`) | deprecated | 2025-09-09 | 256K | — | — | Mixture-of-Experts, 1T total / 32B active, 384 experts (8 selected + 1 shared), MLA attention | Legacy agentic coding and long-context workflows | superseded by: `kimi-k2.6` |
-| Moonshot v1 128K (`moonshot-v1-128k`) | deprecated | — | 131.1K | $2.00 | $5.00 | — | legacy chat/completion integrations | superseded by: `kimi-k2.6` |
 | Moonshot V1 32K (`moonshot-v1-32k`) | deprecated | — | 32.8K | — | — | — | Legacy compatibility for existing moonshot-v1 integrations | superseded by: `kimi-k3` |
+| Moonshot v1 128K (`moonshot-v1-128k`) | deprecated | — | 131.1K | $2.00 | $5.00 | — | legacy chat/completion integrations | superseded by: `kimi-k2.6` |
 
 ## NVIDIA
 
@@ -284,8 +284,8 @@ This catalog tracks GA and stable public-preview LLMs across 14 major providers.
 | GPT-5.6 Luna (`gpt-5.6-luna`) | ga | 2026-07-09 | 1.05M | $0.20 | $1.20 | Fast, cost-efficient variant of the GPT-5.6 family | High-volume, cost-sensitive production workloads | prev: `gpt-5.4-nano` |
 | GPT-5.6 Sol (`gpt-5.6-sol`) | ga | 2026-07-09 | 1.05M | $5.00 | $30.00 | Frontier multimodal reasoning model with extended thinking | Complex reasoning and agentic coding workloads | prev: `gpt-5.5` |
 | GPT-5.6 Terra (`gpt-5.6-terra`) | ga | 2026-07-09 | 1.05M | $2.00 | $12.00 | Mid-tier variant of the GPT-5.6 family | Balanced everyday intelligence at lower cost | prev: `gpt-5.5` |
-| gpt-realtime-2.1 (`gpt-realtime-2.1`) | ga | 2026-07-06 | 128K | $4.00 | $24.00 | Realtime speech-to-speech transformer with configurable reasoning tokens | Low-latency voice and multimodal agents | prev: `gpt-realtime-2` |
 | GPT-Realtime-2.1 mini (`gpt-realtime-2.1-mini`) | ga | 2026-07-06 | 128K | $0.60 | $2.40 | Distilled speech-to-speech realtime reasoning model | Low-cost realtime voice agents at scale | prev: `gpt-realtime-mini` |
+| gpt-realtime-2.1 (`gpt-realtime-2.1`) | ga | 2026-07-06 | 128K | $4.00 | $24.00 | Realtime speech-to-speech transformer with configurable reasoning tokens | Low-latency voice and multimodal agents | prev: `gpt-realtime-2` |
 | GPT-5.5 Instant (`gpt-5.5-instant`) | ga | 2026-05-05 | 1M | $5.00 | $30.00 | — | Fast default chat for ChatGPT-style workloads | prev: `gpt-5.3-instant` |
 | GPT-5.5 Pro (`gpt-5.5-pro`) | ga | 2026-04-24 | 1.05M | $30.00 | $180.00 | Pro variant of GPT-5.5 with extended reasoning compute | Deepest reasoning on frontier math and science | prev: `gpt-5-pro` → superseded by: `gpt-5.6-sol` |
 | GPT-5.5 (`gpt-5.5`) | ga | 2026-04-23 | 1M | $5.00 | $30.00 | First full retrain since GPT-4.5; frontier reasoning model | Prior-generation flagship reasoning workloads | prev: `gpt-5` → superseded by: `gpt-5.6-sol` |
@@ -341,4 +341,3 @@ This catalog tracks GA and stable public-preview LLMs across 14 major providers.
 | Grok 4.20 (dashed alias) (`grok-4-20`) | deprecated | 2026-03-10 | 2M | $2.00 | $6.00 | — | Non-canonical alias for grok-4.20; use canonical dotted form | prev: `grok-4.3` → superseded by: `grok-4.20` |
 | Grok 4.1 Fast (`grok-4-1-fast`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Compact fast variant of Grok 4.1 | High-throughput agentic tool calling at low cost | prev: `grok-3-mini` → superseded by: `grok-4.3` |
 | Grok 4 (`grok-4-0709`) | deprecated | 2025-07-09 | 256K | $3.00 | $15.00 | — | Complex synthesis, analysis, and instruction following | prev: `grok-3` → superseded by: `grok-4.3` |
-

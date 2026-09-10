@@ -1,8 +1,8 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-09-09 by genai-model-catalog routine._
+_Last refreshed: 2026-09-10 by genai-model-catalog routine._
 
-_317 models across 14 providers._
+_318 models across 14 providers._
 
 ## Alibaba
 
@@ -107,10 +107,11 @@ _317 models across 14 providers._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| DeepSeek V4.1 Flash (`deepseek-v4.1-flash`) | ga | 2026-09-10 | 1.0M | $0.30 | $1.20 | Sparse MoE Causal Encoder-Decoder — 552B backbone, 8B active prefill / 16B ac... | Cost-efficient long-context multimodal reasoning | prev: `deepseek-v4-pro-0813` |
 | DeepSeek V4-Pro-0813 (`deepseek-v4-pro-0813`) | ga | 2026-08-13 | 1.0M | $0.66 | $1.98 | Mixture-of-Experts, 1.6T total / 49B active per token, hybrid Compressed Spar... | Frontier reasoning and long-context agentic workflows | prev: `deepseek-v4-pro` |
 | DeepSeek V4-Flash-0731 (`deepseek-v4-flash-0731`) | ga | 2026-07-31 | 1.0M | $0.22 | $0.66 | Mixture-of-Experts, 284B total / 13B active per token, Compressed Sparse Atte... | Cost-efficient workhorse with agentic and coding gains | prev: `deepseek-v4-flash` |
 | DeepSeek-V4-Flash (`deepseek-v4-flash`) | ga | 2026-04-24 | 1.0M | $0.22 | $0.66 | Sparse MoE with Compressed Sparse Attention — 284B total / ~13B active, 43 la... | Fast, cheap agents and high-volume inference | prev: `deepseek-v3.2` → superseded by: `deepseek-v4-flash-0731` |
-| DeepSeek-V4-Pro (`deepseek-v4-pro`) | ga | 2026-04-24 | 1.0M | $0.66 | $1.98 | Sparse MoE with Hybrid Attention (CSA+HCA) and manifold-constrained hyper-con... | Frontier reasoning, agentic coding, long-context work | prev: `deepseek-v3.2` → superseded by: `deepseek-v4-pro-0813` |
+| DeepSeek-V4-Pro (`deepseek-v4-pro`) | ga | 2026-04-24 | 1.0M | $0.66 | $1.98 | Sparse MoE with Hybrid Attention (CSA+HCA) and manifold-constrained hyper-con... | Frontier reasoning, agentic coding, long-context work | prev: `deepseek-v3.2` → superseded by: `deepseek-v4.1-flash` |
 | DeepSeek V3.2 (Chat) (`deepseek-chat`) | ga | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters and DeepSeek Sparse Attention (... | Low-cost high-throughput general chat and coding | prev: `deepseek-chat` → superseded by: `deepseek-v4-flash` |
 | DeepSeek-V4-Flash-Vision-Exp (`deepseek-v4-flash-vision-exp`) | preview | 2026-08-21 | 1.0M | $0.22 | $0.66 | V4-Flash backbone (284B MoE) plus 32-layer / 1024-dim ViT with two-layer alig... | Multimodal agents, document and chart understanding | prev: `deepseek-v4-flash` |
 | DeepSeek Reasoner (Legacy Alias) (`deepseek-reasoner`) | deprecated | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters, DeepSeek Sparse Attention (DSA... | Chain-of-thought reasoning, math, and complex code | prev: `deepseek-reasoner` → superseded by: `deepseek-v4-pro` |
@@ -254,7 +255,7 @@ _317 models across 14 providers._
 | Devstral Medium (`devstral-medium-latest`) | ga | 2025-07-10 | 131K | $0.40 | $2.00 | 123B dense transformer | Agentic coding escalation tier for harder edits | prev: `devstral-small-2507` |
 | Magistral Medium 2506 (`magistral-medium-2506`) | ga | 2025-06-10 | 41K | $2.00 | $5.00 | Dense reasoning model with chain-of-thought training | Chain-of-thought reasoning tasks in enterprise | → superseded by: `mistral-small-2603` |
 | Ministral 8B (`ministral-8b-latest`) | ga | 2024-10-16 | 131K | $0.10 | $0.10 | 8B dense edge-optimized model | On-device and edge deployments | prev: `ministral-8b-2410` → superseded by: `ministral-8b-2512` |
-| Leanstral 1.5 (`leanstral-1-5`) | preview | 2026-06-30 | 262K | $0.00 | $0.00 | Sparse Mixture-of-Experts (~6.5B active / 119B total, 128 experts / 4 active ... | Lean 4 formal proof engineering, automated theorem proving, and autoformalization | prev: `leanstral` |
+| Leanstral 1.5 (`leanstral-1-5`) | deprecated | 2026-06-30 | 262K | $0.00 | $0.00 | Sparse Mixture-of-Experts (~6.5B active / 119B total, 128 experts / 4 active ... | Lean 4 formal proof engineering, automated theorem proving, and autoformalization | prev: `leanstral` |
 | Magistral Medium 1.2 (`magistral-medium-latest`) | deprecated | 2025-09-18 | 131K | $2.00 | $5.00 | Reasoning-tuned medium model with tokenized thinking chunks | Chain-of-thought reasoning with vision | prev: `magistral-medium-2507` → superseded by: `mistral-medium-latest` |
 | Mistral Medium 3 (`mistral-medium-2508`) | deprecated | 2025-08-12 | 262K | $0.40 | $2.00 | — | Frontier-class agentic coding and multimodal | prev: `mistral-medium-2505` → superseded by: `mistral-medium-2604` |
 | Devstral Medium (`devstral-medium-2507`) | deprecated | 2025-07-11 | 131K | $0.40 | $2.00 | Code-and-agent specialized transformer | Agentic coding and software engineering agents | prev: `devstral-medium-2505` → superseded by: `devstral-2-25-12` |

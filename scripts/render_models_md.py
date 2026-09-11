@@ -16,11 +16,11 @@ def fmt_ctx(n):
     if n is None:
         return "—"
     if n >= 1_000_000:
-        v = n / 1_000_000
-        return f"{v:g}M"
+        v = round(n / 1_000_000, 1)
+        return f"{int(v)}M" if v == int(v) else f"{v:g}M"
     if n >= 1_000:
-        v = n / 1_000
-        return f"{v:g}K"
+        v = round(n / 1_000)
+        return f"{v}K"
     return str(n)
 
 

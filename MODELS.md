@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-09-11 by genai-model-catalog routine._
+_Last refreshed: 2026-09-12 by genai-model-catalog routine._
 
 _Total models tracked: 318 across 14 providers._
 

@@ -14,32 +14,22 @@ TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 # Updates keyed by lowercase "provider::model_id"
 # Each value is a dict of fields to overwrite. Only confirmed deltas.
-UPDATES = {
-    # Anthropic officially confirmed on the pricing page that Sonnet 5's
-    # $2/$10 introductory pricing (originally set to expire 2026-08-31) is
-    # now the permanent standard price; the previously scheduled increase
-    # to $3/$15 on 2026-09-01 was cancelled. Store already carries $2/$10,
-    # but the pros list should reflect this now-permanent status.
-    # Source: https://platform.claude.com/docs/en/about-claude/pricing
-    "anthropic::claude-sonnet-5": {
-        "pros": [
-            "Cheaper than Opus tier while retaining adaptive thinking and 1M context",
-            "$2/$10 introductory pricing confirmed as permanent standard on 2026-09-01",
-            "128K max output tokens with streaming",
-            "Full effort range low through max",
-            "Common cascade partner as worker under Opus/Fable",
-        ],
-        "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
-    },
-}
+#
+# 2026-09-13 research pass:
+# Verified official release/pricing pages and provider changelogs for all 14
+# providers. Every current flagship model already exists in the store under
+# its canonical id (OpenAI GPT-6 Astra, Anthropic Fable 5.1, Google Gemini
+# 3.8 Flash, xAI Grok 4.6, Meta Muse Spark 1.3, DeepSeek V4.1 Flash,
+# Alibaba Qwen 3.8-Max, Cohere Command A+, Moonshot Kimi K3, NVIDIA
+# Nemotron 3.5 family, Microsoft MAI-Code-1.1-Flash, Mistral Leanstral 1.5).
+# xAI Grok 4.7 slipped past its September 12 target and has no official
+# card/pricing yet — not confirmed. NVIDIA "Sports Tennis" 31B fine-tune
+# on HF has no blog, pricing, or benchmarks — skipped per HARD RULE 1.
+# No pricing, context window, or status field changed vs. yesterday's
+# baseline on any tracked model.
+UPDATES = {}
 
-# Insertions (full model object). No new models confirmed today; the
-# research pass surfaced only names that already exist in the store under
-# their canonical provider IDs (e.g. NVIDIA models under the "nvidia/"
-# prefix, Moonshot kimi-k2 variants under their dated IDs). Direct fetches
-# to several official sites (docs.perplexity.ai, api-docs.deepseek.com,
-# docs.x.ai, mistral.ai, llama.com) were blocked by the network egress
-# proxy, so aggregator-only "changes" were not treated as confirmed.
+# Insertions (full model object). None confirmed today.
 INSERTIONS = []
 
 

@@ -1,11 +1,14 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-09-21 by genai-model-catalog routine._
+_Last refreshed: 2026-09-22 by genai-model-catalog routine._
 
 ## Alibaba
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen3.8-LiveTranslate-Flash-Realtime (`qwen3.8-livetranslate-flash-realtime`) | ga | 2026-09-19 | — | $7.50 | $30.00 | Interleave real-time interpretation architecture | Real-time simultaneous speech interpretation | prev: qwen3.5-omni-flash-realtime |
+| Qwen3.8-Omni-Flash (`qwen3.8-omni-flash`) | ga | 2026-09-18 | 1M | $0.15 | $0.47 | Native omnimodal MoE built on Qwen3.8-Flash-Next architecture | Low-cost omnimodal agentic workflows | prev: qwen3.5-omni-plus |
+| Qwen3.8-Max-0902 (`qwen3.8-max-0902`) | ga | 2026-09-02 | 1M | $2.00 | $6.00 | 2.4T-parameter Mixture-of-Experts (~95B active), unchanged from qwen3.8-max base | Complex coding and long-horizon agents | prev: qwen3.8-max |
 | Qwen3.8-Flash (`qwen3.8-flash`) | ga | 2026-08-26 | 1M | $0.16 | $0.47 | Multimodal MoE (Flash-Next base, 262K native extendable to 1M) | Cheap high-throughput multimodal / agentic tasks | prev: qwen-flash |
 | Qwen3.8-27B (`qwen3.8-27b`) | ga | 2026-08-14 | 262.1K | $0.40 | $3.00 | Dense 27.78B-parameter model, 64 layers, hidden size 5120; hybrid attention alternating three Gated DeltaNet linear-attention layers with one Gated (full) Attention layer; native 262K context extendable toward ~1M via YaRN; Apache 2.0 | Open-weight dense VL for single-GPU deployment | prev: qwen3.6-27b |
 | Qwen3.8-2.4T-A95B (`qwen3.8-2.4t-a95b`) | ga | 2026-08-13 | 262.1K | — | — | Open-weights Mixture-of-Experts checkpoint with 2.4T total / ~95B active parameters; hybrid Gated DeltaNet + Gated Attention layers; 512-expert MoE (10 routed + 1 shared per token); text-only base checkpoint | Open-weights Max-class reasoning and agentic work | prev: qwen3.7-max |
@@ -34,9 +37,9 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Qwen3-Coder (`qwen3-coder-480b-a35b-instruct`) | ga | 2025-07-22 | 262.1K | $1.00 | $5.00 | Mixture-of-Experts, 480B total / 35B active | Agentic coding and repo-scale tasks | prev: qwen2.5-coder-32b-instruct |
 | Qwen3-235B-A22B Instruct 2507 (`qwen3-235b-a22b-instruct-2507`) | ga | 2025-07-21 | 262.1K | $0.70 | $2.80 | Mixture-of-Experts, 235B total / 22B active parameters | Open-weights flagship text reasoning and generation | prev: qwen2.5-72b-instruct |
 | Qwen3-235B-A22B-Instruct (`qwen3-235b-a22b-instruct`) | ga | 2025-04-28 | 131.1K | $0.09 | $0.10 | Mixture-of-Experts, 235B total / 22B active | Open-weight MoE with thinking mode | prev: qwen2.5-72b-instruct |
-| Qwen-VL-Max (`qwen-vl-max`) | ga | 2025-02-01 | 131.1K | $0.52 | $2.08 | Multimodal vision-language | High-quality vision-language tasks including OCR, document understanding, chart/diagram analysis, and image reasoning | superseded by: qwen3-vl-plus |
+| Qwen-VL-Max (`qwen-vl-max`) | ga | 2025-02-01 | 131.1K | $0.52 | $2.08 | Multimodal vision-language | High-quality vision-language tasks including OCR, document understanding, chart/diagram analysis, and image reasoning | → superseded by: qwen3-vl-plus |
 | Qwen Text Embedding v4 (`text-embedding-v4`) | ga | — | 32.8K | $0.02 | $0.00 | Dense transformer embedding model (Qwen3-Embedding family) | multilingual embeddings and retrieval | prev: text-embedding-v3 |
-| Qwen-Turbo (`qwen-turbo`) | ga | — | 1M | $0.05 | $0.20 | Qwen3 lightweight | High-volume low-latency text tasks | superseded by: qwen-flash |
+| Qwen-Turbo (`qwen-turbo`) | ga | — | 1M | $0.05 | $0.20 | Qwen3 lightweight | High-volume low-latency text tasks | → superseded by: qwen-flash |
 | Qwen3.5-Omni-Flash-Realtime (`qwen3.5-omni-flash-realtime`) | ga | — | — | $0.55 | $4.50 | End-to-end omni-modal transformer | real-time voice and video chat | prev: qwen3.5-omni-flash |
 | Qwen3.8-Flash-Next (`qwen3.8-flash-next`) | preview | 2026-08-26 | 262.1K | $0.16 | $0.47 | MoE (125B total, 6B active) | Preview of Qwen4 architecture, cost-efficient agents | — |
 | Qwen3-Max-Thinking (`qwen3-max-thinking`) | preview | 2026-01-23 | 262.1K | $1.20 | $6.00 | Dense/MoE reasoning variant of Qwen3-Max | Deep multi-step reasoning for hard analytical problems | prev: qwen3-max |
@@ -46,12 +49,12 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Amazon Nova 2 Sonic (`amazon.nova-sonic-v1:0`) | ga | 2025-12-02 | — | $0.33 | $2.75 | Unified speech-to-speech foundation model | Real-time speech-to-speech conversational AI | prev: amazon.nova-sonic-v1:0 |
+| Amazon Nova Sonic (`amazon.nova-sonic-v1:0`) | ga | 2025-12-02 | — | $0.33 | $2.75 | Unified speech-to-speech foundation model | Real-time speech-to-speech conversational AI | prev: amazon.nova-sonic-v1:0 → superseded by: amazon.nova-2-sonic-v1:0 |
 | Nova 2 Lite (`amazon.nova-2-lite-v1:0`) | ga | 2025-12-02 | 1M | $0.30 | $2.50 | Multimodal reasoning foundation model with adjustable thinking | Fast cost-effective reasoning for everyday tasks | prev: amazon.nova-lite-v1:0 |
 | Nova 2 Sonic (`amazon.nova-2-sonic-v1:0`) | ga | 2025-12-02 | 1M | $0.33 | $2.75 | Speech-to-speech foundation model with polyglot voices | Real-time speech-to-speech conversational voice AI | prev: amazon.nova-sonic-v1:0 |
-| Nova Lite (`amazon.nova-lite-v1:0`) | ga | 2024-12-03 | 300K | $0.06 | $0.24 | transformer | Low-cost multimodal processing at scale | superseded by: amazon.nova-2-lite-v1:0 |
-| Nova Micro (`amazon.nova-micro-v1:0`) | ga | 2024-12-03 | 128K | $0.04 | $0.14 | Text-only transformer foundation model | Ultra-low-cost text-only tasks | superseded by: amazon.nova-2-lite-v1:0 |
-| Nova Pro (`amazon.nova-pro-v1:0`) | ga | 2024-12-03 | 300K | $0.80 | $3.20 | Multimodal understanding foundation model | Balanced multimodal understanding at scale | superseded by: amazon.nova-2-pro-v1:0 |
+| Nova Lite (`amazon.nova-lite-v1:0`) | ga | 2024-12-03 | 300K | $0.06 | $0.24 | transformer | Low-cost multimodal processing at scale | → superseded by: amazon.nova-2-lite-v1:0 |
+| Nova Micro (`amazon.nova-micro-v1:0`) | ga | 2024-12-03 | 128K | $0.04 | $0.14 | Text-only transformer foundation model | Ultra-low-cost text-only tasks | → superseded by: amazon.nova-2-lite-v1:0 |
+| Nova Pro (`amazon.nova-pro-v1:0`) | ga | 2024-12-03 | 300K | $0.80 | $3.20 | Multimodal understanding foundation model | Balanced multimodal understanding at scale | → superseded by: amazon.nova-2-pro-v1:0 |
 | Amazon Nova 2 Omni (`amazon.nova-2-omni-preview-20251202-v1:0`) | preview | 2025-12-02 | 1M | $0.30 | $2.50 | Any-to-any omnimodal reasoning model | Any-to-any multimodal reasoning and image generation | — |
 | Amazon Nova 2 Pro (Preview) (`amazon.nova-2-pro-preview-20251202-v1:0`) | preview | 2025-12-02 | 1M | $2.19 | $17.50 | Multimodal foundation model with extended thinking (reasoning) mode | Highly complex agentic and multi-document tasks | prev: amazon.nova-pro-v1:0 |
 | Nova 2 Pro (`amazon.nova-2-pro-v1:0`) | preview | 2025-12-02 | 1M | $2.19 | $17.50 | Multimodal reasoning foundation model with extended thinking | Complex multistep reasoning and multimodal tasks | prev: amazon.nova-premier-v1:0 |
@@ -62,8 +65,9 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Claude Opus 5.5 (`claude-opus-5-5`) | ga | 2026-09-22 | 1M | $4.00 | $20.00 | — | Long-running agentic coding and knowledge work | prev: claude-opus-5 |
 | Claude Fable 5.1 (`claude-fable-5-1`) | ga | 2026-09-01 | 1M | $10.00 | $50.00 | Adaptive-thinking transformer with new tokenizer | Frontier coding and knowledge work at highest capability | prev: claude-fable-5 |
-| Claude Opus 5 (`claude-opus-5`) | ga | 2026-07-24 | 1M | $5.00 | $25.00 | Adaptive-thinking transformer | Complex agentic coding and enterprise reasoning | prev: claude-opus-4-8 |
+| Claude Opus 5 (`claude-opus-5`) | ga | 2026-07-24 | 1M | $5.00 | $25.00 | Adaptive-thinking transformer | Complex agentic coding and enterprise reasoning | prev: claude-opus-4-8 → superseded by: claude-opus-5-5 |
 | Claude Sonnet 5 (`claude-sonnet-5`) | ga | 2026-06-30 | 1M | $2.00 | $10.00 | Adaptive-thinking transformer with new tokenizer | General-purpose production workloads with strong coding | prev: claude-sonnet-4-6 |
 | Claude Fable 5 (`claude-fable-5`) | ga | 2026-06-09 | 1M | $10.00 | $50.00 | Hybrid reasoning model with adaptive thinking | Highest-capability workloads before Fable 5.1 | prev: claude-opus-4-8 → superseded by: claude-fable-5-1 |
 | Claude Haiku 4.5 (`claude-haiku-4-5`) | ga | 2025-10-15 | 200K | $1.00 | $5.00 | Extended-thinking transformer | Low-cost classification, extraction, and routing | prev: claude-haiku-3-5 |
@@ -82,6 +86,7 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | North Small Translate 1.0 (`north-small-translate-1-0`) | ga | 2026-09-09 | 16.4K | — | — | Sparse MoE — 218B total / 25B active | Machine translation across 50+ languages | — |
+| Parse 5 (`parse-v5.0`) | ga | 2026-08-27 | 8.2K | — | — | 2.3B parameter multimodal vision-language model | Document parsing to structured Markdown | — |
 | Cohere Transcribe Arabic (`cohere-transcribe-arabic-07-2026`) | ga | 2026-07-07 | — | — | — | 2B encoder-decoder transformer fine-tuned from Cohere Transcribe for Arabic ASR | Arabic speech-to-text with dialect coverage | prev: cohere-transcribe-03-2026 |
 | North Mini Code (`north-mini-code-1-0`) | ga | 2026-06-17 | 256K | — | — | Sparse mixture-of-experts, 30B total / 3B active parameters | Agentic coding and terminal software engineering tasks | — |
 | North Mini Code (`north-mini-code-1.0`) | ga | 2026-06-09 | 256K | $0.00 | $0.00 | Sparse Mixture-of-Experts, 30B total parameters / 3B active per token | Agentic software engineering, code generation, and terminal/CLI tasks; local-hardware coding agents | — |
@@ -106,64 +111,71 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| DeepSeek V4.1 Flash (`deepseek-v4.1-flash`) | ga | 2026-09-10 | 1M | $0.30 | $1.20 | Sparse MoE Causal Encoder-Decoder — 552B backbone, 8B active prefill / 16B active decode | Cost-efficient long-context multimodal reasoning | prev: deepseek-v4-pro-0813 |
-| DeepSeek V4.1 Flash (`deepseek-flash`) | ga | 2026-09-10 | 1M | $0.30 | $1.20 | Multimodal MoE 552B total / 8-16B active, Causal Encoder-Decoder with CSA2 + hierarchical sparse indexer | Fast multimodal long-context agentic workloads | prev: deepseek-v4-flash |
-| DeepSeek V4 Pro (`deepseek-v4-pro`) | ga | 2026-08-13 | 1M | $0.43 | $0.87 | Mixture-of-Experts, 49B active / 1.6T total, hybrid attention (CSA+HCA) | Frontier open-weight reasoning and coding | prev: deepseek-v3-2 → superseded by: deepseek-v4.1-flash |
-| DeepSeek V4-Pro-0813 (`deepseek-v4-pro-0813`) | ga | 2026-08-13 | 1M | $0.66 | $1.98 | Mixture-of-Experts, 1.6T total / 49B active per token, hybrid Compressed Sparse Attention | Frontier reasoning and long-context agentic workflows | prev: deepseek-v4-pro |
-| DeepSeek V4-Flash-0731 (`deepseek-v4-flash-0731`) | ga | 2026-07-31 | 1M | $0.22 | $0.66 | Mixture-of-Experts, 284B total / 13B active per token, Compressed Sparse Attention | Cost-efficient workhorse with agentic and coding gains | prev: deepseek-v4-flash |
+| DeepSeek V4.1 Flash (`deepseek-v4.1-flash`) | ga | 2026-09-10 | 1.0M | $0.30 | $1.20 | Sparse MoE Causal Encoder-Decoder — 552B backbone, 8B active prefill / 16B active decode | Cost-efficient long-context multimodal reasoning | prev: deepseek-v4-pro-0813 |
+| DeepSeek V4.1 Flash (`deepseek-flash`) | ga | 2026-09-10 | 1.0M | $0.30 | $1.20 | Multimodal MoE 552B total / 8-16B active, Causal Encoder-Decoder with CSA2 + hierarchical sparse indexer | Fast multimodal long-context agentic workloads | prev: deepseek-v4-flash |
+| DeepSeek V4.1 Flash (open weights) (`deepseek-ai/DeepSeek-V4.1-Flash`) | ga | 2026-09-10 | 1.0M | — | — | 552B-param Mixture-of-Experts with Causal Encoder-Decoder (CED); 40-layer Transformer (20 encoder + 20 decoder); CSA2 hierarchical sparse indexer; FP4 main KV cache; +196B sparse Engram memory (total ~748B) | Multimodal reasoning and self-hosted inference | prev: deepseek-ai/DeepSeek-V4-Flash |
+| DeepSeek V4 Pro (`deepseek-v4-pro`) | ga | 2026-08-13 | 1M | $0.66 | $1.98 | Mixture-of-Experts, 49B active / 1.6T total, hybrid attention (CSA+HCA) | Frontier open-weight reasoning and coding | prev: deepseek-v3-2 → superseded by: deepseek-v4.1-flash |
+| DeepSeek V4-Pro-0813 (`deepseek-v4-pro-0813`) | ga | 2026-08-13 | 1.0M | $0.66 | $1.98 | Mixture-of-Experts, 1.6T total / 49B active per token, hybrid Compressed Sparse Attention | Frontier reasoning and long-context agentic workflows | prev: deepseek-v4-pro |
 | DeepSeek V4 Flash (`deepseek-v4-flash`) | ga | 2026-04-24 | 1M | $0.14 | $0.28 | Mixture-of-Experts, 13B active / 284B total, hybrid attention (CSA+HCA) | Low-cost, high-throughput reasoning at 1M context | prev: deepseek-v3-2 → superseded by: deepseek-flash |
-| DeepSeek V3.2 (Chat) (`deepseek-chat`) | ga | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters and DeepSeek Sparse Attention (DSA) | Low-cost high-throughput general chat and coding | prev: deepseek-chat → superseded by: deepseek-v4-flash |
 | DeepSeek V4-Flash Vision (experimental) (`deepseek-v4-flash-vision-exp`) | deprecated | 2026-08-21 | 1.3M | $0.22 | $0.66 | Sparse MoE, 284B total / 13B active per token, with vision encoder | Legacy image-in variant of V4 Flash | prev: deepseek-v4-flash → superseded by: deepseek-flash |
-| DeepSeek Reasoner (Legacy Alias) (`deepseek-reasoner`) | deprecated | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters, DeepSeek Sparse Attention (DSA), trained with scalable RL post-training for reasoning | Chain-of-thought reasoning, math, and complex code | prev: deepseek-reasoner → superseded by: deepseek-v4-pro |
+| DeepSeek V4-Flash-0731 (`deepseek-v4-flash-0731`) | deprecated | 2026-07-31 | 1.0M | $0.22 | $0.66 | Mixture-of-Experts, 284B total / 13B active per token, Compressed Sparse Attention | Cost-efficient workhorse with agentic and coding gains | prev: deepseek-v4-flash → superseded by: deepseek-flash |
+| DeepSeek Reasoner (Legacy Alias) (`deepseek-reasoner`) | deprecated | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters, DeepSeek Sparse Attention (DSA), trained with scalable RL post-training for reasoning | Chain-of-thought reasoning, math, and complex code | prev: deepseek-reasoner → superseded by: deepseek-flash |
 | DeepSeek V3.2 (`deepseek-ai/DeepSeek-V3.2`) | deprecated | 2025-12-01 | 163.8K | $0.21 | $0.31 | Sparse MoE — 671B total / 37B active | Verified-baseline reasoning model with efficient sparse attention | prev: deepseek-v3.2 → superseded by: deepseek-v4-flash |
+| DeepSeek V3.2 (Chat) (`deepseek-chat`) | deprecated | 2025-12-01 | 128K | $0.28 | $0.42 | 671B-parameter MoE with 37B active parameters and DeepSeek Sparse Attention (DSA) | Low-cost high-throughput general chat and coding | prev: deepseek-chat → superseded by: deepseek-flash |
 | DeepSeek-V3.2 (`deepseek-v3.2`) | deprecated | 2025-12-01 | 131.1K | $0.28 | $0.42 | Sparse MoE with DeepSeek Sparse Attention (DSA) — 671B total / 37B active | Legacy V3-series apps still on the retired aliases | prev: deepseek-v3.1-terminus → superseded by: deepseek-v4-flash |
 
 ## Google
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Gemini 3.8 Live (`gemini-3.8-live`) | ga | 2026-09-15 | — | — | — | Native audio-to-audio Live model (Gemini 3.8 family) | Low-latency real-time voice agents | prev: gemini-omni-flash |
-| Gemini 3.8 Live Extended Thinking (`gemini-3.8-live-extended-thinking`) | ga | 2026-09-15 | — | — | — | Native audio-to-audio Live model with extended reasoning (Gemini 3.8 family) | Real-time voice with deep reasoning | prev: gemini-3.8-live |
+| Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) (`gemini-3.1-flash-lite-image`) | ga | 2026-09-16 | — | — | — | — | Ultra-low-latency, cheap image generation | — |
+| Gemini Omni 1.1 Flash (`gemini-omni-1.1-flash`) | ga | 2026-09-16 | — | — | — | — | Conversational video generation and editing | prev: gemini-omni-flash-preview |
+| Gemini 3.5 Transcribe (`gemini-3.5-transcribe`) | ga | 2026-09-15 | 96K | — | — | — | High-accuracy multilingual speech-to-text | — |
+| Gemini 3.8 Live (`gemini-3.8-live`) | ga | 2026-09-15 | 128K | — | — | Native audio-to-audio Live model (Gemini 3.8 family) | Low-latency real-time voice agents | prev: gemini-omni-flash |
+| Gemini 3.8 Live Extended Thinking (`gemini-3.8-live-extended-thinking`) | ga | 2026-09-15 | 128K | — | — | Native audio-to-audio Live model with extended reasoning (Gemini 3.8 family) | Real-time voice with deep reasoning | prev: gemini-3.8-live |
 | Gemini 3.8 Flash (`gemini-3.8-flash`) | ga | 2026-09-02 | 1M | $0.75 | $3.75 | Distilled sparse MoE multimodal transformer | Cost-efficient agentic and coding workflows | prev: gemini-3.7-flash |
-| Gemini 3.7 Flash (`gemini-3.7-flash`) | ga | 2026-08-13 | 1M | $0.75 | $3.75 | Sparse Mixture-of-Experts, natively multimodal transformer | Efficient coding and agent workflows | prev: gemini-3.6-flash → superseded by: gemini-3.8-flash |
+| Gemini 3.7 Flash (`gemini-3.7-flash`) | ga | 2026-08-13 | 1.0M | $0.75 | $3.75 | Sparse Mixture-of-Experts, natively multimodal transformer | Efficient coding and agent workflows | prev: gemini-3.6-flash → superseded by: gemini-3.8-flash |
 | Gemini 3.5 Flash-Lite (`gemini-3.5-flash-lite`) | ga | 2026-07-21 | 1M | $0.30 | $2.50 | Distilled lightweight multimodal transformer | High-volume, latency-sensitive workloads | prev: gemini-2.5-flash-lite |
-| Gemini 3.6 Flash (`gemini-3.6-flash`) | ga | 2026-07-21 | 1M | $0.75 | $3.75 | Natively multimodal reasoning model | General-purpose Flash for coding and web/app dev | prev: gemini-3.5-flash → superseded by: gemini-3.7-flash |
-| Gemini 3.5 Flash (`gemini-3.5-flash`) | ga | 2026-05-19 | 1M | $1.50 | $9.00 | Gemini 3 family multimodal transformer | High-throughput coding and agentic workflows | prev: gemini-2.5-flash → superseded by: gemini-3.7-flash |
-| Gemini 3.1 Flash-Lite (`gemini-3.1-flash-lite`) | ga | 2026-05-07 | 1M | $0.25 | $1.50 | Gemini 3.1 efficiency-tier multimodal transformer | High-volume, low-cost inference workhorse | prev: gemini-2.5-flash-lite → superseded by: gemini-3.5-flash-lite |
+| Gemini 3.6 Flash (`gemini-3.6-flash`) | ga | 2026-07-21 | 1.0M | $0.75 | $3.75 | Natively multimodal reasoning model | General-purpose Flash for coding and web/app dev | prev: gemini-3.5-flash → superseded by: gemini-3.7-flash |
+| Gemma 4 12B (`gemma-4-12b`) | ga | 2026-06-03 | 262.1K | $0.00 | $0.00 | dense | Multimodal open model for laptops | — |
+| Gemini 3.5 Flash (`gemini-3.5-flash`) | ga | 2026-05-19 | 1.0M | $1.50 | $9.00 | Gemini 3 family multimodal transformer | High-throughput coding and agentic workflows | prev: gemini-2.5-flash → superseded by: gemini-3.7-flash |
+| Gemini 3.1 Flash-Lite (`gemini-3.1-flash-lite`) | ga | 2026-05-07 | 1.0M | $0.25 | $1.50 | Gemini 3.1 efficiency-tier multimodal transformer | High-volume, low-cost inference workhorse | prev: gemini-2.5-flash-lite → superseded by: gemini-3.5-flash-lite |
 | Gemma 4 (27B / MoE / dense family) (`gemma-4`) | ga | 2026-04-02 | 262.1K | — | — | Family: dense and mixture-of-experts open-weight multimodal transformers | Self-hosted open-weight multimodal deployment on-device or on-prem | prev: gemma-3 |
 | Gemma 4 31B (`gemma-4-31b`) | ga | 2026-04-02 | 262.1K | — | — | Dense 31B decoder-only multimodal transformer | Open-weights self-hosted multimodal deployment | prev: gemma-3-27b-it |
 | Gemma 4 31B (`gemma-4-31b-it`) | ga | 2026-04-02 | 262.1K | $0.15 | $0.60 | dense transformer | Open-weights deployment (self-hosted or Vertex) for reasoning, coding, and multilingual tasks up to 256K context | prev: gemma-3-27b-it |
 | Gemini 3.1 Ultra (`gemini-3.1-ultra`) | ga | 2026-03-01 | 2M | $25.00 | $100.00 | Natively multimodal transformer with extended long-context attention | Frontier reasoning with 2M-token long context | prev: gemini-2.5-pro |
 | Gemini 3.1 Pro (`gemini-3.1-pro`) | ga | 2026-02-19 | 1M | $2.00 | $12.00 | Sparse mixture-of-experts multimodal transformer | Frontier reasoning across text, code, and multimodal | prev: gemini-3-pro → superseded by: gemini-3.1-ultra |
-| Gemini 3 Pro (`gemini-3-pro`) | ga | 2025-11-18 | 1M | $2.00 | $12.00 | Sparse mixture-of-experts multimodal transformer | Frontier multimodal reasoning and long-context tasks | prev: gemini-2.5-pro → superseded by: gemini-3.1-pro-preview |
-| Gemini 2.5 Flash-Lite (`gemini-2.5-flash-lite`) | ga | 2025-07-22 | 1M | $0.10 | $0.40 | Sparse mixture-of-experts multimodal transformer | Latency-sensitive classification and routing | prev: gemini-2.0-flash-lite → superseded by: gemini-3.1-flash-lite-preview |
-| Gemini 2.5 Flash (`gemini-2.5-flash`) | ga | 2025-06-17 | 1M | $0.30 | $2.50 | Sparse mixture-of-experts transformer | High-throughput multimodal workhorse tasks | prev: gemini-1.5-flash → superseded by: gemini-3.5-flash |
-| Gemini 2.5 Pro (`gemini-2.5-pro`) | ga | 2025-06-17 | 1M | $1.25 | $10.00 | Sparse mixture-of-experts transformer | Balanced high-quality reasoning and multimodal work | prev: gemini-1.5-pro → superseded by: gemini-3-pro |
+| Gemini 3 Pro (`gemini-3-pro`) | ga | 2025-11-18 | 1.0M | $2.00 | $12.00 | Sparse mixture-of-experts multimodal transformer | Frontier multimodal reasoning and long-context tasks | prev: gemini-2.5-pro → superseded by: gemini-3.1-pro-preview |
+| Gemini 2.5 Flash-Lite (`gemini-2.5-flash-lite`) | ga | 2025-07-22 | 1.0M | $0.10 | $0.40 | Sparse mixture-of-experts multimodal transformer | Latency-sensitive classification and routing | prev: gemini-2.0-flash-lite → superseded by: gemini-3.1-flash-lite-preview |
+| Gemini 2.5 Flash (`gemini-2.5-flash`) | ga | 2025-06-17 | 1.0M | $0.30 | $2.50 | Sparse mixture-of-experts transformer | High-throughput multimodal workhorse tasks | prev: gemini-1.5-flash → superseded by: gemini-3.5-flash |
+| Gemini 2.5 Pro (`gemini-2.5-pro`) | ga | 2025-06-17 | 1.0M | $1.25 | $10.00 | Sparse mixture-of-experts transformer | Balanced high-quality reasoning and multimodal work | prev: gemini-1.5-pro → superseded by: gemini-3-pro |
 | Gemma 3 27B Instruction-Tuned (`gemma-3-27b-it`) | ga | 2025-03-12 | 131.1K | $0.00 | $0.00 | Decoder-only transformer | Open-weights self-hosted multimodal inference | prev: gemma-2-27b-it → superseded by: gemma-4 |
-| Gemini 3.8 Flash Cyber (`gemini-3.8-flash-cyber`) | preview | 2026-09-02 | 1M | — | — | — | Vulnerability patching for trusted defenders | prev: gemini-3.5-flash-cyber |
-| Gemini 3.5 Flash Cyber (`gemini-3.5-flash-cyber`) | preview | 2026-07-21 | 1M | — | — | — | Security vulnerability discovery and fixes | prev: gemini-3.5-flash |
+| Gemini 3.5 Transcribe Live (`gemini-3.5-transcribe-live`) | preview | 2026-09-15 | 96K | — | — | — | Low-latency bidirectional streaming ASR | — |
+| Gemini Robotics ER 2 (`gemini-robotics-er-2-preview`) | preview | 2026-09-15 | — | — | — | — | Embodied reasoning for robotics | — |
+| Gemini 3.8 Flash Cyber (`gemini-3.8-flash-cyber`) | preview | 2026-09-02 | 1.0M | — | — | — | Vulnerability patching for trusted defenders | prev: gemini-3.5-flash-cyber |
+| Gemini 3.5 Flash Cyber (`gemini-3.5-flash-cyber`) | preview | 2026-07-21 | 1.0M | — | — | — | Security vulnerability discovery and fixes | prev: gemini-3.5-flash |
 | Gemini 3.5 Pro (Preview) (`gemini-3.5-pro-preview`) | preview | 2026-05-19 | 2M | — | — | Sparse Mixture-of-Experts transformer with Deep Think reasoning | Limited enterprise preview of next flagship | prev: gemini-3.1-pro |
-| Gemini Omni Flash (`gemini-omni-flash`) | preview | 2026-05-19 | — | — | — | Transformer with native multimodal text/vision/video/audio inputs | Consumer video generation and editing | superseded by: gemini-omni-flash-preview |
-| Gemini 3.1 Pro (`gemini-3.1-pro-preview`) | preview | 2026-02-19 | 1M | $2.00 | $12.00 | Sparse Mixture-of-Experts, natively multimodal transformer | Advanced reasoning, agentic, multimodal, coding | prev: gemini-3-pro-preview → superseded by: gemini-3.1-pro |
+| Gemini Omni Flash (`gemini-omni-flash`) | preview | 2026-05-19 | — | — | — | Transformer with native multimodal text/vision/video/audio inputs | Consumer video generation and editing | → superseded by: gemini-omni-flash-preview |
+| Gemini 3.1 Pro (`gemini-3.1-pro-preview`) | preview | 2026-02-19 | 1.0M | $2.00 | $12.00 | Sparse Mixture-of-Experts, natively multimodal transformer | Advanced reasoning, agentic, multimodal, coding | prev: gemini-3-pro-preview → superseded by: gemini-3.1-pro |
 | Gemini 3 Deep Think (`gemini-3-deep-think`) | preview | 2026-02-05 | 131.1K | — | — | Gemini 3 with extended-thinking inference | Hardest math/science chain-of-thought problems | — |
-| Gemini Omni Flash (Preview) (`gemini-omni-flash-preview`) | deprecated | 2026-06-30 | — | $1.50 | $17.50 | Unified natively-multimodal model without separate encoders | API video generation and editing | prev: gemini-omni-flash → superseded by: gemini-3.8-live |
-| Gemini 3 Flash (`gemini-3-flash`) | deprecated | 2026-06-22 | 1M | $0.50 | $3.00 | Multimodal transformer | Superseded Flash generation | prev: gemini-2.5-flash → superseded by: gemini-3.5-flash |
-| Gemini 3.1 Flash (`gemini-3.1-flash`) | deprecated | 2026-03-19 | 1M | $0.50 | $3.00 | Sparse mixture-of-experts transformer with thinking | Superseded workhorse Flash | prev: gemini-3-flash → superseded by: gemini-3.5-flash |
-| Gemini 3.1 Flash-Lite (Preview) (`gemini-3.1-flash-lite-preview`) | deprecated | 2026-03-03 | 1M | $0.25 | $1.50 | Distilled sparse mixture-of-experts | Retired preview endpoint | prev: gemini-2.5-flash-lite → superseded by: gemini-3.1-flash-lite |
-| Gemini 3 Flash Preview (`gemini-3-flash-preview`) | deprecated | 2025-12-17 | 1M | $0.50 | $3.00 | Sparse mixture-of-experts transformer with thinking | Retired preview endpoint | prev: gemini-2.5-flash → superseded by: gemini-3-flash |
-| Gemini 3 Pro (`gemini-3-pro-preview`) | deprecated | 2025-11-18 | 1M | $2.00 | $12.00 | — | Previous-generation Pro reasoning (retired) | prev: gemini-2.5-pro → superseded by: gemini-3.1-pro-preview |
-| Gemini 2.0 Flash (`gemini-2.0-flash`) | deprecated | 2025-02-05 | 1M | $0.15 | $0.60 | — | Legacy low-cost multimodal workhorse | prev: gemini-1.5-flash → superseded by: gemini-2.5-flash |
+| Gemini Omni Flash (Preview) (`gemini-omni-flash-preview`) | deprecated | 2026-06-30 | — | $1.50 | $17.50 | Unified natively-multimodal model without separate encoders | API video generation and editing | prev: gemini-omni-flash → superseded by: gemini-omni-1.1-flash |
+| Gemini 3 Flash (`gemini-3-flash`) | deprecated | 2026-06-22 | 1.0M | $0.50 | $3.00 | Multimodal transformer | Superseded Flash generation | prev: gemini-2.5-flash → superseded by: gemini-3.5-flash |
+| Gemini 3.1 Flash (`gemini-3.1-flash`) | deprecated | 2026-03-19 | 1.0M | $0.50 | $3.00 | Sparse mixture-of-experts transformer with thinking | Superseded workhorse Flash | prev: gemini-3-flash → superseded by: gemini-3.5-flash |
+| Gemini 3.1 Flash-Lite (Preview) (`gemini-3.1-flash-lite-preview`) | deprecated | 2026-03-03 | 1.0M | $0.25 | $1.50 | Distilled sparse mixture-of-experts | Retired preview endpoint | prev: gemini-2.5-flash-lite → superseded by: gemini-3.1-flash-lite |
+| Gemini 3 Flash Preview (`gemini-3-flash-preview`) | deprecated | 2025-12-17 | 1.0M | $0.50 | $3.00 | Sparse mixture-of-experts transformer with thinking | Retired preview endpoint | prev: gemini-2.5-flash → superseded by: gemini-3-flash |
+| Gemini 3 Pro (`gemini-3-pro-preview`) | deprecated | 2025-11-18 | 1.0M | $2.00 | $12.00 | — | Previous-generation Pro reasoning (retired) | prev: gemini-2.5-pro → superseded by: gemini-3.1-pro-preview |
+| Gemini 2.0 Flash (`gemini-2.0-flash`) | deprecated | 2025-02-05 | 1.0M | $0.15 | $0.60 | — | Legacy low-cost multimodal workhorse | prev: gemini-1.5-flash → superseded by: gemini-2.5-flash |
 
 ## Meta
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Muse Spark 1.3 (`muse-spark-1.3`) | ga | 2026-09-02 | 1M | $1.25 | $4.25 | Proprietary multimodal reasoning model (Meta Superintelligence Labs) | Frontier agentic coding and long-horizon reasoning | prev: muse-spark-1.2 |
+| Muse Spark 1.3 (`muse-spark-1.3`) | ga | 2026-09-02 | 1.0M | $1.25 | $4.25 | Proprietary multimodal reasoning model (Meta Superintelligence Labs) | Frontier agentic coding and long-horizon reasoning | prev: muse-spark-1.2 |
 | Muse Glimmer 30B (`meta/muse-glimmer-30b`) | ga | 2026-08-10 | 131.1K | — | — | Dense decoder-only multimodal transformer — 30B (28B text decoder + 2B vision encoder) | On-device agentic tasks — tool use, multi-step reasoning, and multimodal understanding on consumer GPUs | prev: meta-llama/Llama-4-Scout-17B-16E-Instruct |
 | Muse Glimmer 30B (`muse-glimmer-30b`) | ga | 2026-08-10 | 131.1K | — | — | 30B-parameter open-weights agentic model from Meta Superintelligence Labs | Local agentic workloads on consumer GPUs | — |
-| Muse Spark 1.2 (`meta/muse-spark-1.2`) | ga | 2026-08-05 | 1M | $1.25 | $4.25 | Proprietary — undisclosed (goal-conditioned agentic multimodal model) | Frontier agentic coding, long-horizon software engineering, and multimodal reasoning | prev: meta/muse-spark-1.1 |
-| Muse Spark 1.2 (`muse-spark-1.2`) | ga | 2026-08-05 | 1M | $1.25 | $4.25 | Proprietary multimodal reasoning model (Meta Superintelligence Labs) | Agentic coding via Muse Code terminal agent | prev: muse-spark-1.1 → superseded by: muse-spark-1.3 |
-| Muse Spark 1.1 (`muse-spark-1.1`) | ga | 2026-07-09 | 1M | $1.25 | $4.25 | Closed-weights multimodal reasoning model from Meta Superintelligence Labs | Agentic multimodal reasoning via Meta Model API | prev: muse-spark-1.0 → superseded by: muse-spark-1.3 |
+| Muse Spark 1.2 (`meta/muse-spark-1.2`) | ga | 2026-08-05 | 1.0M | $1.25 | $4.25 | Proprietary — undisclosed (goal-conditioned agentic multimodal model) | Frontier agentic coding, long-horizon software engineering, and multimodal reasoning | prev: meta/muse-spark-1.1 |
+| Muse Spark 1.2 (`muse-spark-1.2`) | ga | 2026-08-05 | 1.0M | $1.25 | $4.25 | Proprietary multimodal reasoning model (Meta Superintelligence Labs) | Agentic coding via Muse Code terminal agent | prev: muse-spark-1.1 → superseded by: muse-spark-1.3 |
+| Muse Spark 1.1 (`muse-spark-1.1`) | ga | 2026-07-09 | 1.0M | $1.25 | $4.25 | Closed-weights multimodal reasoning model from Meta Superintelligence Labs | Agentic multimodal reasoning via Meta Model API | prev: muse-spark-1.0 → superseded by: muse-spark-1.3 |
 | Muse Image (`muse-image`) | ga | 2026-07-07 | — | — | — | Agentic image generation model | Agentic image generation and editing | — |
 | Llama Guard 4 12B (`llama-guard-4-12b`) | ga | 2025-04-29 | 128K | — | — | Dense 12B multimodal safety classifier | Multimodal safety classification for Llama apps | prev: llama-guard-3-8b |
 | Llama Guard 4 12B (`meta-llama/Llama-Guard-4-12B`) | ga | 2025-04-29 | 163.8K | $0.20 | $0.20 | Dense 12B early-fusion transformer, pruned from Llama 4 Scout for safety classification | Multimodal input/output safety classification | prev: meta-llama/Llama-Guard-3-8B |
@@ -177,7 +189,7 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Llama 3.3 70B Instruct (`llama-3.3-70b`) | ga | 2024-12-06 | 128K | $0.59 | $0.79 | Dense auto-regressive transformer with 70B parameters | Cost-efficient text-only instruction following | prev: llama-3.1-70b → superseded by: llama-4-scout-17b-16e-instruct |
 | Llama 3.3 70B Instruct (`llama-3.3-70b-instruct`) | ga | 2024-12-06 | 128K | $0.23 | $0.40 | Dense transformer 70B | Cost-efficient text-only dense model | prev: llama-3.1-70b-instruct → superseded by: llama-4-scout-17b-16e-instruct |
 | Llama 3.3 70B Instruct (`meta-llama/Llama-3.3-70B-Instruct`) | ga | 2024-12-06 | 131.1K | $0.90 | $0.90 | Dense decoder-only transformer, 70B parameters, instruction-tuned | Efficient text-only multilingual dialogue at 70B scale | prev: meta-llama/Llama-3.1-70B-Instruct → superseded by: meta-llama/Llama-4-Maverick-17B-128E-Instruct |
-| Llama 3.1 405B Instruct (`meta-llama/Llama-3.1-405B-Instruct`) | ga | 2024-07-23 | 128K | — | — | Dense transformer decoder — 405B parameters | Large-scale open-weight reasoning, synthetic data generation, and distillation | superseded by: meta-llama/Llama-3.3-70B-Instruct |
+| Llama 3.1 405B Instruct (`meta-llama/Llama-3.1-405B-Instruct`) | ga | 2024-07-23 | 128K | — | — | Dense transformer decoder — 405B parameters | Large-scale open-weight reasoning, synthetic data generation, and distillation | → superseded by: meta-llama/Llama-3.3-70B-Instruct |
 | Muse Video (`muse-video`) | preview | 2026-07-07 | — | — | — | Video generation model with native audio | Text-to-video generation with native audio | — |
 | Llama 4 Behemoth (`llama-4-behemoth`) | preview | — | — | — | — | MoE 288B active / 16 experts / ~2T total | Teacher model for Llama 4 distillation | prev: llama-3.1-405b-instruct → superseded by: muse-spark-1.1 |
 | Llama 4 Behemoth (`meta-llama/Llama-4-Behemoth`) | preview | — | — | — | — | Sparse MoE — ~2T total / 288B active, 16 experts (previewed, in-training) | Teacher model for distillation into the rest of the Llama 4 herd | prev: meta-llama/Meta-Llama-3.1-405B-Instruct → superseded by: meta/muse-spark-1.2 |
@@ -193,12 +205,12 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | MAI-Image-2.5-Pro (`mai-image-2.5-pro`) | ga | 2026-07-15 | — | $5.00 | $106.00 | Diffusion-based image generation and editing model | High-quality text-to-image generation and editing | prev: mai-image-2 |
 | MAI-Voice-2-Flash (`mai-voice-2-flash`) | ga | 2026-07-15 | — | $15.00 | $15.00 | Text-to-speech generative model | High-fidelity multilingual text-to-speech generation | prev: mai-voice-2 |
 | MAI-Voice-2 (`mai-voice-2`) | ga | 2026-06-02 | — | $22.00 | — | Neural text-to-speech with expressive prosody model | Multilingual high-quality speech synthesis with voice cloning | prev: mai-voice-1 |
-| MAI-Image-2 (`MAI-Image-2`) | ga | 2026-04-02 | 32K | $5.00 | $33.00 | Diffusion-based text-to-image | Text-to-image generation via Foundry API | superseded by: mai-image-2-efficient |
-| MAI-Transcribe-1 (`MAI-Transcribe-1`) | ga | 2026-04-02 | — | — | — | Bidirectional audio encoder with transformer text decoder | Real-time streaming speech-to-text | superseded by: mai-transcribe-1.5 |
-| MAI-Voice-1 (`MAI-Voice-1`) | ga | 2026-04-02 | — | $22.00 | $22.00 | neural text-to-speech model | Low-latency streaming speech synthesis and voice cloning | superseded by: mai-voice-2 |
+| MAI-Image-2 (`MAI-Image-2`) | ga | 2026-04-02 | 32K | $5.00 | $33.00 | Diffusion-based text-to-image | Text-to-image generation via Foundry API | → superseded by: mai-image-2-efficient |
+| MAI-Transcribe-1 (`MAI-Transcribe-1`) | ga | 2026-04-02 | — | — | — | Bidirectional audio encoder with transformer text decoder | Real-time streaming speech-to-text | → superseded by: mai-transcribe-1.5 |
+| MAI-Voice-1 (`MAI-Voice-1`) | ga | 2026-04-02 | — | $22.00 | $22.00 | neural text-to-speech model | Low-latency streaming speech synthesis and voice cloning | → superseded by: mai-voice-2 |
 | Phi-4-reasoning-vision-15B (`microsoft/Phi-4-reasoning-vision-15B`) | ga | 2026-03-04 | 16.4K | $0.07 | $0.14 | Phi-4-reasoning backbone + SigLIP-2 vision encoder, mid-fusion | Multimodal reasoning on charts, diagrams, UI | prev: microsoft/Phi-4-multimodal-instruct |
 | Phi-4-reasoning-vision-15B (`phi-4-reasoning-vision-15b`) | ga | 2026-03-04 | 32.8K | — | — | Multimodal reasoning Transformer, 15B parameters | Compact multimodal reasoning for charts, diagrams, UI | prev: phi-4-multimodal-instruct |
-| MAI-Image-1 (`MAI-Image-1`) | ga | 2025-10-13 | — | — | — | text-to-image diffusion model | First-party text-to-image generation in Copilot and Bing | superseded by: MAI-Image-2 |
+| MAI-Image-1 (`MAI-Image-1`) | ga | 2025-10-13 | — | — | — | text-to-image diffusion model | First-party text-to-image generation in Copilot and Bing | → superseded by: MAI-Image-2 |
 | Phi-4-mini-flash-reasoning (`microsoft/phi-4-mini-flash-reasoning`) | ga | 2025-07-09 | — | — | — | Dense transformer, mini variant tuned for flash reasoning | Fast on-device reasoning for edge deployment | — |
 | Phi-4-mini-flash-reasoning (`phi-4-mini-flash-reasoning`) | ga | 2025-07-09 | 64K | — | — | SambaY decoder-hybrid-decoder (3.8B params) | Edge math reasoning with high throughput | prev: phi-4-mini-reasoning |
 | Phi-4 Mini Reasoning (`phi-4-mini-reasoning`) | ga | 2025-04-30 | 128K | $0.07 | $0.23 | 3.8B parameter dense decoder-only Transformer fine-tuned for reasoning | Edge and on-device step-by-step reasoning | prev: phi-4-mini-instruct |
@@ -216,30 +228,34 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Phi-4 (`phi-4`) | ga | 2025-01-08 | 16.4K | $0.25 | $1.00 | Dense decoder-only transformer, 14B parameters | Small model complex reasoning and math | prev: phi-3 → superseded by: phi-4-reasoning |
 | Phi-4 (`microsoft/phi-4`) | ga | 2024-12-12 | 16.4K | $0.07 | $0.14 | 14B dense transformer | Compact reasoning and math on-device | prev: microsoft/Phi-3-medium-4k-instruct → superseded by: microsoft/Phi-4-reasoning-plus |
 | MAI-Image-2.6 (`MAI-Image-2.6`) | preview | 2026-09-04 | — | $5.00 | $38.00 | Diffusion image generation and editing model (MAI-Image family) | High-quality image generation and editing | prev: mai-image-2.5-pro |
-| MAI-Image-2.6 Flash (`MAI-Image-2.6-Flash`) | preview | 2026-09-04 | — | — | — | Diffusion image generation model — Flash tier of MAI-Image-2.6 | Fast, low-cost image generation and editing | prev: mai-image-2.5-flash |
+| MAI-Image-2.6 Flash (`MAI-Image-2.6-Flash`) | preview | 2026-09-04 | — | $1.75 | $19.00 | Diffusion image generation model — Flash tier of MAI-Image-2.6 | Fast, low-cost image generation and editing | prev: mai-image-2.5-flash |
 | MAI-Transcribe-2 (`mai-transcribe-2`) | preview | 2026-09-03 | — | — | — | — | Fast, accurate, low-cost multilingual transcription | prev: mai-transcribe-1.5 |
 | MAI-Cyber-1-Flash (`mai-cyber-1-flash`) | preview | 2026-07-27 | 256K | — | — | Sparse MoE — 137B total / 5B active (fine-tuned from MAI-Code-1-Flash) | Autonomous vulnerability discovery and remediation | prev: mai-code-1-flash |
 | MAI-Image-2.5 (`mai-image-2.5`) | preview | 2026-07-23 | 32K | $5.00 | $47.00 | Diffusion-based generative model, ~20B non-embedding parameters | High-quality text-to-image and image editing | prev: mai-image-2 |
-| MAI-Code-1-Flash (`mai-code-1-flash`) | preview | 2026-06-02 | 262.1K | $0.75 | $4.50 | Sparse Mixture-of-Experts, 137B total parameters | Fast agentic coding in Copilot and VS Code | superseded by: mai-code-1.1-flash |
+| MAI-Code-1-Flash (`mai-code-1-flash`) | preview | 2026-06-02 | 262.1K | $0.75 | $4.50 | Sparse Mixture-of-Experts, 137B total parameters | Fast agentic coding in Copilot and VS Code | → superseded by: mai-code-1.1-flash |
 | MAI-Image-2.5-Flash (`mai-image-2.5-flash`) | preview | 2026-06-02 | — | $1.75 | $33.00 | Diffusion-based text-to-image (efficient variant) | Faster, cheaper image generation and editing for high-volume workloads | prev: mai-image-2.5 |
 | MAI-Thinking-1 (`mai-thinking-1`) | preview | 2026-06-02 | 256K | $2.00 | $8.00 | Mixture-of-Experts (MoE) | Multi-step reasoning for math, coding, enterprise | prev: MAI-1-preview |
 | MAI-Image-2-Efficient (`mai-image-2-efficient`) | preview | 2026-04-14 | 32K | $5.00 | $19.50 | Diffusion-based text-to-image | Cost-efficient high-throughput image generation | prev: mai-image-2 → superseded by: mai-image-2.5 |
 | Phi-4-Reasoning-Vision (`microsoft/phi-4-reasoning-vision`) | preview | 2026-03-04 | — | — | — | Dense transformer, 15B parameters, vision-language model | Multimodal reasoning with high-fidelity vision | prev: microsoft/phi-4-reasoning-plus |
-| MAI-1-preview (`MAI-1-preview`) | preview | 2025-08-29 | — | — | — | Mixture-of-experts, pre/post-trained on ~15,000 NVIDIA H100 GPUs | Microsoft's first in-house foundation text model | superseded by: MAI-Thinking-1 |
+| MAI-1-preview (`MAI-1-preview`) | preview | 2025-08-29 | — | — | — | Mixture-of-experts, pre/post-trained on ~15,000 NVIDIA H100 GPUs | Microsoft's first in-house foundation text model | → superseded by: MAI-Thinking-1 |
 | MAI-Transcribe-1.5 (`mai-transcribe-1.5`) | deprecated | 2026-06-02 | — | — | — | Multilingual speech-to-text encoder-decoder | Production-grade multilingual speech-to-text with context biasing | prev: mai-transcribe-1 → superseded by: mai-transcribe-2 |
 
 ## Mistral
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Mistral OCR 4 (`mistral-ocr-4-0`) | ga | 2026-06-23 | — | — | — | Purpose-built OCR / document understanding model | Document OCR with bounding boxes | prev: mistral-ocr-3 |
+| Mistral OCR 4.1 (`mistral-ocr-4-1`) | ga | 2026-07-16 | — | — | — | — | Multilingual document OCR with structured blocks | prev: mistral-ocr-4-0 |
+| Mistral OCR 4 (`mistral-ocr-4-0`) | ga | 2026-06-23 | — | — | — | Purpose-built OCR / document understanding model | Document OCR with bounding boxes | prev: mistral-ocr-3 → superseded by: mistral-ocr-4-1 |
 | Mistral Medium 3.5 (`mistral-medium-2504`) | ga | 2026-04-30 | 256K | $0.40 | $2.00 | 128B dense transformer | Balanced mid-tier reasoning, coding, instruction following | prev: mistral-medium-2505 |
 | Mistral Medium 3.5 (`mistral-medium-2604`) | ga | 2026-04-29 | 256K | $1.50 | $7.50 | 128B dense transformer | Unified chat, reasoning, and coding workhorse | prev: mistral-medium-2508 |
 | Mistral Medium 3.5 (`mistral-medium-3-5`) | ga | 2026-04-29 | 262.1K | $1.50 | $7.50 | Dense transformer (128B) | Unified chat, reasoning, coding, and vision | prev: mistral-medium-2508 |
 | Mistral Medium 3.5 (`mistral-medium-3-5-26-04`) | ga | 2026-04-29 | 262.1K | $1.50 | $7.50 | Dense transformer, ~128B parameters | Agentic coding and long-horizon tool use | prev: mistral-medium-3 |
 | Mistral Medium 3.5 (`mistral-medium-latest`) | ga | 2026-04-29 | 256K | $1.50 | $7.50 | 128B dense transformer | Unified chat, reasoning and code flagship | prev: mistral-medium-3 |
+| Voxtral Mini TTS (`voxtral-mini-tts-2603`) | ga | 2026-03-26 | 4.1K | — | — | 4B parameter TTS model | TTS with zero-shot voice cloning | — |
 | Mistral Small 4 (`mistral-small-2603`) | ga | 2026-03-16 | 262.1K | $0.15 | $0.60 | Mixture-of-Experts, ~6B active / 119B total | Affordable multimodal + agentic coding workhorse | prev: mistral-small-2501 |
 | Mistral Small 4 (`mistral-small-latest`) | ga | 2026-03-16 | 262.1K | $0.15 | $0.60 | Hybrid MoE with 128 experts (4 active per token + 1 shared), 119B total / 6.5B active parameters, Multi-head Latent Attention (MLA) | Unified small model for coding, reasoning, and vision | prev: mistral-small-2506 |
+| Voxtral Mini Transcribe 2 (`voxtral-mini-2602`) | ga | 2026-02-04 | — | — | — | — | Batch ASR with diarization and timestamps | — |
+| Voxtral Mini Transcribe Realtime (`voxtral-mini-transcribe-realtime-2602`) | ga | 2026-02-04 | — | — | — | 4B parameter streaming ASR | Low-latency streaming ASR | — |
 | Devstral 2 (`devstral-2-25-12`) | ga | 2025-12-09 | 256K | $0.40 | $2.00 | 123B dense transformer | Agentic software engineering | prev: devstral-medium-2507 |
 | Devstral 2 (`devstral-2-2512`) | ga | 2025-12-09 | 262.1K | $0.40 | $2.00 | Dense 123B transformer | Agentic coding across large multi-file codebases | prev: devstral-medium-2507 → superseded by: devstral-2-25-12 |
 | Devstral 2 (`devstral-2512`) | ga | 2025-12-09 | 256K | $0.40 | $2.00 | 123B parameter agentic coding model | Agentic coding, end-to-end code automation | prev: devstral-2507 → superseded by: devstral-2-25-12 |
@@ -261,19 +277,19 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Codestral 25.08 (`codestral-2508`) | ga | 2025-07-31 | 256K | $0.30 | $0.90 | Dense transformer | Low-latency code completion and FIM | prev: codestral-2501 |
 | Devstral Medium (`devstral-medium-latest`) | ga | 2025-07-10 | 131.1K | $0.40 | $2.00 | 123B dense transformer | Agentic coding escalation tier for harder edits | prev: devstral-small-2507 |
 | Magistral Medium (`magistral-medium-latest`) | ga | 2025-06-10 | 40K | $2.00 | $5.00 | Reasoning-tuned medium model with tokenized thinking chunks | Dedicated multi-step reasoning and math | prev: magistral-medium-2507 → superseded by: mistral-medium-latest |
-| Magistral Medium 2506 (`magistral-medium-2506`) | ga | 2025-06-10 | 41K | $2.00 | $5.00 | Dense reasoning model with chain-of-thought training | Chain-of-thought reasoning tasks in enterprise | superseded by: mistral-small-2603 |
+| Magistral Medium 2506 (`magistral-medium-2506`) | ga | 2025-06-10 | 41.0K | $2.00 | $5.00 | Dense reasoning model with chain-of-thought training | Chain-of-thought reasoning tasks in enterprise | → superseded by: mistral-small-2603 |
 | Ministral 8B (`ministral-8b-latest`) | ga | 2024-10-16 | 128K | $0.15 | $0.15 | 8B parameter dense transformer | Edge and on-device deployment | prev: ministral-8b-2410 → superseded by: ministral-8b-2512 |
 | Leanstral 1.5 (`leanstral-1-5`) | deprecated | 2026-06-30 | 262.1K | $0.00 | $0.00 | Sparse Mixture-of-Experts (~6.5B active / 119B total, 128 experts / 4 active per token) | Lean 4 formal proof engineering, automated theorem proving, and autoformalization | prev: leanstral |
 | Mistral Medium 3 (`mistral-medium-2508`) | deprecated | 2025-08-12 | 262.1K | $0.40 | $2.00 | — | Frontier-class agentic coding and multimodal | prev: mistral-medium-2505 → superseded by: mistral-medium-2604 |
 | Devstral Medium (`devstral-medium-2507`) | deprecated | 2025-07-11 | 131.1K | $0.40 | $2.00 | Code-and-agent specialized transformer | Agentic coding and software engineering agents | prev: devstral-medium-2505 → superseded by: devstral-2-25-12 |
-| Mistral Medium 3 (`mistral-medium-2505`) | deprecated | 2025-05-07 | 131K | $0.40 | $2.00 | — | Balanced cost/performance for coding and STEM | superseded by: mistral-medium-2604 |
-| Ministral 8B (`ministral-8b-2410`) | deprecated | 2024-10-16 | 131.1K | $0.10 | $0.10 | Dense 8B transformer with interleaved sliding-window attention | On-device and edge deployment | superseded by: ministral-8b-2512 |
+| Mistral Medium 3 (`mistral-medium-2505`) | deprecated | 2025-05-07 | 131K | $0.40 | $2.00 | — | Balanced cost/performance for coding and STEM | → superseded by: mistral-medium-2604 |
+| Ministral 8B (`ministral-8b-2410`) | deprecated | 2024-10-16 | 131.1K | $0.10 | $0.10 | Dense 8B transformer with interleaved sliding-window attention | On-device and edge deployment | → superseded by: ministral-8b-2512 |
 
 ## Moonshot
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Kimi K3 (`kimi-k3`) | ga | 2026-07-16 | 1M | $3.00 | $15.00 | Stable LatentMoE 2.8T total / 16 of 896 experts active, KDA + AttnRes | Flagship frontier reasoning, coding, agents | prev: kimi-k2.7-code |
+| Kimi K3 (`kimi-k3`) | ga | 2026-07-16 | 1.0M | $3.00 | $15.00 | Stable LatentMoE 2.8T total / 16 of 896 experts active, KDA + AttnRes | Flagship frontier reasoning, coding, agents | prev: kimi-k2.7-code |
 | Kimi K2.7 Code (`kimi-k2.7-code`) | ga | 2026-06-12 | 262.1K | $0.95 | $4.00 | MoE 1T total / 32B active (K2 family) | Long-horizon agentic coding tasks | prev: kimi-k2.6 → superseded by: kimi-k2.8-preview |
 | Kimi K2.6 (`kimi-k2.6`) | ga | 2026-04-20 | 262.1K | $0.95 | $4.00 | Mixture-of-Experts, 1T total parameters, 32B active per token | Cost-efficient general chat and agentic workflows | prev: kimi-k2-instruct-0905 → superseded by: kimi-k2.7-code |
 | Kimi K2.5 (`kimi-k2.5`) | ga | 2026-01-27 | 262.1K | $0.60 | $3.00 | 1T-parameter native multimodal MoE | First native-multimodal 1T open agent model | prev: kimi-k2-0905-preview → superseded by: kimi-k2.6 |
@@ -281,10 +297,10 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Kimi K2 Thinking Turbo (`kimi-k2-thinking-turbo`) | ga | 2025-11-06 | 262.1K | $1.15 | $8.00 | 1T-parameter Mixture-of-Experts (32B active per token) with always-on thinking; native INT4 inference | faster interleaved reasoning with tool use | prev: kimi-k2-instruct-0905 |
 | Kimi K2 Instruct 0905 (`kimi-k2-instruct-0905`) | ga | 2025-09-09 | 262.1K | $0.60 | $2.50 | Mixture-of-Experts, 1T total parameters, 32B active per token | General-purpose chat and agentic coding | prev: kimi-k2-0711-preview → superseded by: kimi-k2-thinking |
 | Kimi Latest (`kimi-latest`) | ga | — | 128K | — | — | — | Rolling alias tracking the current Kimi chat model | — |
-| Kimi K2.8 Preview (`kimi-k2.8-preview`) | preview | 2026-09-11 | 1M | $0.80 | $3.35 | — | Mid-tier coding and agent workflows | prev: kimi-k2.7-code → superseded by: kimi-k3 |
-| Kimi K2 (0711 preview) (`kimi-k2-0711-preview`) | deprecated | 2025-07-11 | 131.1K | — | — | Mixture-of-Experts, ~1T total / ~32B active parameters | Original K2 baseline for agentic workflows | superseded by: kimi-k2-instruct-0905 |
+| Kimi K2.8 Preview (`kimi-k2.8-preview`) | preview | 2026-09-11 | 1.0M | $0.80 | $3.35 | — | Mid-tier coding and agent workflows | prev: kimi-k2.7-code → superseded by: kimi-k3 |
+| Kimi K2 (0711 preview) (`kimi-k2-0711-preview`) | deprecated | 2025-07-11 | 131.1K | — | — | Mixture-of-Experts, ~1T total / ~32B active parameters | Original K2 baseline for agentic workflows | → superseded by: kimi-k2-instruct-0905 |
 | Moonshot v1 128K (`moonshot-v1-128k`) | deprecated | 2024-01-31 | 131.1K | $2.00 | $5.00 | Dense transformer (proprietary) | Legacy long-context chat (migrate to K2.6) | prev: moonshot-v1-32k → superseded by: kimi-k2.6 |
-| Moonshot v1 32K (`moonshot-v1-32k`) | deprecated | — | 32.8K | — | — | — | Legacy compatibility for existing moonshot-v1 integrations | superseded by: moonshot-v1-128k |
+| Moonshot v1 32K (`moonshot-v1-32k`) | deprecated | — | 32.8K | — | — | — | Legacy compatibility for existing moonshot-v1 integrations | → superseded by: moonshot-v1-128k |
 
 ## NVIDIA
 
@@ -322,11 +338,11 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Nemotron Nano 2 VL (`nvidia/nemotron-nano-12b-v2-vl`) | ga | 2025-10-28 | 131.1K | — | — | Hybrid Transformer-Mamba multimodal model with RADIOv2.5 vision encoder, MLP connector, and Nemotron-Nano-12B-V2 LLM (Transformer blocks interleaved with Mamba-2 state-space layers) | open document intelligence and video understanding | prev: nvidia/nvidia-nemotron-nano-9b-v2 → superseded by: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning |
 | Llama Embed Nemotron 8B (`nvidia/llama-embed-nemotron-8b`) | ga | 2025-10-21 | 32.8K | — | — | Llama-based embedding model, 8B parameters | multilingual retrieval and semantic embeddings | — |
 | Llama 3.3 Nemotron Super 49B v1.5 (`nvidia/llama-3_3-nemotron-super-49b-v1_5`) | ga | 2025-10-10 | 131.1K | $0.10 | $0.40 | Neural Architecture Search compression of Meta Llama-3.3-70B-Instruct with reasoning post-training | single-GPU reasoning and tool-calling on Llama base | prev: nvidia/llama-3.3-nemotron-super-49b-v1 → superseded by: nvidia/nemotron-3-super-120b-a12b |
-| Nemotron Nano 9B v2 (`nvidia/nemotron-nano-9b-v2`) | ga | 2025-09-05 | 131.1K | — | — | Hybrid Mamba2-Transformer, 9B parameters (compressed from 12B) | Single-GPU reasoning with toggleable thinking mode | superseded by: nvidia/nemotron-3-nano-30b-a3b |
-| NVIDIA Nemotron Nano 9B v2 (`nvidia/nvidia-nemotron-nano-9b-v2`) | ga | 2025-08-18 | 128K | $0.04 | $0.16 | Hybrid Mamba2-Transformer trained from scratch by NVIDIA | Efficient small-model reasoning with thinking budget | superseded by: nvidia/nemotron-3-nano-30b-a3b |
+| Nemotron Nano 9B v2 (`nvidia/nemotron-nano-9b-v2`) | ga | 2025-09-05 | 131.1K | — | — | Hybrid Mamba2-Transformer, 9B parameters (compressed from 12B) | Single-GPU reasoning with toggleable thinking mode | → superseded by: nvidia/nemotron-3-nano-30b-a3b |
+| NVIDIA Nemotron Nano 9B v2 (`nvidia/nvidia-nemotron-nano-9b-v2`) | ga | 2025-08-18 | 128K | $0.04 | $0.16 | Hybrid Mamba2-Transformer trained from scratch by NVIDIA | Efficient small-model reasoning with thinking budget | → superseded by: nvidia/nemotron-3-nano-30b-a3b |
 | Llama 3.3 Nemotron Super 49B v1.5 (`nvidia/llama-3.3-nemotron-super-49b-v1.5`) | ga | 2025-07-25 | 131.1K | $0.10 | $0.40 | Dense Transformer derived from Llama-3.3-70B-Instruct via Neural Architecture Search (49B params, DeciLMForCausalLM) | Reasoning and agentic RAG on a single H100 | prev: nvidia/llama-3.3-nemotron-super-49b-v1 → superseded by: nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 |
-| Llama 3.1 Nemotron Ultra 253B v1 (`nvidia/llama-3.1-nemotron-ultra-253b-v1`) | ga | 2025-04-08 | 131.1K | $0.60 | $1.80 | Neural-Architecture-Search-optimized dense transformer derived from Llama-3.1-405B-Instruct | Frontier-class reasoning, RAG, and enterprise tool use | superseded by: nvidia/nemotron-3-ultra-550b-a55b |
-| Llama 3.3 Nemotron Super 49B v1 (`nvidia/llama-3.3-nemotron-super-49b-v1`) | ga | 2025-03-18 | 131.1K | $0.10 | $0.40 | Dense Transformer derived from Llama-3.3-70B-Instruct via Neural Architecture Search | Reasoning and RAG in single-GPU footprint | superseded by: nvidia/llama-3.3-nemotron-super-49b-v1.5 |
+| Llama 3.1 Nemotron Ultra 253B v1 (`nvidia/llama-3.1-nemotron-ultra-253b-v1`) | ga | 2025-04-08 | 131.1K | $0.60 | $1.80 | Neural-Architecture-Search-optimized dense transformer derived from Llama-3.1-405B-Instruct | Frontier-class reasoning, RAG, and enterprise tool use | → superseded by: nvidia/nemotron-3-ultra-550b-a55b |
+| Llama 3.3 Nemotron Super 49B v1 (`nvidia/llama-3.3-nemotron-super-49b-v1`) | ga | 2025-03-18 | 131.1K | $0.10 | $0.40 | Dense Transformer derived from Llama-3.3-70B-Instruct via Neural Architecture Search | Reasoning and RAG in single-GPU footprint | → superseded by: nvidia/llama-3.3-nemotron-super-49b-v1.5 |
 | Nemotron-4 340B Instruct (`nvidia/nemotron-4-340b-instruct`) | ga | 2024-06-14 | 4.1K | — | — | Dense decoder-only Transformer | Synthetic data generation for model training | — |
 | Nemotron-Labs-Audex 2B (`nvidia/nemotron-labs-audex-2b`) | preview | 2026-07-07 | — | — | — | Dense 2B decoder LLM with extended vocabulary for discrete audio tokens and an audio encoder for speech and general audio inputs | Compact 2B audio-text LLM for on-device speech understanding and TTS | — |
 | Nemotron-Labs-Audex 30B-A3B (`nvidia/nemotron-labs-audex-30b-a3b`) | preview | 2026-07-07 | — | — | — | Single MoE Transformer decoder with 30B total / 3B active parameters; hybrid Mamba-Transformer backbone (Nemotron-Cascade-2-30B-A3B, 52 layers, 128 routable + shared experts, 6 activated per token) extended with audio encoder and vocabulary for discrete audio output tokens | Unified audio-text MoE for ASR, TTS, translation, and speech-to-speech | prev: nvidia/nemotron-cascade-2-30b-a3b |
@@ -337,6 +353,8 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| GPT-6 Luna (`gpt-6-luna`) | ga | 2026-09-22 | 1.1M | $0.10 | $0.50 | — | Cheap, fast enterprise workhorse for routine tasks | prev: gpt-5.6-luna |
+| GPT-6 Sol (`gpt-6-sol`) | ga | 2026-09-22 | 1.1M | $2.00 | $10.00 | — | Complex work at scale with strong price/performance | prev: gpt-5.6-sol |
 | GPT-6 Astra (`gpt-6-astra`) | ga | 2026-09-03 | 1.1M | $10.00 | $50.00 | Frontier reasoning model with variable reasoning effort levels | Long-horizon agentic reasoning, coding, computer use | prev: gpt-5.6-sol |
 | GPT-Live-Transcribe (`gpt-live-transcribe`) | ga | 2026-07-29 | — | — | — | — | Low-latency streaming speech-to-text | prev: gpt-4o-transcribe |
 | GPT-Transcribe (`gpt-transcribe`) | ga | 2026-07-29 | — | — | — | — | Async batch transcription of recorded audio | prev: whisper-large-v3 |
@@ -363,12 +381,18 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Sonar Pro Search (`sonar-pro-search`) | deprecated | 2025-10-30 | 200K | $3.00 | $15.00 | Agentic search-grounded LLM | Agentic research; migrate to Agent API | prev: sonar-pro → superseded by: agent-api |
-| Sonar Deep Research (`sonar-deep-research`) | deprecated | 2025-03-07 | 128K | $2.00 | $8.00 | Agentic research pipeline | Multi-step research reports with citations | superseded by: agent-api |
-| Sonar Pro (`sonar-pro`) | deprecated | 2025-03-07 | 200K | $3.00 | $15.00 | Search-augmented LLM | Grounded search with deeper multi-source retrieval | prev: sonar → superseded by: agent-api |
-| Sonar Reasoning Pro (`sonar-reasoning-pro`) | deprecated | 2025-03-07 | 128K | $2.00 | $8.00 | Built on DeepSeek-R1 with Perplexity search | Grounded chain-of-thought reasoning with search | prev: sonar-reasoning → superseded by: agent-api |
-| Sonar Reasoning (`sonar-reasoning`) | deprecated | 2025-01-28 | 127K | $1.00 | $5.00 | DeepSeek-R1 based reasoning + search | Reasoning with live web search | superseded by: sonar-reasoning-pro |
-| Sonar (`sonar`) | deprecated | 2025-01-21 | 128K | $1.00 | $1.00 | Search-augmented LLM | Low-cost real-time web-grounded answers | prev: llama-3.1-sonar-small-128k-online → superseded by: agent-api |
+| Agent API Preset: Fast (`fast`) | ga | 2026-08-13 | — | — | — | Preset (system prompt + tool config + reasoning effort + token budget) served via Agent API | Fast factual lookups; replaces legacy sonar | prev: sonar |
+| Agent API Preset: High (`high`) | ga | 2026-08-13 | — | — | — | Preset wrapping a reasoning frontier model on the Agent API | Deep, multi-source research; replaces sonar-deep-research | prev: sonar-deep-research |
+| Agent API Preset: Low (`low`) | ga | 2026-08-13 | — | — | — | Preset wrapping a frontier model on the Agent API | Balanced research; replaces sonar-pro | prev: sonar-pro |
+| Agent API Preset: Medium (`medium`) | ga | 2026-08-13 | — | — | — | Preset wrapping a reasoning frontier model on the Agent API | Reasoning + research; replaces sonar-reasoning-pro | prev: sonar-reasoning-pro |
+| Agent API Preset: Wide Research (`wide-research`) | ga | 2026-08-13 | — | — | — | Preset wrapping a frontier model with wide tool orchestration on the Agent API | Institutional-grade broad research | — |
+| Agent API Preset: XHigh (`xhigh`) | ga | 2026-08-13 | — | — | — | Preset wrapping a reasoning frontier model on the Agent API | Open-ended agentic work | — |
+| Sonar Pro Search (`sonar-pro-search`) | deprecated | 2025-10-30 | 200K | $3.00 | $15.00 | Agentic search-grounded LLM | Agentic research; migrate to Agent API | prev: sonar-pro → superseded by: low |
+| Sonar Deep Research (`sonar-deep-research`) | deprecated | 2025-03-07 | 128K | $2.00 | $8.00 | Agentic research pipeline | Multi-step research reports with citations | → superseded by: high |
+| Sonar Pro (`sonar-pro`) | deprecated | 2025-03-07 | 200K | $3.00 | $15.00 | Search-augmented LLM | Grounded search with deeper multi-source retrieval | prev: sonar → superseded by: low |
+| Sonar Reasoning Pro (`sonar-reasoning-pro`) | deprecated | 2025-03-07 | 128K | $2.00 | $8.00 | Built on DeepSeek-R1 with Perplexity search | Grounded chain-of-thought reasoning with search | prev: sonar-reasoning → superseded by: medium |
+| Sonar Reasoning (`sonar-reasoning`) | deprecated | 2025-01-28 | 127K | $1.00 | $5.00 | DeepSeek-R1 based reasoning + search | Reasoning with live web search | → superseded by: medium |
+| Sonar (`sonar`) | deprecated | 2025-01-21 | 128K | $1.00 | $1.00 | Search-augmented LLM | Low-cost real-time web-grounded answers | prev: llama-3.1-sonar-small-128k-online → superseded by: fast |
 
 ## xAI
 
@@ -385,21 +409,22 @@ _Last refreshed: 2026-09-21 by genai-model-catalog routine._
 | Grok 4.20 (`grok-4.20`) | ga | 2026-03-31 | 1M | $1.25 | $2.50 | Native 4-agent collaborative architecture | High-throughput agentic tool calling | prev: grok-4 → superseded by: grok-4.3 |
 | Grok 4.20 Multi Agent (`grok-4.20-multi-agent`) | ga | 2026-03-09 | 1M | $1.25 | $2.50 | 4-agent parallel council on shared weights and cached context | Multi-agent orchestration and collaborative workflows | prev: grok-4.20-multi-agent-beta-0309 |
 | Grok 4.5 (`grok-4-5`) | ga | 2026-02-01 | 500K | $2.00 | $6.00 | — | Coding, agentic tasks, and knowledge work | prev: grok-4-3 → superseded by: grok-4-6 |
-| Grok 4.1 Fast (`grok-4-1-fast`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | Fast tier with reasoning and non-reasoning variants | High-volume, low-cost long-context tasks | prev: grok-4-fast → superseded by: grok-4.1-fast |
-| Grok 4.1 Fast (`grok-4.1-fast`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | unified reasoning/non-reasoning single model | High-volume agentic tool calling | prev: grok-4-fast |
-| Grok 4.1 Fast (`grok-4.1-fast-reasoning`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | Efficient transformer trained with RL in simulated tool environments | High-throughput agentic tool-calling and long-context workflows | prev: grok-4-fast-reasoning |
-| Grok 4.1 Fast Non-Reasoning (`grok-4-1-fast-non-reasoning`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | Unified reasoning/non-reasoning weights steered by system prompt | Low-latency high-throughput chat and extraction | prev: grok-4-fast-non-reasoning |
-| Grok 4.1 Fast Non-Reasoning (`grok-4.1-fast-non-reasoning`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | — | Low-latency, high-throughput agent tool loops | prev: grok-4-fast-non-reasoning |
-| Grok 4.1 Fast Reasoning (`grok-4-1-fast-reasoning`) | ga | 2025-11-19 | 2M | $0.20 | $0.50 | Unified reasoning/non-reasoning weights steered by system prompt | Fast, cheap tool-calling agents at scale | prev: grok-4-fast-reasoning |
-| Grok 4 Fast (`grok-4-fast`) | ga | 2025-09-19 | 2M | $0.20 | $0.50 | Two API variants: grok-4-fast-reasoning and grok-4-fast-non-reasoning | Fast, cheap agentic and multimodal tasks | prev: grok-3-mini → superseded by: grok-4-1-fast |
-| Grok 4 Fast (Non-Reasoning) (`grok-4-fast-non-reasoning`) | ga | 2025-09-19 | 2M | $0.20 | $0.50 | Non-reasoning mode of the Grok 4 Fast unified model | Low-latency chat and high-throughput tasks | prev: grok-3 → superseded by: grok-4.3 |
-| Grok 4 Fast (Reasoning) (`grok-4-fast-reasoning`) | ga | 2025-09-19 | 2M | $0.20 | $0.50 | Unified single-weight reasoning/non-reasoning | High-throughput reasoning with 2M context | prev: grok-4 → superseded by: grok-4.3 |
-| Grok Code Fast 1 (`grok-code-fast-1`) | ga | 2025-08-26 | 256K | $0.20 | $1.50 | Reasoning model optimized for agentic coding (formerly codename 'sonic') | Agentic coding at low cost | superseded by: grok-build-0.1 |
-| Grok 4 (`grok-4`) | ga | 2025-07-10 | 256K | $3.00 | $15.00 | — | Established flagship reasoning with tools | prev: grok-3 → superseded by: grok-4.5 |
 | Grok Imagine Video 1.5 Preview (`grok-imagine-video-1.5-preview`) | preview | 2026-06-03 | — | — | — | Imagine video diffusion model with integrated audio generation | Image-to-video generation with native audio | prev: grok-imagine-video |
 | Grok Build 0.1 (`grok-build-0.1`) | preview | 2026-05-29 | 256K | $1.00 | $2.00 | Coding-specialized agent model | Fast agentic coding and web dev | prev: grok-code-fast-1 |
 | Grok 4.20 Multi Agent Beta 0309 (`grok-4.20-multi-agent-beta-0309`) | preview | 2026-03-09 | 2M | $1.25 | $2.50 | Beta 4-agent council with extended 2M context | Beta multi-agent with 2M context | prev: grok-4.20 → superseded by: grok-4.20-multi-agent |
-| Grok Voice Think Fast 1.0 (`grok-voice-think-fast-1.0`) | deprecated | 2026-04-23 | — | — | — | Voice-native full-duplex model with background reasoning for real-time conversation | real-time voice agents with reasoning (legacy) | superseded by: grok-voice-think-fast-2.0 |
+| Grok Voice Think Fast 1.0 (`grok-voice-think-fast-1.0`) | deprecated | 2026-04-23 | — | — | — | Voice-native full-duplex model with background reasoning for real-time conversation | real-time voice agents with reasoning (legacy) | → superseded by: grok-voice-think-fast-2.0 |
 | Grok 4.20 (dashed alias) (`grok-4-20`) | deprecated | 2026-03-10 | 2M | $2.00 | $6.00 | — | Non-canonical alias for grok-4.20; use canonical dotted form | prev: grok-4.3 → superseded by: grok-4.20 |
+| Grok 4.1 Fast (`grok-4-1-fast`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Fast tier with reasoning and non-reasoning variants | High-volume, low-cost long-context tasks | prev: grok-4-fast → superseded by: grok-4.3 |
+| Grok 4.1 Fast (`grok-4.1-fast`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | unified reasoning/non-reasoning single model | High-volume agentic tool calling | prev: grok-4-fast → superseded by: grok-4.3 |
+| Grok 4.1 Fast (`grok-4.1-fast-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Efficient transformer trained with RL in simulated tool environments | High-throughput agentic tool-calling and long-context workflows | prev: grok-4-fast-reasoning → superseded by: grok-4.3 |
+| Grok 4.1 Fast Non-Reasoning (`grok-4-1-fast-non-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Unified reasoning/non-reasoning weights steered by system prompt | Low-latency high-throughput chat and extraction | prev: grok-4-fast-non-reasoning → superseded by: grok-4.3 |
+| Grok 4.1 Fast Non-Reasoning (`grok-4.1-fast-non-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | — | Low-latency, high-throughput agent tool loops | prev: grok-4-fast-non-reasoning → superseded by: grok-4.3 |
+| Grok 4.1 Fast Reasoning (`grok-4-1-fast-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Unified reasoning/non-reasoning weights steered by system prompt | Fast, cheap tool-calling agents at scale | prev: grok-4-fast-reasoning → superseded by: grok-4.3 |
+| Grok 4 Fast (`grok-4-fast`) | deprecated | 2025-09-19 | 2M | $0.20 | $0.50 | Two API variants: grok-4-fast-reasoning and grok-4-fast-non-reasoning | Fast, cheap agentic and multimodal tasks | prev: grok-3-mini → superseded by: grok-4.3 |
+| Grok 4 Fast (Non-Reasoning) (`grok-4-fast-non-reasoning`) | deprecated | 2025-09-19 | 2M | $0.20 | $0.50 | Non-reasoning mode of the Grok 4 Fast unified model | Low-latency chat and high-throughput tasks | prev: grok-3 → superseded by: grok-4.3 |
+| Grok 4 Fast (Reasoning) (`grok-4-fast-reasoning`) | deprecated | 2025-09-19 | 2M | $0.20 | $0.50 | Unified single-weight reasoning/non-reasoning | High-throughput reasoning with 2M context | prev: grok-4 → superseded by: grok-4.3 |
+| Grok Code Fast 1 (`grok-code-fast-1`) | deprecated | 2025-08-26 | 256K | $0.20 | $1.50 | Reasoning model optimized for agentic coding (formerly codename 'sonic') | Agentic coding at low cost | → superseded by: grok-build-0.1 |
+| Grok 4 (`grok-4`) | deprecated | 2025-07-10 | 256K | $3.00 | $15.00 | — | Established flagship reasoning with tools | prev: grok-3 → superseded by: grok-4.3 |
 | Grok 4 (0709) (`grok-4-0709`) | deprecated | 2025-07-09 | 256K | $3.00 | $15.00 | — | Complex synthesis, analysis, and instruction following | prev: grok-3 → superseded by: grok-4.5 |
 | Grok 3 (`grok-3`) | deprecated | 2025-02-17 | 131.1K | $3.00 | $15.00 | — | General-purpose enterprise chat | prev: grok-2 → superseded by: grok-4.3 |
+

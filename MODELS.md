@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-09-23 by genai-model-catalog routine._
+_Last refreshed: 2026-09-24 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -223,7 +223,7 @@ _Last refreshed: 2026-09-23 by genai-model-catalog routine._
 | Phi-4-multimodal (`phi-4-multimodal`) | ga | 2025-02-27 | 131.1K | — | — | 5.6B multimodal foundation model with Mixture-of-LoRAs adapters | On-device multimodal text, vision and audio | prev: phi-3.5-vision |
 | Phi-4 Mini Instruct (`microsoft/Phi-4-mini-instruct`) | ga | 2025-02-26 | 131.1K | $0.07 | $0.23 | 3.8B parameter dense decoder-only Transformer | Edge and on-device reasoning, math, function calling | prev: microsoft/Phi-3-mini |
 | Phi-4-mini (`phi-4-mini`) | ga | 2025-02-26 | 128K | $0.07 | $0.23 | Compact dense transformer (~3.8B parameters) | Edge/low-cost inference, open weights | prev: phi-3-mini |
-| Phi-4-mini-instruct (`Phi-4-mini-instruct`) | ga | 2025-02-26 | 131.1K | $0.07 | $0.30 | Dense decoder-only transformer, 3.8B parameters, grouped-query attention | Cheap, long-context classification and routing | prev: phi-3.5-mini-instruct → superseded by: phi-4-mini-flash-reasoning |
+| Phi-4-mini-instruct (`Phi-4-mini-instruct`) | ga | 2025-02-26 | 131.1K | $0.08 | $0.30 | Dense decoder-only transformer, 3.8B parameters, grouped-query attention | Cheap, long-context classification and routing | prev: phi-3.5-mini-instruct → superseded by: phi-4-mini-flash-reasoning |
 | Phi-4-multimodal-instruct (`phi-4-multimodal-instruct`) | ga | 2025-02-26 | 131.1K | $0.08 | $0.32 | 5.6B parameter multimodal transformer unifying speech, vision, and text | Unified small multimodal (text, vision, audio) | prev: phi-3.5-vision-instruct |
 | Phi-4 Multimodal Instruct (`microsoft/Phi-4-multimodal-instruct`) | ga | 2025-02-01 | 131.1K | $0.08 | $0.32 | 5.6B multimodal transformer with Mixture-of-LoRAs vision/speech adapters | Small multimodal model with text, image, audio | prev: microsoft/Phi-3.5-vision-instruct → superseded by: microsoft/Phi-4-reasoning-vision-15B |
 | Phi-4-mini (`microsoft/phi-4-mini`) | ga | 2025-02-01 | 128K | — | — | — | Document classification and routing at production scale | — |
@@ -431,4 +431,3 @@ _Last refreshed: 2026-09-23 by genai-model-catalog routine._
 | Grok 4 (`grok-4`) | deprecated | 2025-07-10 | 256K | $3.00 | $15.00 | — | Established flagship reasoning with tools | prev: grok-3 → superseded by: grok-4.3 |
 | Grok 4 (0709) (`grok-4-0709`) | deprecated | 2025-07-09 | 256K | $3.00 | $15.00 | — | Complex synthesis, analysis, and instruction following | prev: grok-3 → superseded by: grok-4.5 |
 | Grok 3 (`grok-3`) | deprecated | 2025-02-17 | 131.1K | $3.00 | $15.00 | — | General-purpose enterprise chat | prev: grok-2 → superseded by: grok-4.3 |
-

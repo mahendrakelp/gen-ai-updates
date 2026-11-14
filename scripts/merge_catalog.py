@@ -15,22 +15,61 @@ TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 # Updates keyed by lowercase "provider::model_id"
 # Each value is a dict of fields to overwrite. Only confirmed deltas.
 #
-# 2026-09-13 research pass:
-# Verified official release/pricing pages and provider changelogs for all 14
-# providers. Every current flagship model already exists in the store under
-# its canonical id (OpenAI GPT-6 Astra, Anthropic Fable 5.1, Google Gemini
-# 3.8 Flash, xAI Grok 4.6, Meta Muse Spark 1.3, DeepSeek V4.1 Flash,
-# Alibaba Qwen 3.8-Max, Cohere Command A+, Moonshot Kimi K3, NVIDIA
-# Nemotron 3.5 family, Microsoft MAI-Code-1.1-Flash, Mistral Leanstral 1.5).
-# xAI Grok 4.7 slipped past its September 12 target and has no official
-# card/pricing yet — not confirmed. NVIDIA "Sports Tennis" 31B fine-tune
-# on HF has no blog, pricing, or benchmarks — skipped per HARD RULE 1.
-# No pricing, context window, or status field changed vs. yesterday's
-# baseline on any tracked model.
-UPDATES = {}
+# 2026-11-14 research pass:
+# Only platform.claude.com was reachable from this session (the OpenAI,
+# Google, AWS, x.ai, Mistral, DeepSeek, Alibaba, Cohere, NVIDIA, Perplexity,
+# Moonshot, Microsoft, and Meta developer domains resolve to ENOTFOUND under
+# the current network policy). Verified every Anthropic row against the live
+# official pricing page at https://platform.claude.com/docs/en/about-claude/pricing.
+# Store prices, context windows and statuses already match the official page
+# except Claude Sonnet 4.5, which the page footnote explicitly labels
+# "deprecated"; promoted the store row to match.
+# Claude Mythos 5.2 appears on the official pricing table (limited access
+# via the Cyber Verification Program) at $8 input / $40 output, matching
+# Fable 5.2; inserted as preview with limited-availability note.
+# No reliable official source for other providers was reachable today;
+# skipped per HARD RULE 2 (never fabricate). Third-party aggregator pages
+# were consulted via WebSearch but not used to overwrite any stored field.
+UPDATES = {
+    "anthropic::claude-sonnet-4-5": {"status": "deprecated"},
+}
 
-# Insertions (full model object). None confirmed today.
-INSERTIONS = []
+# Insertions (full model object).
+INSERTIONS = [
+    {
+        "provider": "Anthropic",
+        "model_name": "Claude Mythos 5.2",
+        "model_id": "claude-mythos-5-2",
+        "release_date": None,
+        "status": "preview",
+        "context_window": 1000000,
+        "max_output_tokens": None,
+        "input_price_per_1m": 8.0,
+        "cached_input_price_per_1m": 0.2,
+        "output_price_per_1m": 40.0,
+        "modalities": ["text", "vision"],
+        "tool_use": True,
+        "structured_output": True,
+        "mcp_support": True,
+        "reasoning": True,
+        "open_weights": False,
+        "best_for": "cyber-verified frontier reasoning and research",
+        "pros": [
+            "Flagship Mythos tier at Fable 5.2 pricing",
+            "1M token context window with newer tokenizer",
+            "Fast mode available on the Claude API",
+        ],
+        "cons": [
+            "Limited availability: Cyber Verification Program required",
+            "Not available under zero data retention without authorization",
+        ],
+        "benchmarks": {},
+        "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "architecture": None,
+        "previous_version": "claude-mythos-5-1",
+        "superseded_by": None,
+    },
+]
 
 
 def main():
@@ -66,7 +105,7 @@ def main():
         inserted += 1
         print(f"  inserted: {key}")
 
-    raw.sort(key=lambda m: (m["provider"], m["model_name"].lower()))
+    raw.sort(key=lambda m: (m["provider"], m["model_name"]))
     STORE.write_text(json.dumps(raw, indent=2, ensure_ascii=False) + "\n")
     print(f"\nTotal models: {len(raw)} | inserted: {inserted} | updated: {updated}")
 

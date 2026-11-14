@@ -16,11 +16,13 @@ def fmt_ctx(n):
     if n is None:
         return "—"
     if n >= 1_000_000:
-        v = round(n / 1_000_000, 1)
-        return f"{int(v)}M" if v == int(v) else f"{v:g}M"
+        if n % 1_000_000 == 0:
+            return f"{n // 1_000_000}M"
+        return f"{n / 1_000_000:.1f}M"
     if n >= 1_000:
-        v = round(n / 1_000)
-        return f"{v}K"
+        if n % 1000 == 0:
+            return f"{n // 1000}K"
+        return f"{n / 1_000:.1f}K"
     return str(n)
 
 
@@ -35,14 +37,16 @@ def fmt_date(d):
 
 
 def fmt_lineage(m):
-    parts = []
     prev = m.get("previous_version")
     sup = m.get("superseded_by")
+    if not prev and not sup:
+        return "—"
+    parts = []
     if prev:
-        parts.append(f"prev: `{prev}`")
+        parts.append(f"prev: {prev}")
     if sup:
-        parts.append(f"superseded by: `{sup}`")
-    return " → ".join(parts) if parts else "—"
+        parts.append(f"superseded by: {sup}")
+    return " → ".join(parts) if prev else f"→ {parts[0]}"
 
 
 def md_escape(s):
@@ -59,9 +63,9 @@ def main():
         by_provider.setdefault(m["provider"], []).append(m)
 
     lines = []
-    lines.append("# Frontier Production Model Catalog\n")
-    lines.append(f"_Last refreshed: {TODAY} by genai-model-catalog routine._\n")
-    lines.append(f"_Total models tracked: {len(models)} across {len(by_provider)} providers._\n")
+    lines.append("# Frontier Production Model Catalog")
+    lines.append("")
+    lines.append(f"_Last refreshed: {TODAY} by genai-model-catalog routine._")
 
     for provider in sorted(by_provider.keys()):
         rows = sorted(
@@ -71,7 +75,9 @@ def main():
                 -(int(m["release_date"].replace("-", "")) if m.get("release_date") else 0),
             ),
         )
-        lines.append(f"\n## {provider}\n")
+        lines.append("")
+        lines.append(f"## {provider}")
+        lines.append("")
         lines.append(
             "| Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |"
         )

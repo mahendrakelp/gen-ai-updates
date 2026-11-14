@@ -1,6 +1,6 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-11-13 by genai-model-catalog routine._
+_Last refreshed: 2026-11-14 by genai-model-catalog routine._
 
 ## Alibaba
 
@@ -97,13 +97,14 @@ _Last refreshed: 2026-11-13 by genai-model-catalog routine._
 | Claude Sonnet 4.6 (`claude-sonnet-4-6`) | ga | 2026-02-17 | 1M | $3.00 | $15.00 | Hybrid reasoning model with extended thinking | Balanced coding and production workloads | prev: claude-sonnet-4-5 → superseded by: claude-sonnet-5 |
 | Claude Haiku 4.5 (`claude-haiku-4-5`) | ga | 2025-10-15 | 200K | $1.00 | $5.00 | Small efficient Claude variant | Near-Sonnet quality at Haiku price | prev: claude-3-5-haiku → superseded by: claude-haiku-5-5 |
 | Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) | ga | 2025-10-15 | 200K | $1.00 | $5.00 | Haiku-tier compact model | Fastest model with near-frontier intelligence | prev: claude-haiku-3-5 |
-| Claude Sonnet 4.5 (`claude-sonnet-4-5`) | ga | 2025-09-29 | 200K | $3.00 | $15.00 | Hybrid reasoning model with extended thinking | World-class coding at mid-tier price | prev: claude-sonnet-4 → superseded by: claude-sonnet-4-6 |
 | Claude Opus 4.5 (`claude-opus-4-5`) | ga | — | 1M | $5.00 | $25.00 | — | Legacy Opus tier (still available) | prev: claude-opus-4-1 → superseded by: claude-opus-5-5 |
 | Claude Mythos 5.1 (`claude-mythos-5-1`) | preview | 2026-09-01 | 1M | $10.00 | $50.00 | Claude Mythos 5.1 limited-availability specialized model | Cyber-focused limited-availability specialized model | prev: claude-mythos-5 |
 | Claude Mythos 5 (`claude-mythos-5`) | preview | 2026-06-09 | 1M | $10.00 | $50.00 | Same underlying model as Claude Fable 5; uses the newer tokenizer introduced with Opus 4.7 | Defensive cybersecurity workflows | prev: claude-mythos-preview → superseded by: claude-mythos-5-1 |
+| Claude Mythos 5.2 (`claude-mythos-5-2`) | preview | — | 1M | $8.00 | $40.00 | — | cyber-verified frontier reasoning and research | prev: claude-mythos-5-1 |
 | Claude Opus 4.8 (`claude-opus-4-8`) | deprecated | 2026-05-28 | 1M | $5.00 | $25.00 | Transformer LLM using the newer tokenizer introduced with Claude Opus 4.7 | Legacy Opus tier, superseded by Opus 5 | prev: claude-opus-4-7 → superseded by: claude-opus-5 |
 | Claude Opus 4.6 (`claude-opus-4-6`) | deprecated | 2026-02-05 | 1M | $5.00 | $25.00 | — | Legacy Opus tier, superseded by Opus 4.7 | prev: claude-opus-4-5 → superseded by: claude-opus-4-7 |
 | Claude Opus 4.5 (`claude-opus-4-5-20251101`) | deprecated | 2025-11-01 | 200K | $5.00 | $25.00 | — | Legacy Opus tier, superseded by Opus 4.6 | prev: claude-opus-4-1 → superseded by: claude-opus-4-6 |
+| Claude Sonnet 4.5 (`claude-sonnet-4-5`) | deprecated | 2025-09-29 | 200K | $3.00 | $15.00 | Hybrid reasoning model with extended thinking | World-class coding at mid-tier price | prev: claude-sonnet-4 → superseded by: claude-sonnet-4-6 |
 | Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) | deprecated | 2025-09-29 | 200K | $3.00 | $15.00 | — | Legacy Sonnet tier, superseded by Sonnet 4.6 | prev: claude-sonnet-4 → superseded by: claude-sonnet-4-6 |
 
 ## Cohere

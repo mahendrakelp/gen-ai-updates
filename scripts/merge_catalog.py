@@ -15,34 +15,31 @@ TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 # Updates keyed by lowercase "provider::model_id"
 # Each value is a dict of fields to overwrite. Only confirmed deltas.
 #
-# 2026-11-15 research pass:
-# Only platform.claude.com resolves in this session's network policy today
-# (OpenAI, Google, AWS, x.ai, Mistral, DeepSeek, Alibaba, Cohere, NVIDIA,
-# Perplexity, Moonshot, Microsoft, and Meta developer domains return
-# ENOTFOUND). Verified Anthropic rows against two live official pages:
+# 2026-11-16 research pass:
+# Same network footprint as yesterday: only platform.claude.com resolves
+# in this session's network policy (OpenAI, Google, AWS, x.ai, Mistral,
+# DeepSeek, Alibaba, Cohere, NVIDIA, Perplexity, Moonshot, Microsoft, and
+# Meta developer domains all return ENOTFOUND). Verified Anthropic rows
+# again against two live official pages:
 #   - https://platform.claude.com/docs/en/about-claude/pricing
 #   - https://platform.claude.com/docs/en/about-claude/model-deprecations
 #
-# Status corrections from the official Model status table:
-#   - claude-opus-4-5-20251101 is officially "Active" (retirement not sooner
-#     than Nov 24, 2026), not deprecated as the store had it.
-#   - claude-opus-4-6 is officially "Active" (retirement not sooner than
-#     Feb 5, 2027), not deprecated.
-#   - claude-opus-4-8 is officially "Active" (retirement not sooner than
-#     May 28, 2027), not deprecated.
-#   - claude-sonnet-4-5-20250929 is Deprecated with recommended replacement
-#     claude-sonnet-5-5 per the 2026-09-30 deprecation notice; store had
-#     superseded_by=claude-sonnet-4-6 which is now corrected.
+# All Anthropic rows (pricing, context, cached_input, status, superseded_by)
+# now match the live pages verbatim after yesterday's corrections. No new
+# deltas today.
 #
-# All other Anthropic rows (pricing, context, status) already match the
-# live pages. No reliable official source for any other provider was
-# reachable today; skipped per HARD RULE 2 (never fabricate).
-UPDATES = {
-    "anthropic::claude-opus-4-5-20251101": {"status": "ga"},
-    "anthropic::claude-opus-4-6": {"status": "ga"},
-    "anthropic::claude-opus-4-8": {"status": "ga"},
-    "anthropic::claude-sonnet-4-5-20250929": {"superseded_by": "claude-sonnet-5-5"},
-}
+# Notes for future runs:
+#   - claude-opus-4-5-20251101 has a tentative retirement "not sooner than
+#     Nov 24, 2026" — expect a Deprecated status flip within a week.
+#   - claude-sonnet-4-5-20250929 retires Nov 30, 2026 (already Deprecated).
+#   - claude-mythos-5-2 has no official release_date on either page. Its
+#     retirement is "not sooner than November 9, 2027" (one-year pattern
+#     matches Fable 5.2's 2026-11-09 release) but HARD RULE 2 forbids
+#     inferring a date, so release_date stays null.
+#
+# No reliable official source for any other provider was reachable today;
+# skipped per HARD RULE 2 (never fabricate).
+UPDATES = {}
 
 # Insertions (full model object). None today — no new Anthropic models on
 # the pricing or deprecations page that aren't already in the store.

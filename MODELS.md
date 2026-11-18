@@ -1,11 +1,12 @@
 # Frontier Production Model Catalog
 
-_Last refreshed: 2026-11-17 by genai-model-catalog routine._
+_Last refreshed: 2026-11-18 by genai-model-catalog routine._
 
 ## Alibaba
 
 | Model | Status | Released | Context | Input $/1M | Output $/1M | Architecture | Best for | Lineage |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Qwen4-Max (`qwen4-max`) | ga | 2026-11-16 | 1M | $1.50 | $4.50 | Sparse Mixture-of-Experts, ~2.4T total / ~71B active parameters | Flagship agentic reasoning, coding, long-horizon tasks | prev: qwen3.8-max |
 | Qwen3.8-LiveTranslate-Flash-Realtime (`qwen3.8-livetranslate-flash-realtime`) | ga | 2026-09-19 | — | $7.50 | $20.00 | Realtime streaming speech translation model (Flash tier) | Real-time speech-to-speech multilingual translation | prev: qwen3-livetranslate-flash-realtime |
 | Qwen3.8-Omni-Flash (`qwen3.8-omni-flash`) | ga | 2026-09-18 | 1M | $0.15 | $0.47 | Qwen3.8 omnimodal MoE; accepts text/image/audio/video, emits text | Omnimodal audio/video agents at Flash cost | prev: qwen3-omni-flash |
 | Qwen3.8-Max (2026-09-02 snapshot) (`qwen3.8-max-0902`) | ga | 2026-09-02 | 1M | $2.00 | $6.00 | Mixture-of-Experts (~2.4T total) | Pinned Qwen3.8-Max snapshot for reproducibility | prev: qwen3.8-max |
@@ -13,7 +14,7 @@ _Last refreshed: 2026-11-17 by genai-model-catalog routine._
 | Qwen3.8-Flash (`qwen3.8-flash`) | ga | 2026-08-26 | 1M | $0.15 | $0.47 | Sparse MoE successor to Qwen3.7-Flash; previews architecture used in Qwen3.8-Flash-Next (125B total / 6B active) | Low-cost high-throughput multimodal reasoning | prev: qwen3.7-flash |
 | Qwen3.8-27B (`qwen3.8-27b`) | ga | 2026-08-14 | 1M | $0.50 | $3.00 | Dense 27B-parameter vision-language transformer | Efficient dense vision-language open-weight workloads | prev: qwen3.7-plus |
 | Qwen3.8-2.4T-A95B (`qwen3.8-2.4t-a95b`) | ga | 2026-08-12 | 1M | — | — | Mixture-of-Experts, 2.4T total / 95B active | Open-weight Qwen-Max-class release | prev: Qwen3-235B-A22B |
-| Qwen3.8-Max (`qwen3.8-max`) | ga | 2026-08-03 | 1M | $2.00 | $6.00 | Sparse Mixture-of-Experts with hybrid attention; 2.4T total parameters, 95B active | Flagship agentic reasoning and long-horizon tasks | prev: qwen3.7-max |
+| Qwen3.8-Max (`qwen3.8-max`) | ga | 2026-08-03 | 1M | $2.00 | $6.00 | Sparse Mixture-of-Experts with hybrid attention; 2.4T total parameters, 95B active | Flagship agentic reasoning and long-horizon tasks | prev: qwen3.7-max → superseded by: qwen4-max |
 | Qwen3.7-Flash (`qwen3.7-flash`) | ga | 2026-07-27 | 1M | $0.03 | $0.13 | Sparse Mixture-of-Experts vision-language model | Cheap high-volume classification, extraction, subagents | prev: qwen3.5-flash |
 | Qwen3.7-Plus (`qwen3.7-plus`) | ga | 2026-05-26 | 1M | $0.40 | $1.60 | Hybrid-thinking MoE (parameter count not disclosed) | balanced general-purpose production workloads | prev: qwen-plus → superseded by: qwen3.8-27b |
 | Qwen3.7-Max (`qwen3.7-max`) | ga | 2026-05-19 | 1M | $2.50 | $7.50 | Proprietary MoE (undisclosed total/active params; successor to Qwen3.6-Max) | Current proprietary flagship; agentic workloads, long-horizon tool use | prev: qwen3.6-max → superseded by: qwen3.8-max |
@@ -259,8 +260,8 @@ _Last refreshed: 2026-11-17 by genai-model-catalog routine._
 | Phi-4 Reasoning Vision 15B (`microsoft/phi-4-reasoning-vision-15b`) | ga | 2026-03-04 | 16K | $0.07 | $0.14 | Mid-fusion multimodal: Phi-4-Reasoning backbone + SigLIP-2 vision encoder, 15B parameters | Compact open multimodal reasoning for vision+text | prev: microsoft/phi-4-reasoning |
 | Phi-4-mini-flash-reasoning (`microsoft/phi-4-mini-flash-reasoning`) | ga | 2025-07-09 | — | — | — | Dense transformer, mini variant tuned for flash reasoning | Fast on-device reasoning for edge deployment | — |
 | Phi-4-mini-flash-reasoning (`phi-4-mini-flash-reasoning`) | ga | 2025-07-09 | 66K | $0.08 | $0.32 | 3.8B-parameter decoder-hybrid-decoder SambaY architecture with Gated Memory Units | Fast small-model reasoning for math workloads | prev: Phi-4-mini-reasoning |
-| Phi-4 Reasoning (`phi-4-reasoning`) | ga | 2025-04-30 | 33K | $0.13 | $0.50 | Dense decoder-only Transformer, 14B parameters, fine-tuned from Phi-4 | Small open-weight reasoning model | prev: phi-4 |
-| Phi-4 Reasoning (`microsoft/Phi-4-reasoning`) | ga | 2025-04-30 | 33K | $0.13 | $0.50 | 14B dense decoder-only transformer, supervised fine-tuned from Phi-4 | Compact open-weights chain-of-thought reasoning | prev: microsoft/phi-4 → superseded by: microsoft/Phi-4-reasoning-vision-15B |
+| Phi-4 Reasoning (`phi-4-reasoning`) | ga | 2025-04-30 | 33K | $0.12 | $0.50 | Dense decoder-only Transformer, 14B parameters, fine-tuned from Phi-4 | Small open-weight reasoning model | prev: phi-4 |
+| Phi-4 Reasoning (`microsoft/Phi-4-reasoning`) | ga | 2025-04-30 | 33K | $0.12 | $0.50 | 14B dense decoder-only transformer, supervised fine-tuned from Phi-4 | Compact open-weights chain-of-thought reasoning | prev: microsoft/phi-4 → superseded by: microsoft/Phi-4-reasoning-vision-15B |
 | Phi-4 Reasoning Plus (`microsoft/Phi-4-reasoning-plus`) | ga | 2025-04-30 | 33K | — | — | 14B dense decoder-only transformer, RL-tuned from Phi-4-reasoning | Strongest small open-weights math and reasoning model | prev: microsoft/Phi-4-reasoning → superseded by: microsoft/phi-4-reasoning-vision |
 | Phi-4-mini-reasoning (`phi-4-mini-reasoning`) | ga | 2025-04-30 | 131K | $0.07 | $0.30 | 3.8B parameter dense decoder-only Transformer fine-tuned for reasoning | Compact edge reasoning for math | prev: phi-4-mini-instruct |
 | Phi-4-reasoning-plus (`phi-4-reasoning-plus`) | ga | 2025-04-30 | 33K | $0.13 | $0.50 | 14B dense decoder-only transformer fine-tuned from Phi-4 with SFT+RL | Open-weight small-model reasoning on math, science, and coding | prev: phi-4-reasoning → superseded by: Phi-4-reasoning-vision-15B |
@@ -273,7 +274,7 @@ _Last refreshed: 2026-11-17 by genai-model-catalog routine._
 | Phi-4-multimodal-instruct (`microsoft/Phi-4-multimodal-instruct`) | ga | 2025-02-26 | 128K | $0.08 | $0.32 | 5.6B multimodal transformer with mixture-of-LoRAs adapters | small open-weight multimodal assistant | prev: microsoft/Phi-3.5-vision-instruct → superseded by: microsoft/Phi-4-reasoning-vision-15B |
 | Phi-4-mini (`microsoft/phi-4-mini`) | ga | 2025-02-01 | 128K | — | — | — | Document classification and routing at production scale | — |
 | Phi-4 (`microsoft/phi-4`) | ga | 2024-12-12 | 16K | $0.07 | $0.14 | 14B dense decoder-only transformer | Compact general-purpose instruction following | prev: microsoft/Phi-3.5-mini-instruct → superseded by: microsoft/Phi-4-reasoning |
-| Phi-4 (`phi-4`) | ga | 2024-12-12 | 16K | $0.13 | $0.50 | Dense decoder-only transformer, 14B parameters | High-quality small-model reasoning, open deployments | prev: phi-3.5 → superseded by: phi-4-reasoning |
+| Phi-4 (`phi-4`) | ga | 2024-12-12 | 16K | $0.12 | $0.50 | Dense decoder-only transformer, 14B parameters | High-quality small-model reasoning, open deployments | prev: phi-3.5 → superseded by: phi-4-reasoning |
 | MAI-Transcribe-2-Streaming (`mai-transcribe-2-streaming`) | preview | 2026-10-01 | — | — | — | — | Low-latency real-time multilingual speech-to-text | prev: mai-transcribe-2 |
 | MAI-Voice-2.1-Flash (`mai-voice-2.1-flash`) | preview | 2026-10-01 | — | — | — | Text-to-speech generative model (latency-optimised) | Low-latency multilingual text-to-speech | prev: mai-voice-2-flash |
 | MAI-Transcribe-2 (`mai-transcribe-2`) | preview | 2026-09-03 | — | — | — | — | Fast, accurate multilingual speech-to-text | prev: mai-transcribe-1 |
@@ -554,4 +555,3 @@ _Last refreshed: 2026-11-17 by genai-model-catalog routine._
 | Grok 4.1 Fast Non-Reasoning (`grok-4-1-fast-non-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | Unified reasoning/non-reasoning weights steered by system prompt | Low-latency high-throughput chat and extraction | prev: grok-4-fast-non-reasoning → superseded by: grok-4.3 |
 | Grok 4.1 Fast Non-Reasoning (`grok-4.1-fast-non-reasoning`) | deprecated | 2025-11-19 | 2M | $0.20 | $0.50 | — | Low-latency, high-throughput agent tool loops | prev: grok-4-fast-non-reasoning → superseded by: grok-4.3 |
 | Grok 4 (`grok-4-0709`) | deprecated | 2025-07-09 | 256K | $3.00 | $15.00 | Transformer-based reasoning model | legacy frontier reasoning | prev: grok-3 → superseded by: grok-4.7 |
-

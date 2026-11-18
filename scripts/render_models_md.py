@@ -20,9 +20,7 @@ def fmt_ctx(n):
             return f"{n // 1_000_000}M"
         return f"{n / 1_000_000:.1f}M"
     if n >= 1_000:
-        if n % 1000 == 0:
-            return f"{n // 1000}K"
-        return f"{n / 1_000:.1f}K"
+        return f"{round(n / 1_000)}K"
     return str(n)
 
 
@@ -46,7 +44,7 @@ def fmt_lineage(m):
         parts.append(f"prev: {prev}")
     if sup:
         parts.append(f"superseded by: {sup}")
-    return " → ".join(parts) if prev else f"→ {parts[0]}"
+    return " → ".join(parts)
 
 
 def md_escape(s):
